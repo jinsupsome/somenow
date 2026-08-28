@@ -27,7 +27,7 @@
   // 사진 URL 폭은 정해진 값으로만 만든다. 창 크기가 조금 달라졌다고
   // 매번 새 주소가 되면 브라우저 캐시가 빗나가 사진을 다시 받는다.
   var WIDTH_STEPS = [1280, 1600, 1920, 2560];
-  var OFFLINE_W = 1280;                         // 즉시 표시·오프라인용으로 저장할 사진 폭
+  var OFFLINE_W_MAX = 1920;                     // 저장본 최대 폭(너무 크면 저장 용량을 넘는다)
   var OFFLINE_MAX_BYTES = 2 * 1024 * 1024;      // 이보다 크면 저장하지 않는다
 
   var FETCH_TIMEOUT_MS = 8000;
@@ -265,6 +265,10 @@
     return WIDTH_STEPS[WIDTH_STEPS.length - 1];
   }
 
+  function neededWidth() {
+    return stepWidth(Math.ceil(window.innerWidth * (window.devicePixelRatio || 1)));
+  }
+
   function rawSrc(raw, w) {
     var sep = raw.indexOf("?") === -1 ? "?" : "&";
     return raw + sep + "auto=format&fit=crop&fm=jpg&q=80&w=" + w;
@@ -273,10 +277,7 @@
   function photoSrc(photo) {
     if (!photo) return null;
     if (photo.dataUrl) return photo.dataUrl;          // 저장해 둔 그림
-    if (photo.raw) {
-      var need = Math.ceil(window.innerWidth * (window.devicePixelRatio || 1));
-      return rawSrc(photo.raw, stepWidth(need));
-    }
+    if (photo.raw) return rawSrc(photo.raw, neededWidth());
     return photo.url || null;
   }
 
@@ -310,15 +311,25 @@
     return true;
   }
 
+  // 같은 사진의 더 큰 판으로 조용히 갈아끼운다. 그림이 같으므로 전환 효과를 주면
+  // 오히려 "사진이 또 바뀌었다"고 보인다.
+  function replaceInPlace(src) {
+    if (!layers) layers = [el.photo, el.photoB];
+    layers[active].style.backgroundImage = 'url("' + src + '")';
+    shownSrc = src;
+  }
+
   // 이미지가 실제로 로드된 뒤에만 배경을 바꾼다.
-  function applyPhoto(photo) {
+  // same=true 면 이미 같은 사진이 떠 있는 것이므로 페이드 없이 바꾼다.
+  function applyPhoto(photo, same) {
     var src = photoSrc(photo);
     if (!src) return Promise.resolve(false);
 
     return new Promise(function (resolve) {
       var img = new Image();
       img.onload = function () {
-        paint(src, photo && photo.color);
+        if (same) replaceInPlace(src);
+        else paint(src, photo && photo.color);
         renderCredit(photo);
         resolve(true);
       };
@@ -446,7 +457,8 @@
    */
   function cacheBytes(photo, iata) {
     if (!photo || !photo.raw) return;
-    var src = rawSrc(photo.raw, OFFLINE_W);
+    var w = Math.min(OFFLINE_W_MAX, neededWidth());
+    var src = rawSrc(photo.raw, w);
     try {
       fetch(src)
         .then(function (r) { if (!r.ok) throw new Error("bytes " + r.status); return r.blob(); })
@@ -463,6 +475,7 @@
           var o = {};
           o[LAST_BYTES_KEY] = {
             iata: iata,
+            w: w,
             dataUrl: dataUrl,
             color: photo.color || null,
             authorName: photo.authorName,
@@ -528,10 +541,12 @@
       var mine = photos[city.iata] || null;
 
       // 0) 이 도시의 저장본이 있으면 기다릴 것 없이 사진과 글자를 함께 바꾼다
+      var savedW = 0;
       if (lastBytes && lastBytes.iata === city.iata && lastBytes.dataUrl) {
         paint(lastBytes.dataUrl, lastBytes.color);
         renderCredit(lastBytes);
         painted = true;
+        savedW = lastBytes.w || 1280;      // 폭을 기록하기 전에 저장된 것은 1280으로 본다
         reveal();
       }
 
@@ -545,7 +560,12 @@
 
       // 1) 오늘 이 도시 사진이 이미 있으면 그대로 쓴다(미리 받아 둔 것 포함)
       if (mine) {
-        return applyPhoto(mine).then(function (ok) {
+        // 저장본이 이 화면에 충분히 크면 더 받지 않는다. 사진이 두 번 바뀌는 것처럼 보이지 않는다.
+        if (painted && savedW >= neededWidth()) {
+          planNext(photos, dateStr);
+          return null;
+        }
+        return applyPhoto(mine, painted).then(function (ok) {
           if (!ok) {
             if (!painted) return fallback().then(reveal);
             reveal();
@@ -560,8 +580,8 @@
             var sv = {}; sv[TODAY_KEY] = { date: dateStr, photos: photos };
             storageSet(sv);
           }
-          // 이 도시 저장본이 아직 없을 때만 저장한다(새 탭마다 다시 받지 않게)
-          if (!lastBytes || lastBytes.iata !== city.iata) cacheBytes(mine, city.iata);
+          // 저장본이 없거나, 있어도 지금 화면보다 작으면 다시 저장한다
+          if (!painted || savedW < neededWidth()) cacheBytes(mine, city.iata);
           planNext(photos, dateStr);
         });
       }
