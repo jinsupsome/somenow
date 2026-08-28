@@ -1150,6 +1150,19 @@
     });
   }
 
+  // "2026-12-24" -> "D-83". 지난 날짜면 아무것도 표시하지 않는다.
+  function ddayText(dateStr) {
+    if (!dateStr) return null;
+    var t = new Date(dateStr + "T00:00:00");
+    if (isNaN(t.getTime())) return null;
+    var now = new Date();
+    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var n = Math.round((t - today) / 86400000);
+    if (n > 0) return "D-" + n;
+    if (n === 0) return "오늘";
+    return "지남";
+  }
+
   function has(list, iata) {
     for (var i = 0; i < list.length; i++) if (list[i].iata === iata) return true;
     return false;
@@ -1193,6 +1206,36 @@
         panel.hidden = true;
       });
 
+      // 목표 날짜(D-day). 눌러서 날짜를 넣으면 "D-83" 으로 바뀐다.
+      var day = document.createElement("button");
+      day.type = "button";
+      day.className = "wish-day" + (item.date ? " is-set" : "");
+      day.title = "가는 날 정하기";
+      day.textContent = ddayText(item.date) || "날짜";
+      day.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var input = document.createElement("input");
+        input.type = "date";
+        input.className = "wish-date";
+        if (item.date) input.value = item.date;
+        row.replaceChild(input, day);
+        input.focus();
+        if (input.showPicker) { try { input.showPicker(); } catch (err) { /* 무시 */ } }
+        function commit() {
+          sGet().then(function (cur) {
+            var next = cur.map(function (c) {
+              if (c.iata !== item.iata) return c;
+              var copy = { iata: c.iata, name_ko: c.name_ko };
+              if (input.value) copy.date = input.value;
+              return copy;
+            });
+            return sSet(next).then(function () { paintAll(next); });
+          });
+        }
+        input.addEventListener("change", commit);
+        input.addEventListener("blur", function () { window.setTimeout(commit, 120); });
+      });
+
       var x = document.createElement("button");
       x.type = "button";
       x.className = "wish-x";
@@ -1206,6 +1249,7 @@
       });
 
       row.appendChild(go);
+      row.appendChild(day);
       row.appendChild(x);
       rows.appendChild(row);
     });
@@ -1226,7 +1270,7 @@
         next = list.filter(function (x) { return x.iata !== c.iata; });
       } else {
         if (list.length >= MAX) return sSet(list).then(function () { paintAll(list); });
-        next = list.concat([{ iata: c.iata, name_ko: c.name_ko }]);
+        next = list.concat([{ iata: c.iata, name_ko: c.name_ko }]);   // 날짜는 목록에서 따로 넣는다
       }
       return sSet(next).then(function () { paintAll(next); });
     });
@@ -1254,4 +1298,189 @@
   api.onChange(function () { sGet().then(paintHeart); });
 
   sGet().then(paintAll);
+})();
+
+
+/*
+ * ---------- v0.4 도시 카드 ----------
+ * "도시 정보" 버튼을 눌렀을 때만 올라온다. 평소 화면은 그대로 비워 둔다.
+ * 현재 날씨는 Open-Meteo(가입·키 없이 무료, 출처 표기 필요)에서 받아 30분 캐시한다.
+ * 사진 로직과는 window.SomenowCity 창구로만 연결된다.
+ */
+(function () {
+  "use strict";
+
+  var WKEY = "somenow_weather";        // { IATA: { t, code, at } }
+  var WISH_KEY = "somenow_wishlist";
+  var WEATHER_TTL = 30 * 60 * 1000;
+
+  function $(id) { return document.getElementById(id); }
+
+  var api = window.SomenowCity;
+  var btn = $("cardBtn");
+  var card = $("cityCard");
+  if (!api || !btn || !card) return;
+
+  btn.hidden = false;
+
+  function sGet(keys) {
+    return new Promise(function (resolve) {
+      try { chrome.storage.local.get(keys, function (r) { resolve(r || {}); }); }
+      catch (e) { resolve({}); }
+    });
+  }
+  function sSet(o) {
+    return new Promise(function (resolve) {
+      try { chrome.storage.local.set(o, function () { resolve(); }); }
+      catch (e) { resolve(); }
+    });
+  }
+
+  /* ----- 날씨 ----- */
+
+  // WMO 날씨 코드 → 한국어 (Open-Meteo 가 쓰는 표준 코드)
+  function skyText(code) {
+    if (code === 0) return "맑음";
+    if (code === 1 || code === 2) return "구름 조금";
+    if (code === 3) return "흐림";
+    if (code === 45 || code === 48) return "안개";
+    if (code >= 51 && code <= 57) return "이슬비";
+    if (code >= 61 && code <= 67) return "비";
+    if (code >= 71 && code <= 77) return "눈";
+    if (code >= 80 && code <= 82) return "소나기";
+    if (code === 85 || code === 86) return "눈";
+    if (code >= 95) return "천둥번개";
+    return "";
+  }
+
+  function fetchWeather(city) {
+    var url = "https://api.open-meteo.com/v1/forecast"
+      + "?latitude=" + encodeURIComponent(city.lat)
+      + "&longitude=" + encodeURIComponent(city.lon)
+      + "&current=temperature_2m,weather_code";
+    var ctrl = new AbortController();
+    var timer = setTimeout(function () { ctrl.abort(); }, 6000);
+    return fetch(url, { signal: ctrl.signal })
+      .then(function (r) { if (!r.ok) throw new Error("weather " + r.status); return r.json(); })
+      .then(function (d) {
+        var cur = d && d.current;
+        if (!cur || typeof cur.temperature_2m !== "number") throw new Error("날씨 값 없음");
+        return { t: Math.round(cur.temperature_2m), code: cur.weather_code, at: Date.now() };
+      })
+      .finally(function () { clearTimeout(timer); });
+  }
+
+  function showWeather(city) {
+    var box = $("cardWeather");
+    box.textContent = "…";
+    sGet([WKEY]).then(function (s) {
+      var all = s[WKEY] || {};
+      var have = all[city.iata];
+      if (have && (Date.now() - have.at) < WEATHER_TTL) return paintWeather(have);
+
+      fetchWeather(city)
+        .then(function (w) {
+          all[city.iata] = w;
+          var o = {}; o[WKEY] = all;
+          sSet(o);
+          paintWeather(w);
+        })
+        .catch(function (e) {
+          console.info("[Somenow] 날씨를 받지 못했다:", e && e.message);
+          if (have) paintWeather(have);          // 오래됐어도 없는 것보다 낫다
+          else box.textContent = "날씨 정보 없음";
+        });
+    });
+
+    function paintWeather(w) {
+      var sky = skyText(w.code);
+      box.textContent = "지금 " + w.t + "°C" + (sky ? " · " + sky : "");
+    }
+  }
+
+  /* ----- 카드 내용 ----- */
+
+  function factRow(label, value) {
+    if (!value) return null;
+    var d = document.createElement("div");
+    d.className = "card-fact";
+    var b = document.createElement("b");
+    b.textContent = label;
+    var s = document.createElement("span");
+    s.textContent = value;
+    d.appendChild(b); d.appendChild(s);
+    return d;
+  }
+
+  function dayDiff(dateStr) {
+    var t = new Date(dateStr + "T00:00:00");
+    if (isNaN(t.getTime())) return null;
+    var now = new Date();
+    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    return Math.round((t - today) / 86400000);
+  }
+
+  function render(city) {
+    if (!city) return;
+    $("cardCity").textContent = city.name_ko + " · " + city.name_en;
+    $("cardBest").textContent = (city.best || "") + (city.climate ? "\n" + city.climate : "");
+    $("cardBest").style.whiteSpace = "pre-line";
+    $("cardSights").textContent = (city.sights || []).join("\n");
+    $("cardSights").style.whiteSpace = "pre-line";
+    $("cardFoods").textContent = (city.foods || []).join("\n");
+    $("cardFoods").style.whiteSpace = "pre-line";
+
+    var facts = $("cardFacts");
+    facts.textContent = "";
+    [["통화", city.currency], ["언어", city.language], ["비자", city.visa],
+     ["전기", city.plug], ["공항에서", city.transit]].forEach(function (p) {
+      var row = factRow(p[0], p[1]);
+      if (row) facts.appendChild(row);
+    });
+
+    // 위시리스트에 목표 날짜가 있으면 D-day
+    var dd = $("cardDday");
+    dd.hidden = true;
+    sGet([WISH_KEY]).then(function (s) {
+      var list = Array.isArray(s[WISH_KEY]) ? s[WISH_KEY] : [];
+      for (var i = 0; i < list.length; i++) {
+        if (list[i].iata === city.iata && list[i].date) {
+          var n = dayDiff(list[i].date);
+          if (n === null) return;
+          dd.textContent = n > 0 ? ("가는 날까지 D-" + n)
+                        : n === 0 ? "오늘 떠난다" : ("다녀온 지 " + Math.abs(n) + "일");
+          dd.hidden = false;
+          return;
+        }
+      }
+    });
+
+    showWeather(city);
+  }
+
+  function open() {
+    card.hidden = false;
+    btn.setAttribute("aria-expanded", "true");
+    render(api.current());
+  }
+  function close() {
+    card.hidden = true;
+    btn.setAttribute("aria-expanded", "false");
+  }
+
+  btn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    if (card.hidden) open(); else close();
+  });
+  document.addEventListener("click", function (e) {
+    if (!card.hidden && !card.contains(e.target)) close();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") close();
+  });
+
+  // 카드가 열려 있는 동안 도시가 바뀌면 내용도 따라 바뀐다
+  api.onChange(function (city) {
+    if (!card.hidden) render(city);
+  });
 })();

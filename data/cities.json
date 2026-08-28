@@ -7,7 +7,25 @@
     "unsplash_query": "Tokyo street night",
     "best": "3~4월, 10~11월",
     "tzid": "Asia/Tokyo",
-    "fly_min_icn": 140
+    "fly_min_icn": 140,
+    "lat": 35.68,
+    "lon": 139.76,
+    "climate": "봄가을 12~22°C, 6월 장마",
+    "sights": [
+      "센소지와 나카미세",
+      "시부야 스크램블",
+      "신주쿠 교엔"
+    ],
+    "foods": [
+      "스시",
+      "라멘",
+      "야키토리"
+    ],
+    "currency": "엔 (JPY)",
+    "language": "일본어",
+    "visa": "무비자 90일",
+    "plug": "A형 100V — 돼지코 필요",
+    "transit": "나리타에서 도심 60~90분, 하네다 30분"
   },
   {
     "name_ko": "나고야",
@@ -17,7 +35,25 @@
     "unsplash_query": "Nagoya castle Japan",
     "best": "3~4월, 10~11월",
     "tzid": "Asia/Tokyo",
-    "fly_min_icn": 110
+    "fly_min_icn": 110,
+    "lat": 35.18,
+    "lon": 136.91,
+    "climate": "봄가을 13~23°C, 여름 무더위",
+    "sights": [
+      "나고야성",
+      "아츠타 신궁",
+      "오스 상점가"
+    ],
+    "foods": [
+      "히츠마부시",
+      "미소카츠",
+      "데바사키"
+    ],
+    "currency": "엔 (JPY)",
+    "language": "일본어",
+    "visa": "무비자 90일",
+    "plug": "A형 100V — 돼지코 필요",
+    "transit": "주부공항에서 도심 30분"
   },
   {
     "name_ko": "오사카",
@@ -27,7 +63,25 @@
     "unsplash_query": "Osaka Dotonbori",
     "best": "3~4월, 10~11월",
     "tzid": "Asia/Tokyo",
-    "fly_min_icn": 115
+    "fly_min_icn": 115,
+    "lat": 34.69,
+    "lon": 135.5,
+    "climate": "봄가을 13~23°C, 6월 장마",
+    "sights": [
+      "오사카성",
+      "도톤보리",
+      "우메다 공중정원"
+    ],
+    "foods": [
+      "타코야키",
+      "오코노미야키",
+      "쿠시카츠"
+    ],
+    "currency": "엔 (JPY)",
+    "language": "일본어",
+    "visa": "무비자 90일",
+    "plug": "A형 100V — 돼지코 필요",
+    "transit": "간사이공항에서 난바 40분"
   },
   {
     "name_ko": "가고시마",
@@ -37,7 +91,25 @@
     "unsplash_query": "Kagoshima Sakurajima volcano",
     "best": "3~5월, 10~11월",
     "tzid": "Asia/Tokyo",
-    "fly_min_icn": 100
+    "fly_min_icn": 100,
+    "lat": 31.6,
+    "lon": 130.56,
+    "climate": "봄가을 14~24°C, 여름 다습",
+    "sights": [
+      "사쿠라지마 화산",
+      "센간엔",
+      "이부스키 모래찜질"
+    ],
+    "foods": [
+      "흑돼지 돈카츠",
+      "시로쿠마 빙수",
+      "사츠마아게"
+    ],
+    "currency": "엔 (JPY)",
+    "language": "일본어",
+    "visa": "무비자 90일",
+    "plug": "A형 100V — 돼지코 필요",
+    "transit": "공항버스로 도심 40분"
   },
   {
     "name_ko": "후쿠오카",
@@ -47,7 +119,25 @@
     "unsplash_query": "Fukuoka Nakasu river night",
     "best": "3~4월, 10~11월",
     "tzid": "Asia/Tokyo",
-    "fly_min_icn": 80
+    "fly_min_icn": 80,
+    "lat": 33.59,
+    "lon": 130.4,
+    "climate": "봄가을 13~23°C, 6월 장마",
+    "sights": [
+      "오호리 공원",
+      "다자이후 텐만구",
+      "나카스 포장마차"
+    ],
+    "foods": [
+      "돈코츠 라멘",
+      "모츠나베",
+      "멘타이코"
+    ],
+    "currency": "엔 (JPY)",
+    "language": "일본어",
+    "visa": "무비자 90일",
+    "plug": "A형 100V — 돼지코 필요",
+    "transit": "지하철로 하카타역 5분"
   },
   {
     "name_ko": "구마모토",
@@ -57,7 +147,25 @@
     "unsplash_query": "Kumamoto castle Japan",
     "best": "3~5월, 10~11월",
     "tzid": "Asia/Tokyo",
-    "fly_min_icn": 95
+    "fly_min_icn": 95,
+    "lat": 32.8,
+    "lon": 130.71,
+    "climate": "봄가을 13~24°C, 여름 다습",
+    "sights": [
+      "구마모토성",
+      "스이젠지 정원",
+      "아소산"
+    ],
+    "foods": [
+      "바사시",
+      "다이코쿠 라멘",
+      "가라시 렌콘"
+    ],
+    "currency": "엔 (JPY)",
+    "language": "일본어",
+    "visa": "무비자 90일",
+    "plug": "A형 100V — 돼지코 필요",
+    "transit": "공항버스로 도심 50분"
   },
   {
     "name_ko": "삿포로",
@@ -67,7 +175,25 @@
     "unsplash_query": "Sapporo snow winter",
     "best": "12~2월, 6~8월",
     "tzid": "Asia/Tokyo",
-    "fly_min_icn": 170
+    "fly_min_icn": 170,
+    "lat": 43.06,
+    "lon": 141.35,
+    "climate": "겨울 영하 4~영상 1°C 눈, 여름 18~26°C",
+    "sights": [
+      "오도리 공원",
+      "오타루 운하",
+      "니세코"
+    ],
+    "foods": [
+      "미소 라멘",
+      "수프카레",
+      "해산물 덮밥"
+    ],
+    "currency": "엔 (JPY)",
+    "language": "일본어",
+    "visa": "무비자 90일",
+    "plug": "A형 100V — 돼지코 필요",
+    "transit": "신치토세에서 삿포로역 40분"
   },
   {
     "name_ko": "히로시마",
@@ -77,7 +203,25 @@
     "unsplash_query": "Hiroshima river city",
     "best": "3~4월, 10~11월",
     "tzid": "Asia/Tokyo",
-    "fly_min_icn": 100
+    "fly_min_icn": 100,
+    "lat": 34.39,
+    "lon": 132.46,
+    "climate": "봄가을 12~23°C, 6월 장마",
+    "sights": [
+      "평화기념공원",
+      "미야지마 이쓰쿠시마",
+      "히로시마성"
+    ],
+    "foods": [
+      "오코노미야키",
+      "굴 요리",
+      "아나고메시"
+    ],
+    "currency": "엔 (JPY)",
+    "language": "일본어",
+    "visa": "무비자 90일",
+    "plug": "A형 100V — 돼지코 필요",
+    "transit": "공항버스로 도심 50분"
   },
   {
     "name_ko": "오키나와",
@@ -87,7 +231,25 @@
     "unsplash_query": "Okinawa beach ocean",
     "best": "4~6월, 10~11월",
     "tzid": "Asia/Tokyo",
-    "fly_min_icn": 140
+    "fly_min_icn": 140,
+    "lat": 26.21,
+    "lon": 127.68,
+    "climate": "봄가을 20~27°C, 여름 태풍 주의",
+    "sights": [
+      "슈리성",
+      "추라우미 수족관",
+      "고쿠사이 거리"
+    ],
+    "foods": [
+      "오키나와 소바",
+      "타코라이스",
+      "아구 돼지"
+    ],
+    "currency": "엔 (JPY)",
+    "language": "일본어",
+    "visa": "무비자 90일",
+    "plug": "A형 100V — 돼지코 필요",
+    "transit": "모노레일로 국제거리 15분"
   },
   {
     "name_ko": "가오슝",
@@ -97,7 +259,25 @@
     "unsplash_query": "Kaohsiung Taiwan harbor",
     "best": "10~3월",
     "tzid": "Asia/Taipei",
-    "fly_min_icn": 180
+    "fly_min_icn": 180,
+    "lat": 22.63,
+    "lon": 120.3,
+    "climate": "겨울 18~26°C 건조",
+    "sights": [
+      "롄츠탄 용호탑",
+      "보얼 예술특구",
+      "치진섬"
+    ],
+    "foods": [
+      "단자이면",
+      "해산물 야시장",
+      "망고 빙수"
+    ],
+    "currency": "대만달러 (TWD)",
+    "language": "중국어(번체)",
+    "visa": "무비자 90일",
+    "plug": "A형 110V — 돼지코 필요",
+    "transit": "지하철로 시내 20분"
   },
   {
     "name_ko": "타이베이",
@@ -107,7 +287,25 @@
     "unsplash_query": "Taipei night market",
     "best": "10~12월, 3~4월",
     "tzid": "Asia/Taipei",
-    "fly_min_icn": 160
+    "fly_min_icn": 160,
+    "lat": 25.03,
+    "lon": 121.57,
+    "climate": "가을 20~27°C, 겨울 비 잦음",
+    "sights": [
+      "예류·지우펀",
+      "타이베이 101",
+      "스린 야시장"
+    ],
+    "foods": [
+      "우육면",
+      "샤오롱바오",
+      "버블티"
+    ],
+    "currency": "대만달러 (TWD)",
+    "language": "중국어(번체)",
+    "visa": "무비자 90일",
+    "plug": "A형 110V — 돼지코 필요",
+    "transit": "공항철도로 타이베이역 40분"
   },
   {
     "name_ko": "마카오",
@@ -117,7 +315,25 @@
     "unsplash_query": "Macau street architecture",
     "best": "10~12월",
     "tzid": "Asia/Macau",
-    "fly_min_icn": 220
+    "fly_min_icn": 220,
+    "lat": 22.2,
+    "lon": 113.55,
+    "climate": "가을 20~26°C 건조",
+    "sights": [
+      "세나도 광장",
+      "성바울 성당 유적",
+      "콜로안 마을"
+    ],
+    "foods": [
+      "에그타르트",
+      "포르투갈식 해산물",
+      "돼지고기 번"
+    ],
+    "currency": "파타카 (MOP), 홍콩달러 통용",
+    "language": "중국어·포르투갈어",
+    "visa": "무비자 90일",
+    "plug": "G형 220V — 어댑터 필요",
+    "transit": "버스로 시내 15분"
   },
   {
     "name_ko": "방콕",
@@ -127,7 +343,25 @@
     "unsplash_query": "Bangkok temple street",
     "best": "11~2월",
     "tzid": "Asia/Bangkok",
-    "fly_min_icn": 350
+    "fly_min_icn": 350,
+    "lat": 13.76,
+    "lon": 100.5,
+    "climate": "건기 22~32°C, 비 거의 없음",
+    "sights": [
+      "왕궁과 왓포",
+      "짜뚜짝 시장",
+      "차오프라야 강변"
+    ],
+    "foods": [
+      "팟타이",
+      "똠얌꿍",
+      "망고 찰밥"
+    ],
+    "currency": "바트 (THB)",
+    "language": "태국어",
+    "visa": "무비자 90일",
+    "plug": "A·B·C형 220V — 대부분 그대로 사용",
+    "transit": "수완나품에서 시내 40~60분"
   },
   {
     "name_ko": "하노이",
@@ -137,7 +371,25 @@
     "unsplash_query": "Hanoi old quarter street",
     "best": "10~11월, 3~4월",
     "tzid": "Asia/Ho_Chi_Minh",
-    "fly_min_icn": 300
+    "fly_min_icn": 300,
+    "lat": 21.03,
+    "lon": 105.85,
+    "climate": "가을 20~28°C, 봄 습함",
+    "sights": [
+      "호안끼엠 호수",
+      "구시가지 36거리",
+      "바딘 광장"
+    ],
+    "foods": [
+      "쌀국수",
+      "분짜",
+      "에그커피"
+    ],
+    "currency": "동 (VND)",
+    "language": "베트남어",
+    "visa": "무비자 45일",
+    "plug": "A·C형 220V — 대부분 그대로 사용",
+    "transit": "택시로 시내 45분"
   },
   {
     "name_ko": "다낭",
@@ -147,7 +399,25 @@
     "unsplash_query": "Da Nang Vietnam beach",
     "best": "2~5월",
     "tzid": "Asia/Ho_Chi_Minh",
-    "fly_min_icn": 290
+    "fly_min_icn": 290,
+    "lat": 16.05,
+    "lon": 108.2,
+    "climate": "건기 23~31°C, 9~11월 태풍",
+    "sights": [
+      "바나힐",
+      "미케 비치",
+      "호이안 옛 거리"
+    ],
+    "foods": [
+      "미꽝",
+      "반쎄오",
+      "반미"
+    ],
+    "currency": "동 (VND)",
+    "language": "베트남어",
+    "visa": "무비자 45일",
+    "plug": "A·C형 220V — 대부분 그대로 사용",
+    "transit": "택시로 시내 15분"
   },
   {
     "name_ko": "호치민",
@@ -157,7 +427,25 @@
     "unsplash_query": "Ho Chi Minh City street",
     "best": "12~3월",
     "tzid": "Asia/Ho_Chi_Minh",
-    "fly_min_icn": 330
+    "fly_min_icn": 330,
+    "lat": 10.82,
+    "lon": 106.63,
+    "climate": "건기 22~33°C",
+    "sights": [
+      "벤탄 시장",
+      "중앙우체국",
+      "메콩 델타"
+    ],
+    "foods": [
+      "반미",
+      "껌떰",
+      "연유 커피"
+    ],
+    "currency": "동 (VND)",
+    "language": "베트남어",
+    "visa": "무비자 45일",
+    "plug": "A·C형 220V — 대부분 그대로 사용",
+    "transit": "택시로 시내 30~45분"
   },
   {
     "name_ko": "나트랑",
@@ -167,7 +455,25 @@
     "unsplash_query": "Nha Trang beach Vietnam",
     "best": "1~4월",
     "tzid": "Asia/Ho_Chi_Minh",
-    "fly_min_icn": 320
+    "fly_min_icn": 320,
+    "lat": 12.24,
+    "lon": 109.19,
+    "climate": "건기 22~30°C, 파도 잔잔",
+    "sights": [
+      "빈펄 랜드",
+      "혼문섬",
+      "포나가르 탑"
+    ],
+    "foods": [
+      "넴느엉",
+      "해산물 구이",
+      "분보후에"
+    ],
+    "currency": "동 (VND)",
+    "language": "베트남어",
+    "visa": "무비자 45일",
+    "plug": "A·C형 220V — 대부분 그대로 사용",
+    "transit": "택시로 시내 45분"
   },
   {
     "name_ko": "푸꾸옥",
@@ -177,7 +483,25 @@
     "unsplash_query": "Phu Quoc beach sunset",
     "best": "11~3월",
     "tzid": "Asia/Ho_Chi_Minh",
-    "fly_min_icn": 330
+    "fly_min_icn": 330,
+    "lat": 10.23,
+    "lon": 103.96,
+    "climate": "건기 24~31°C",
+    "sights": [
+      "사오 비치",
+      "케이블카",
+      "야시장"
+    ],
+    "foods": [
+      "까잉가",
+      "후추 요리",
+      "해산물 바비큐"
+    ],
+    "currency": "동 (VND)",
+    "language": "베트남어",
+    "visa": "무비자 45일",
+    "plug": "A·C형 220V — 대부분 그대로 사용",
+    "transit": "택시로 즈엉동 15분"
   },
   {
     "name_ko": "세부",
@@ -187,7 +511,25 @@
     "unsplash_query": "Cebu island sea",
     "best": "12~5월",
     "tzid": "Asia/Manila",
-    "fly_min_icn": 270
+    "fly_min_icn": 270,
+    "lat": 10.32,
+    "lon": 123.89,
+    "climate": "건기 25~31°C",
+    "sights": [
+      "오슬롭 고래상어",
+      "카와산 폭포",
+      "막탄 섬"
+    ],
+    "foods": [
+      "레촌",
+      "시니강",
+      "할로할로"
+    ],
+    "currency": "페소 (PHP)",
+    "language": "필리핀어·영어",
+    "visa": "무비자 30일",
+    "plug": "A·B형 220V — 돼지코 필요",
+    "transit": "택시로 시내 30분"
   },
   {
     "name_ko": "치앙마이",
@@ -197,7 +539,25 @@
     "unsplash_query": "Chiang Mai temple mountain",
     "best": "11~2월",
     "tzid": "Asia/Bangkok",
-    "fly_min_icn": 360
+    "fly_min_icn": 360,
+    "lat": 18.79,
+    "lon": 98.98,
+    "climate": "건기 15~30°C, 일교차 큼",
+    "sights": [
+      "도이수텝 사원",
+      "올드타운 성벽",
+      "나이트 바자"
+    ],
+    "foods": [
+      "카오소이",
+      "북부식 소시지",
+      "망고 스무디"
+    ],
+    "currency": "바트 (THB)",
+    "language": "태국어",
+    "visa": "무비자 90일",
+    "plug": "A·B·C형 220V — 대부분 그대로 사용",
+    "transit": "택시로 올드타운 15분"
   },
   {
     "name_ko": "홍콩",
@@ -207,7 +567,25 @@
     "unsplash_query": "Hong Kong skyline night",
     "best": "10~12월",
     "tzid": "Asia/Hong_Kong",
-    "fly_min_icn": 220
+    "fly_min_icn": 220,
+    "lat": 22.32,
+    "lon": 114.17,
+    "climate": "가을 20~27°C 건조",
+    "sights": [
+      "빅토리아 피크",
+      "침사추이 야경",
+      "란타우 대불"
+    ],
+    "foods": [
+      "딤섬",
+      "완탕면",
+      "에그와플"
+    ],
+    "currency": "홍콩달러 (HKD)",
+    "language": "중국어(광둥어)·영어",
+    "visa": "무비자 90일",
+    "plug": "G형 220V — 어댑터 필요",
+    "transit": "공항철도로 센트럴 25분"
   },
   {
     "name_ko": "푸껫",
@@ -217,7 +595,25 @@
     "unsplash_query": "Phuket beach Thailand",
     "best": "11~4월",
     "tzid": "Asia/Bangkok",
-    "fly_min_icn": 390
+    "fly_min_icn": 390,
+    "lat": 7.88,
+    "lon": 98.39,
+    "climate": "건기 25~32°C, 바다 잔잔",
+    "sights": [
+      "빠통 비치",
+      "피피섬",
+      "올드타운"
+    ],
+    "foods": [
+      "뿌팟퐁커리",
+      "해산물 구이",
+      "로띠"
+    ],
+    "currency": "바트 (THB)",
+    "language": "태국어",
+    "visa": "무비자 90일",
+    "plug": "A·B·C형 220V — 대부분 그대로 사용",
+    "transit": "택시로 빠통 45분"
   },
   {
     "name_ko": "싱가포르",
@@ -227,7 +623,25 @@
     "unsplash_query": "Singapore Marina Bay",
     "best": "2~4월",
     "tzid": "Asia/Singapore",
-    "fly_min_icn": 380
+    "fly_min_icn": 380,
+    "lat": 1.35,
+    "lon": 103.82,
+    "climate": "연중 25~32°C, 소나기",
+    "sights": [
+      "마리나베이 샌즈",
+      "가든스 바이 더 베이",
+      "센토사"
+    ],
+    "foods": [
+      "칠리크랩",
+      "하이난 치킨라이스",
+      "락사"
+    ],
+    "currency": "싱가포르달러 (SGD)",
+    "language": "영어·중국어·말레이어",
+    "visa": "무비자 90일",
+    "plug": "G형 230V — 어댑터 필요",
+    "transit": "지하철로 시내 35분"
   },
   {
     "name_ko": "코타키나발루",
@@ -237,7 +651,25 @@
     "unsplash_query": "Kota Kinabalu sunset sea",
     "best": "3~9월",
     "tzid": "Asia/Kuching",
-    "fly_min_icn": 330
+    "fly_min_icn": 330,
+    "lat": 5.98,
+    "lon": 116.07,
+    "climate": "건기 24~32°C, 노을 명소",
+    "sights": [
+      "탄중아루 해변",
+      "코타키나발루 시티 모스크",
+      "섬 호핑"
+    ],
+    "foods": [
+      "해산물 찜",
+      "락사",
+      "코코넛 푸딩"
+    ],
+    "currency": "링깃 (MYR)",
+    "language": "말레이어·영어",
+    "visa": "무비자 90일",
+    "plug": "G형 240V — 어댑터 필요",
+    "transit": "택시로 시내 15분"
   },
   {
     "name_ko": "발리",
@@ -247,7 +679,25 @@
     "unsplash_query": "Bali rice terrace",
     "best": "5~9월",
     "tzid": "Asia/Makassar",
-    "fly_min_icn": 430
+    "fly_min_icn": 430,
+    "lat": -8.65,
+    "lon": 115.22,
+    "climate": "건기 23~31°C, 습도 낮음",
+    "sights": [
+      "우붓 계단식 논",
+      "울루와투 절벽 사원",
+      "꾸따 해변"
+    ],
+    "foods": [
+      "나시고렝",
+      "바비굴링",
+      "사테"
+    ],
+    "currency": "루피아 (IDR)",
+    "language": "인도네시아어",
+    "visa": "도착비자 유료, 30일",
+    "plug": "C·F형 230V — 그대로 사용",
+    "transit": "택시로 꾸따 20분, 우붓 90분"
   },
   {
     "name_ko": "쿠알라룸푸르",
@@ -257,7 +707,25 @@
     "unsplash_query": "Kuala Lumpur skyline night",
     "best": "5~7월",
     "tzid": "Asia/Kuala_Lumpur",
-    "fly_min_icn": 390
+    "fly_min_icn": 390,
+    "lat": 3.14,
+    "lon": 101.69,
+    "climate": "연중 24~33°C, 스콜",
+    "sights": [
+      "페트로나스 트윈타워",
+      "바투 동굴",
+      "부킷빈탕"
+    ],
+    "foods": [
+      "나시르막",
+      "바쿠테",
+      "사테"
+    ],
+    "currency": "링깃 (MYR)",
+    "language": "말레이어·영어",
+    "visa": "무비자 90일",
+    "plug": "G형 240V — 어댑터 필요",
+    "transit": "공항철도로 KL센트럴 30분"
   },
   {
     "name_ko": "괌",
@@ -267,7 +735,25 @@
     "unsplash_query": "Guam beach tropical",
     "best": "12~5월",
     "tzid": "Pacific/Guam",
-    "fly_min_icn": 260
+    "fly_min_icn": 260,
+    "lat": 13.47,
+    "lon": 144.75,
+    "climate": "건기 25~30°C, 바다 잔잔",
+    "sights": [
+      "투몬 비치",
+      "사랑의 절벽",
+      "이나라한 천연풀장"
+    ],
+    "foods": [
+      "바비큐 플레이트",
+      "레드라이스",
+      "코코넛 새우"
+    ],
+    "currency": "달러 (USD)",
+    "language": "영어·차모로어",
+    "visa": "괌·사이판 비자면제 45일 또는 ESTA",
+    "plug": "A·B형 120V — 돼지코 필요",
+    "transit": "택시로 투몬 15분"
   },
   {
     "name_ko": "마닐라",
@@ -277,7 +763,25 @@
     "unsplash_query": "Manila bay sunset",
     "best": "12~4월",
     "tzid": "Asia/Manila",
-    "fly_min_icn": 240
+    "fly_min_icn": 240,
+    "lat": 14.6,
+    "lon": 120.98,
+    "climate": "건기 24~31°C",
+    "sights": [
+      "인트라무로스",
+      "리잘 공원",
+      "마닐라 베이 노을"
+    ],
+    "foods": [
+      "아도보",
+      "시식",
+      "할로할로"
+    ],
+    "currency": "페소 (PHP)",
+    "language": "필리핀어·영어",
+    "visa": "무비자 30일",
+    "plug": "A·B형 220V — 돼지코 필요",
+    "transit": "택시로 마카티 30~60분"
   },
   {
     "name_ko": "사이판",
@@ -287,7 +791,25 @@
     "unsplash_query": "Saipan island lagoon",
     "best": "12~5월",
     "tzid": "Pacific/Saipan",
-    "fly_min_icn": 270
+    "fly_min_icn": 270,
+    "lat": 15.18,
+    "lon": 145.75,
+    "climate": "건기 25~30°C",
+    "sights": [
+      "마나가하 섬",
+      "만세 절벽",
+      "그로토"
+    ],
+    "foods": [
+      "치킨 켈라구엔",
+      "바비큐",
+      "코코넛 디저트"
+    ],
+    "currency": "달러 (USD)",
+    "language": "영어·차모로어",
+    "visa": "괌·사이판 비자면제 45일 또는 ESTA",
+    "plug": "A·B형 120V — 돼지코 필요",
+    "transit": "택시로 가라판 15분"
   },
   {
     "name_ko": "베이징",
@@ -297,7 +819,25 @@
     "unsplash_query": "Beijing Forbidden City",
     "best": "4~5월, 9~10월",
     "tzid": "Asia/Shanghai",
-    "fly_min_icn": 125
+    "fly_min_icn": 125,
+    "lat": 39.9,
+    "lon": 116.41,
+    "climate": "봄가을 10~24°C, 봄 황사",
+    "sights": [
+      "자금성",
+      "만리장성 무톈위",
+      "이화원"
+    ],
+    "foods": [
+      "베이징 카오야",
+      "자장면",
+      "훠궈"
+    ],
+    "currency": "위안 (CNY)",
+    "language": "중국어",
+    "visa": "무비자 30일 (2026년까지 연장)",
+    "plug": "A·C·I형 220V",
+    "transit": "공항철도로 도심 40분"
   },
   {
     "name_ko": "상하이",
@@ -307,7 +847,25 @@
     "unsplash_query": "Shanghai Bund skyline",
     "best": "3~5월, 9~11월",
     "tzid": "Asia/Shanghai",
-    "fly_min_icn": 120
+    "fly_min_icn": 120,
+    "lat": 31.23,
+    "lon": 121.47,
+    "climate": "봄가을 12~24°C, 6월 장마",
+    "sights": [
+      "와이탄",
+      "위위안 정원",
+      "티엔즈팡"
+    ],
+    "foods": [
+      "샤오롱바오",
+      "성젠바오",
+      "훙사오러우"
+    ],
+    "currency": "위안 (CNY)",
+    "language": "중국어",
+    "visa": "무비자 30일 (2026년까지 연장)",
+    "plug": "A·C·I형 220V",
+    "transit": "푸둥에서 자기부상열차 8분 + 지하철"
   },
   {
     "name_ko": "시엠립",
@@ -317,7 +875,25 @@
     "unsplash_query": "Angkor Wat temple",
     "best": "11~2월",
     "tzid": "Asia/Phnom_Penh",
-    "fly_min_icn": 350
+    "fly_min_icn": 350,
+    "lat": 13.36,
+    "lon": 103.86,
+    "climate": "건기 20~33°C, 비 거의 없음",
+    "sights": [
+      "앙코르와트 일출",
+      "타프롬",
+      "톤레삽 호수"
+    ],
+    "foods": [
+      "아목",
+      "록락",
+      "캄보디아 국수"
+    ],
+    "currency": "리엘 (KHR), 달러 통용",
+    "language": "크메르어",
+    "visa": "도착비자 유료 또는 전자비자, 30일",
+    "plug": "A·C·G형 230V",
+    "transit": "택시로 시내 40분"
   },
   {
     "name_ko": "파리",
@@ -327,7 +903,25 @@
     "unsplash_query": "Paris street morning",
     "best": "5~6월, 9~10월",
     "tzid": "Europe/Paris",
-    "fly_min_icn": 840
+    "fly_min_icn": 840,
+    "lat": 48.86,
+    "lon": 2.35,
+    "climate": "봄가을 10~22°C, 비 잦음",
+    "sights": [
+      "루브르",
+      "에펠탑",
+      "몽마르트"
+    ],
+    "foods": [
+      "크루아상",
+      "에스카르고",
+      "마카롱"
+    ],
+    "currency": "유로 (EUR)",
+    "language": "현지어·영어 통용",
+    "visa": "셰겐 무비자 90일 (180일 중). ETIAS 2026년 말 시행 예정",
+    "plug": "C·F형 230V — 그대로 사용",
+    "transit": "RER B로 시내 45분"
   },
   {
     "name_ko": "델리",
@@ -337,7 +931,25 @@
     "unsplash_query": "Delhi India street architecture",
     "best": "10~3월",
     "tzid": "Asia/Kolkata",
-    "fly_min_icn": 510
+    "fly_min_icn": 510,
+    "lat": 28.61,
+    "lon": 77.21,
+    "climate": "건기 10~26°C, 여름 40°C 넘음",
+    "sights": [
+      "타지마할 당일치기",
+      "쿠트브 미나르",
+      "찬드니 초크"
+    ],
+    "foods": [
+      "탄두리",
+      "비리야니",
+      "라씨"
+    ],
+    "currency": "루피 (INR)",
+    "language": "힌디어·영어",
+    "visa": "전자비자 필요 (유료)",
+    "plug": "D·M형 230V — 어댑터 필요",
+    "transit": "공항철도로 뉴델리역 20분"
   },
   {
     "name_ko": "런던",
@@ -347,7 +959,25 @@
     "unsplash_query": "London city street",
     "best": "5~9월",
     "tzid": "Europe/London",
-    "fly_min_icn": 810
+    "fly_min_icn": 810,
+    "lat": 51.51,
+    "lon": -0.13,
+    "climate": "여름 14~23°C, 연중 비 잦음",
+    "sights": [
+      "대영박물관",
+      "타워브리지",
+      "노팅힐"
+    ],
+    "foods": [
+      "피시앤칩스",
+      "애프터눈티",
+      "선데이 로스트"
+    ],
+    "currency": "파운드 (GBP)",
+    "language": "영어",
+    "visa": "ETA 사전 승인 필요 (2026.2.25.부터), 6개월",
+    "plug": "G형 230V — 어댑터 필요",
+    "transit": "히스로 지하철 50분, 익스프레스 15분"
   },
   {
     "name_ko": "몰디브",
@@ -357,7 +987,25 @@
     "unsplash_query": "Maldives overwater villa",
     "best": "11~4월",
     "tzid": "Indian/Maldives",
-    "fly_min_icn": 570
+    "fly_min_icn": 570,
+    "lat": 4.17,
+    "lon": 73.51,
+    "climate": "건기 26~31°C, 바다 맑음",
+    "sights": [
+      "수상 빌라",
+      "스노클링",
+      "말레 어시장"
+    ],
+    "foods": [
+      "가루디아",
+      "마스후니",
+      "야자 디저트"
+    ],
+    "currency": "루피아 (MVR), 달러 통용",
+    "language": "디베히어·영어",
+    "visa": "도착 시 30일 무료",
+    "plug": "D·G형 230V — 어댑터 필요",
+    "transit": "스피드보트나 수상비행기로 리조트 이동"
   },
   {
     "name_ko": "로마",
@@ -367,7 +1015,25 @@
     "unsplash_query": "Rome ancient street",
     "best": "4~6월, 9~10월",
     "tzid": "Europe/Rome",
-    "fly_min_icn": 780
+    "fly_min_icn": 780,
+    "lat": 41.9,
+    "lon": 12.5,
+    "climate": "봄가을 11~24°C, 여름 건조 폭염",
+    "sights": [
+      "콜로세움",
+      "바티칸",
+      "트레비 분수"
+    ],
+    "foods": [
+      "카르보나라",
+      "젤라토",
+      "로마식 피자"
+    ],
+    "currency": "유로 (EUR)",
+    "language": "현지어·영어 통용",
+    "visa": "셰겐 무비자 90일 (180일 중). ETIAS 2026년 말 시행 예정",
+    "plug": "C·F형 230V — 그대로 사용",
+    "transit": "레오나르도 익스프레스로 테르미니 32분"
   },
   {
     "name_ko": "아부다비",
@@ -377,7 +1043,25 @@
     "unsplash_query": "Abu Dhabi grand mosque",
     "best": "11~3월",
     "tzid": "Asia/Dubai",
-    "fly_min_icn": 600
+    "fly_min_icn": 600,
+    "lat": 24.45,
+    "lon": 54.38,
+    "climate": "겨울 15~26°C, 여름 45°C",
+    "sights": [
+      "셰이크 자이드 모스크",
+      "루브르 아부다비",
+      "야스섬"
+    ],
+    "foods": [
+      "샤와르마",
+      "후무스",
+      "대추야자"
+    ],
+    "currency": "디르함 (AED)",
+    "language": "아랍어·영어",
+    "visa": "무비자 90일",
+    "plug": "G형 230V — 어댑터 필요",
+    "transit": "택시로 시내 35분"
   },
   {
     "name_ko": "바르셀로나",
@@ -387,7 +1071,25 @@
     "unsplash_query": "Barcelona architecture",
     "best": "5~6월, 9~10월",
     "tzid": "Europe/Madrid",
-    "fly_min_icn": 810
+    "fly_min_icn": 810,
+    "lat": 41.39,
+    "lon": 2.17,
+    "climate": "봄가을 13~25°C, 맑음",
+    "sights": [
+      "사그라다 파밀리아",
+      "구엘 공원",
+      "고딕 지구"
+    ],
+    "foods": [
+      "빠에야",
+      "타파스",
+      "츄러스"
+    ],
+    "currency": "유로 (EUR)",
+    "language": "현지어·영어 통용",
+    "visa": "셰겐 무비자 90일 (180일 중). ETIAS 2026년 말 시행 예정",
+    "plug": "C·F형 230V — 그대로 사용",
+    "transit": "공항철도·지하철로 시내 30분"
   },
   {
     "name_ko": "도하",
@@ -397,7 +1099,25 @@
     "unsplash_query": "Doha Qatar skyline",
     "best": "11~3월",
     "tzid": "Asia/Qatar",
-    "fly_min_icn": 630
+    "fly_min_icn": 630,
+    "lat": 25.29,
+    "lon": 51.53,
+    "climate": "겨울 16~26°C",
+    "sights": [
+      "수크 와키프",
+      "이슬람예술박물관",
+      "코니시 산책로"
+    ],
+    "foods": [
+      "마즈부스",
+      "샤와르마",
+      "카락차이"
+    ],
+    "currency": "리얄 (QAR)",
+    "language": "아랍어·영어",
+    "visa": "무비자 30일",
+    "plug": "G형 240V — 어댑터 필요",
+    "transit": "택시로 시내 20분"
   },
   {
     "name_ko": "프라하",
@@ -407,7 +1127,25 @@
     "unsplash_query": "Prague old town rooftops",
     "best": "5~9월",
     "tzid": "Europe/Prague",
-    "fly_min_icn": 750
+    "fly_min_icn": 750,
+    "lat": 50.08,
+    "lon": 14.44,
+    "climate": "여름 13~24°C, 봄가을 선선",
+    "sights": [
+      "프라하성",
+      "카를교",
+      "구시가 광장"
+    ],
+    "foods": [
+      "콜레뇨",
+      "굴라시",
+      "트르들로"
+    ],
+    "currency": "코루나 (CZK)",
+    "language": "체코어",
+    "visa": "셰겐 무비자 90일. ETIAS 2026년 말 시행 예정",
+    "plug": "C·E형 230V — 그대로 사용",
+    "transit": "버스+지하철로 시내 45분"
   },
   {
     "name_ko": "암스테르담",
@@ -417,7 +1155,25 @@
     "unsplash_query": "Amsterdam canal houses",
     "best": "4~5월, 9~10월",
     "tzid": "Europe/Amsterdam",
-    "fly_min_icn": 720
+    "fly_min_icn": 720,
+    "lat": 52.37,
+    "lon": 4.9,
+    "climate": "봄가을 8~19°C, 비 잦음",
+    "sights": [
+      "운하 크루즈",
+      "반 고흐 미술관",
+      "요르단 지구"
+    ],
+    "foods": [
+      "스트룹와플",
+      "청어",
+      "감자튀김"
+    ],
+    "currency": "유로 (EUR)",
+    "language": "현지어·영어 통용",
+    "visa": "셰겐 무비자 90일 (180일 중). ETIAS 2026년 말 시행 예정",
+    "plug": "C·F형 230V — 그대로 사용",
+    "transit": "기차로 중앙역 17분"
   },
   {
     "name_ko": "비엔나",
@@ -427,7 +1183,25 @@
     "unsplash_query": "Vienna city architecture",
     "best": "4~6월, 9~10월",
     "tzid": "Europe/Vienna",
-    "fly_min_icn": 720
+    "fly_min_icn": 720,
+    "lat": 48.21,
+    "lon": 16.37,
+    "climate": "봄가을 9~22°C",
+    "sights": [
+      "쇤브룬 궁전",
+      "벨베데레",
+      "슈테판 대성당"
+    ],
+    "foods": [
+      "슈니첼",
+      "자허토르테",
+      "비엔나 커피"
+    ],
+    "currency": "유로 (EUR)",
+    "language": "현지어·영어 통용",
+    "visa": "셰겐 무비자 90일 (180일 중). ETIAS 2026년 말 시행 예정",
+    "plug": "C·F형 230V — 그대로 사용",
+    "transit": "CAT로 시내 16분"
   },
   {
     "name_ko": "프랑크푸르트",
@@ -437,7 +1211,25 @@
     "unsplash_query": "Frankfurt skyline river",
     "best": "5~9월",
     "tzid": "Europe/Berlin",
-    "fly_min_icn": 690
+    "fly_min_icn": 690,
+    "lat": 50.11,
+    "lon": 8.68,
+    "climate": "여름 14~25°C",
+    "sights": [
+      "뢰머 광장",
+      "마인 강변 박물관",
+      "괴테 하우스"
+    ],
+    "foods": [
+      "학세",
+      "사과와인",
+      "프랑크푸르터"
+    ],
+    "currency": "유로 (EUR)",
+    "language": "현지어·영어 통용",
+    "visa": "셰겐 무비자 90일 (180일 중). ETIAS 2026년 말 시행 예정",
+    "plug": "C·F형 230V — 그대로 사용",
+    "transit": "기차로 중앙역 12분"
   },
   {
     "name_ko": "뉴욕",
@@ -447,7 +1239,25 @@
     "unsplash_query": "New York City street",
     "best": "4~6월, 9~11월",
     "tzid": "America/New_York",
-    "fly_min_icn": 870
+    "fly_min_icn": 870,
+    "lat": 40.71,
+    "lon": -74.01,
+    "climate": "봄가을 10~22°C, 여름 습함",
+    "sights": [
+      "센트럴파크",
+      "메트로폴리탄",
+      "브루클린 브리지"
+    ],
+    "foods": [
+      "베이글",
+      "뉴욕 피자",
+      "파스트라미"
+    ],
+    "currency": "달러 (USD)",
+    "language": "영어",
+    "visa": "ESTA 사전 승인 필요, 90일",
+    "plug": "A·B형 120V — 돼지코 필요",
+    "transit": "JFK 에어트레인+지하철 60분"
   },
   {
     "name_ko": "뮌헨",
@@ -457,7 +1267,25 @@
     "unsplash_query": "Munich Bavaria city",
     "best": "5~6월, 9~10월",
     "tzid": "Europe/Berlin",
-    "fly_min_icn": 690
+    "fly_min_icn": 690,
+    "lat": 48.14,
+    "lon": 11.58,
+    "climate": "여름 12~24°C, 가을 옥토버페스트",
+    "sights": [
+      "마리엔 광장",
+      "님펜부르크 궁전",
+      "영국 정원"
+    ],
+    "foods": [
+      "바이스부어스트",
+      "프레첼",
+      "맥주"
+    ],
+    "currency": "유로 (EUR)",
+    "language": "현지어·영어 통용",
+    "visa": "셰겐 무비자 90일 (180일 중). ETIAS 2026년 말 시행 예정",
+    "plug": "C·F형 230V — 그대로 사용",
+    "transit": "S반으로 시내 40분"
   },
   {
     "name_ko": "로스앤젤레스",
@@ -467,7 +1295,25 @@
     "unsplash_query": "Los Angeles sunset road",
     "best": "3~5월, 9~11월",
     "tzid": "America/Los_Angeles",
-    "fly_min_icn": 690
+    "fly_min_icn": 690,
+    "lat": 34.05,
+    "lon": -118.24,
+    "climate": "봄가을 14~26°C, 비 거의 없음",
+    "sights": [
+      "그리피스 천문대",
+      "산타모니카",
+      "게티 센터"
+    ],
+    "foods": [
+      "인앤아웃",
+      "타코",
+      "브런치"
+    ],
+    "currency": "달러 (USD)",
+    "language": "영어",
+    "visa": "ESTA 사전 승인 필요, 90일",
+    "plug": "A·B형 120V — 돼지코 필요",
+    "transit": "택시로 다운타운 40분"
   },
   {
     "name_ko": "마드리드",
@@ -477,7 +1323,25 @@
     "unsplash_query": "Madrid plaza architecture",
     "best": "4~6월, 9~10월",
     "tzid": "Europe/Madrid",
-    "fly_min_icn": 810
+    "fly_min_icn": 810,
+    "lat": 40.42,
+    "lon": -3.7,
+    "climate": "봄가을 10~26°C, 여름 폭염",
+    "sights": [
+      "프라도 미술관",
+      "레티로 공원",
+      "마요르 광장"
+    ],
+    "foods": [
+      "하몽",
+      "츄러스",
+      "코시도"
+    ],
+    "currency": "유로 (EUR)",
+    "language": "현지어·영어 통용",
+    "visa": "셰겐 무비자 90일 (180일 중). ETIAS 2026년 말 시행 예정",
+    "plug": "C·F형 230V — 그대로 사용",
+    "transit": "지하철로 시내 30분"
   },
   {
     "name_ko": "샌프란시스코",
@@ -487,7 +1351,25 @@
     "unsplash_query": "San Francisco Golden Gate fog",
     "best": "9~10월",
     "tzid": "America/Los_Angeles",
-    "fly_min_icn": 630
+    "fly_min_icn": 630,
+    "lat": 37.77,
+    "lon": -122.42,
+    "climate": "9~10월 13~22°C, 여름 안개",
+    "sights": [
+      "금문교",
+      "알카트라즈",
+      "피어 39"
+    ],
+    "foods": [
+      "클램차우더",
+      "사워도우",
+      "던지니스 크랩"
+    ],
+    "currency": "달러 (USD)",
+    "language": "영어",
+    "visa": "ESTA 사전 승인 필요, 90일",
+    "plug": "A·B형 120V — 돼지코 필요",
+    "transit": "BART로 시내 30분"
   },
   {
     "name_ko": "밀라노",
@@ -497,7 +1379,25 @@
     "unsplash_query": "Milan duomo city",
     "best": "4~6월, 9~10월",
     "tzid": "Europe/Rome",
-    "fly_min_icn": 720
+    "fly_min_icn": 720,
+    "lat": 45.46,
+    "lon": 9.19,
+    "climate": "봄가을 11~24°C",
+    "sights": [
+      "두오모",
+      "비토리오 에마누엘레 갤러리아",
+      "나빌리오 운하"
+    ],
+    "foods": [
+      "리조토",
+      "코톨레타",
+      "아페리티보"
+    ],
+    "currency": "유로 (EUR)",
+    "language": "현지어·영어 통용",
+    "visa": "셰겐 무비자 90일 (180일 중). ETIAS 2026년 말 시행 예정",
+    "plug": "C·F형 230V — 그대로 사용",
+    "transit": "말펜사 익스프레스로 중앙역 50분"
   },
   {
     "name_ko": "하와이",
@@ -507,7 +1407,25 @@
     "unsplash_query": "Honolulu Waikiki beach Diamond Head",
     "best": "4~5월, 9~10월",
     "tzid": "Pacific/Honolulu",
-    "fly_min_icn": 510
+    "fly_min_icn": 510,
+    "lat": 21.31,
+    "lon": -157.86,
+    "climate": "연중 22~30°C, 무역풍",
+    "sights": [
+      "와이키키",
+      "다이아몬드 헤드",
+      "하나우마 베이"
+    ],
+    "foods": [
+      "포케",
+      "말라사다",
+      "가르릭 슈림프"
+    ],
+    "currency": "달러 (USD)",
+    "language": "영어",
+    "visa": "ESTA 사전 승인 필요, 90일",
+    "plug": "A·B형 120V — 돼지코 필요",
+    "transit": "택시로 와이키키 25분"
   },
   {
     "name_ko": "부다페스트",
@@ -517,7 +1435,25 @@
     "unsplash_query": "Budapest parliament danube night",
     "best": "4~6월, 9~10월",
     "tzid": "Europe/Budapest",
-    "fly_min_icn": 720
+    "fly_min_icn": 720,
+    "lat": 47.5,
+    "lon": 19.04,
+    "climate": "봄가을 10~24°C",
+    "sights": [
+      "국회의사당 야경",
+      "어부의 요새",
+      "세체니 온천"
+    ],
+    "foods": [
+      "굴라시",
+      "랑고시",
+      "토카이 와인"
+    ],
+    "currency": "포린트 (HUF)",
+    "language": "헝가리어",
+    "visa": "셰겐 무비자 90일. ETIAS 2026년 말 시행 예정",
+    "plug": "C·F형 230V — 그대로 사용",
+    "transit": "버스+지하철로 시내 50분"
   },
   {
     "name_ko": "시드니",
@@ -527,7 +1463,25 @@
     "unsplash_query": "Sydney harbour opera house",
     "best": "9~11월, 3~5월",
     "tzid": "Australia/Sydney",
-    "fly_min_icn": 630
+    "fly_min_icn": 630,
+    "lat": -33.87,
+    "lon": 151.21,
+    "climate": "봄가을 14~23°C",
+    "sights": [
+      "오페라하우스",
+      "본다이 비치",
+      "블루마운틴"
+    ],
+    "foods": [
+      "플랫화이트",
+      "미트파이",
+      "해산물"
+    ],
+    "currency": "호주달러 (AUD)",
+    "language": "영어",
+    "visa": "ETA 사전 승인 필요, 90일",
+    "plug": "I형 230V — 어댑터 필요",
+    "transit": "공항철도로 시내 15분"
   },
   {
     "name_ko": "헬싱키",
@@ -537,7 +1491,25 @@
     "unsplash_query": "Helsinki Finland city",
     "best": "6~8월",
     "tzid": "Europe/Helsinki",
-    "fly_min_icn": 630
+    "fly_min_icn": 630,
+    "lat": 60.17,
+    "lon": 24.94,
+    "climate": "여름 13~22°C, 백야",
+    "sights": [
+      "수오멘린나",
+      "암석교회",
+      "마켓 광장"
+    ],
+    "foods": [
+      "연어수프",
+      "시나몬롤",
+      "순록 요리"
+    ],
+    "currency": "유로 (EUR)",
+    "language": "현지어·영어 통용",
+    "visa": "셰겐 무비자 90일 (180일 중). ETIAS 2026년 말 시행 예정",
+    "plug": "C·F형 230V — 그대로 사용",
+    "transit": "기차로 중앙역 30분"
   },
   {
     "name_ko": "두바이",
@@ -547,7 +1519,25 @@
     "unsplash_query": "Dubai skyline desert",
     "best": "11~3월",
     "tzid": "Asia/Dubai",
-    "fly_min_icn": 590
+    "fly_min_icn": 590,
+    "lat": 25.2,
+    "lon": 55.27,
+    "climate": "겨울 17~27°C, 여름 45°C",
+    "sights": [
+      "부르즈 할리파",
+      "사막 사파리",
+      "두바이 몰 분수쇼"
+    ],
+    "foods": [
+      "샤와르마",
+      "아랍식 브런치",
+      "카막"
+    ],
+    "currency": "디르함 (AED)",
+    "language": "아랍어·영어",
+    "visa": "무비자 90일",
+    "plug": "G형 230V — 어댑터 필요",
+    "transit": "지하철로 시내 20분"
   },
   {
     "name_ko": "밴쿠버",
@@ -557,7 +1547,25 @@
     "unsplash_query": "Vancouver mountains city",
     "best": "6~9월",
     "tzid": "America/Vancouver",
-    "fly_min_icn": 600
+    "fly_min_icn": 600,
+    "lat": 49.28,
+    "lon": -123.12,
+    "climate": "여름 14~23°C, 겨울 비",
+    "sights": [
+      "스탠리 파크",
+      "그랜빌 아일랜드",
+      "캐필라노 현수교"
+    ],
+    "foods": [
+      "연어",
+      "푸틴",
+      "아시안 퓨전"
+    ],
+    "currency": "캐나다달러 (CAD)",
+    "language": "영어·프랑스어",
+    "visa": "eTA 사전 승인 필요, 6개월",
+    "plug": "A·B형 120V — 돼지코 필요",
+    "transit": "스카이트레인으로 다운타운 25분"
   },
   {
     "name_ko": "이스탄불",
@@ -567,7 +1575,25 @@
     "unsplash_query": "Istanbul Bosphorus sunset",
     "best": "4~5월, 9~10월",
     "tzid": "Europe/Istanbul",
-    "fly_min_icn": 690
+    "fly_min_icn": 690,
+    "lat": 41.01,
+    "lon": 28.98,
+    "climate": "봄가을 12~23°C",
+    "sights": [
+      "아야소피아",
+      "블루모스크",
+      "보스포루스 크루즈"
+    ],
+    "foods": [
+      "케밥",
+      "시미트",
+      "터키식 아침"
+    ],
+    "currency": "리라 (TRY)",
+    "language": "터키어",
+    "visa": "무비자 90일",
+    "plug": "C·F형 230V — 그대로 사용",
+    "transit": "공항철도·버스로 시내 60분"
   },
   {
     "name_ko": "시애틀",
@@ -577,7 +1603,25 @@
     "unsplash_query": "Seattle skyline rain",
     "best": "6~9월",
     "tzid": "America/Los_Angeles",
-    "fly_min_icn": 630
+    "fly_min_icn": 630,
+    "lat": 47.61,
+    "lon": -122.33,
+    "climate": "여름 14~24°C, 그 외 비",
+    "sights": [
+      "파이크 플레이스",
+      "스페이스 니들",
+      "레이니어산"
+    ],
+    "foods": [
+      "커피",
+      "연어",
+      "클램차우더"
+    ],
+    "currency": "달러 (USD)",
+    "language": "영어",
+    "visa": "ESTA 사전 승인 필요, 90일",
+    "plug": "A·B형 120V — 돼지코 필요",
+    "transit": "경전철로 다운타운 40분"
   },
   {
     "name_ko": "취리히",
@@ -587,7 +1631,25 @@
     "unsplash_query": "Zurich lake alps",
     "best": "6~9월, 12~3월",
     "tzid": "Europe/Zurich",
-    "fly_min_icn": 720
+    "fly_min_icn": 720,
+    "lat": 47.37,
+    "lon": 8.54,
+    "climate": "여름 13~24°C, 겨울 스키",
+    "sights": [
+      "취리히 호수",
+      "반호프 거리",
+      "린덴호프"
+    ],
+    "foods": [
+      "퐁뒤",
+      "뢰스티",
+      "초콜릿"
+    ],
+    "currency": "스위스프랑 (CHF)",
+    "language": "독일어·프랑스어",
+    "visa": "셰겐 무비자 90일. ETIAS 2026년 말 시행 예정",
+    "plug": "J형 230V — 스위스 전용 어댑터 필요",
+    "transit": "기차로 중앙역 10분"
   },
   {
     "name_ko": "오클랜드",
@@ -597,6 +1659,24 @@
     "unsplash_query": "Auckland New Zealand harbour",
     "best": "11~4월",
     "tzid": "Pacific/Auckland",
-    "fly_min_icn": 660
+    "fly_min_icn": 660,
+    "lat": -36.85,
+    "lon": 174.76,
+    "climate": "여름 16~24°C",
+    "sights": [
+      "스카이타워",
+      "와이헤케 섬",
+      "데본포트"
+    ],
+    "foods": [
+      "양고기",
+      "피시앤칩스",
+      "플랫화이트"
+    ],
+    "currency": "뉴질랜드달러 (NZD)",
+    "language": "영어·마오리어",
+    "visa": "NZeTA 사전 승인 + 관광세 필요",
+    "plug": "I형 230V — 어댑터 필요",
+    "transit": "버스로 시내 45분"
   }
 ]
