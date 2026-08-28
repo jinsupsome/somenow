@@ -297,9 +297,15 @@
     // 방금 넣은 배경이 적용된 뒤에 나타나게 한다(같은 프레임에 바꾸면 전환이 생략된다)
     void next.offsetWidth;
     next.classList.add("is-ready");
-    window.setTimeout(function () { cur.classList.remove("is-ready"); }, 620);
-
     active = 1 - active;
+
+    // 아래 장은 새 사진이 다 나타난 뒤에 내린다.
+    // 단, 그 사이 이 장이 다시 위로 올라왔다면(연달아 바뀐 경우) 건드리지 않는다.
+    // 이 확인이 없으면 새로 띄운 사진을 스스로 지워버린다.
+    window.setTimeout(function () {
+      if (layers[active] !== cur) cur.classList.remove("is-ready");
+    }, 620);
+
     if (src) shownSrc = src;
     return true;
   }
