@@ -497,3 +497,67 @@
 
   render();
 })();
+
+
+/* ---------- v0.2 설정 패널: 시계·검색창·바로가기 표시 여부 ---------- */
+(function () {
+  "use strict";
+
+  var KEY = "somenow_settings";
+  var DEFAULTS = { clock: true, search: true, sites: true };
+  var OPTS = [
+    { id: "optClock", key: "clock", cls: "hide-clock" },
+    { id: "optSearch", key: "search", cls: "hide-search" },
+    { id: "optSites", key: "sites", cls: "hide-sites" }
+  ];
+
+  function $(id) { return document.getElementById(id); }
+
+  function load() {
+    return new Promise(function (resolve) {
+      try {
+        chrome.storage.local.get([KEY], function (res) {
+          var s = (res && res[KEY]) || {};
+          resolve({
+            clock: s.clock !== false,
+            search: s.search !== false,
+            sites: s.sites !== false
+          });
+        });
+      } catch (e) { resolve(DEFAULTS); }
+    });
+  }
+  function save(s) {
+    try { var o = {}; o[KEY] = s; chrome.storage.local.set(o); } catch (e) { /* 무시 */ }
+  }
+  function apply(s) {
+    OPTS.forEach(function (opt) {
+      document.body.classList.toggle(opt.cls, !s[opt.key]);
+      $(opt.id).checked = !!s[opt.key];
+    });
+  }
+
+  var btn = $("setBtn");
+  var panel = $("setPanel");
+  btn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    panel.hidden = !panel.hidden;
+  });
+  document.addEventListener("click", function (e) {
+    if (!panel.hidden && !panel.contains(e.target)) panel.hidden = true;
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") panel.hidden = true;
+  });
+
+  load().then(function (s) {
+    apply(s);
+    OPTS.forEach(function (opt) {
+      $(opt.id).addEventListener("change", function () {
+        s[opt.key] = $(opt.id).checked;
+        save(s);
+        apply(s);
+      });
+    });
+  });
+})();
