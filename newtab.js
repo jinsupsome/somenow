@@ -287,3 +287,213 @@
     start();
   }
 })();
+
+
+/*
+ * ---------- v0.2 홈 기능 ----------
+ * 시계 · 구글 검색창(렌즈/AI 모드) · 앱 런처 · 바로가기(자주 방문 + 직접 추가)
+ * 위의 사진 로직과 독립적으로 동작한다. 여기가 죽어도 사진·버튼은 뜬다.
+ */
+(function () {
+  "use strict";
+
+  var MAX_TILES = 8;
+  var KEY_CUSTOM = "somenow_shortcuts";    // [{name,url}] 직접 추가한 것
+  var KEY_HIDDEN = "somenow_hidden_sites"; // [url] 숨긴 자주 방문 사이트
+
+  function $(id) { return document.getElementById(id); }
+
+  function sGet(keys) {
+    return new Promise(function (resolve) {
+      try {
+        chrome.storage.local.get(keys, function (res) { resolve(res || {}); });
+      } catch (e) { resolve({}); }
+    });
+  }
+  function sSet(obj) {
+    return new Promise(function (resolve) {
+      try { chrome.storage.local.set(obj, function () { resolve(); }); }
+      catch (e) { resolve(); }
+    });
+  }
+
+  /* ----- 시계 ----- */
+  var DAYS = ["일", "월", "화", "수", "목", "금", "토"];
+  function tick() {
+    var n = new Date();
+    $("clockTime").textContent =
+      String(n.getHours()).padStart(2, "0") + ":" + String(n.getMinutes()).padStart(2, "0");
+    $("clockDate").textContent =
+      (n.getMonth() + 1) + "월 " + n.getDate() + "일 " + DAYS[n.getDay()] + "요일";
+  }
+  tick();
+  setInterval(tick, 15000);
+
+  /* ----- 검색 ----- */
+  var input = $("searchInput");
+  $("searchForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var q = input.value.trim();
+    if (q) location.href = "https://www.google.com/search?q=" + encodeURIComponent(q);
+  });
+  // AI 모드: 입력한 검색어가 있으면 그대로 AI 모드로 검색
+  $("aiBtn").addEventListener("click", function (e) {
+    var q = input.value.trim();
+    if (q) {
+      e.preventDefault();
+      location.href = "https://www.google.com/search?udm=50&q=" + encodeURIComponent(q);
+    }
+  });
+
+  /* ----- 앱 런처 ----- */
+  var appsBtn = $("appsBtn");
+  var appsPanel = $("appsPanel");
+  appsBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    appsPanel.hidden = !appsPanel.hidden;
+  });
+  document.addEventListener("click", function (e) {
+    if (!appsPanel.hidden && !appsPanel.contains(e.target)) appsPanel.hidden = true;
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") { appsPanel.hidden = true; hideAdd(); }
+  });
+
+  /* ----- 바로가기 ----- */
+  var wrap = $("topSites");
+  var pop = $("addPop");
+
+  function hostOf(url) {
+    try { return new URL(url).hostname.replace(/^www\./, ""); } catch (e) { return url; }
+  }
+  function faviconSrc(url) {
+    return "/_favicon/?pageUrl=" + encodeURIComponent(url) + "&size=64";
+  }
+
+  function tileEl(item, isCustom, state) {
+    var a = document.createElement("a");
+    a.className = "tile";
+    a.href = item.url;
+    a.title = item.url;
+
+    var ic = document.createElement("span");
+    ic.className = "tile-ic";
+    var img = document.createElement("img");
+    img.src = faviconSrc(item.url);
+    img.alt = "";
+    img.addEventListener("error", function () {
+      var m = document.createElement("span");
+      m.className = "tile-mono";
+      m.textContent = (item.name || hostOf(item.url)).charAt(0).toUpperCase();
+      ic.replaceChild(m, img);
+    });
+    ic.appendChild(img);
+
+    var nm = document.createElement("span");
+    nm.className = "tile-name";
+    nm.textContent = item.name || hostOf(item.url);
+
+    var x = document.createElement("button");
+    x.className = "tile-x";
+    x.type = "button";
+    x.title = "바로가기에서 제거";
+    x.textContent = "\u00d7";
+    x.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (isCustom) {
+        state.custom = state.custom.filter(function (c) { return c.url !== item.url; });
+      } else {
+        state.hidden.push(item.url);
+      }
+      sSet((function () {
+        var o = {}; o[KEY_CUSTOM] = state.custom; o[KEY_HIDDEN] = state.hidden; return o;
+      })()).then(render);
+    });
+
+    a.appendChild(ic);
+    a.appendChild(nm);
+    a.appendChild(x);
+    return a;
+  }
+
+  function addTileEl() {
+    var b = document.createElement("button");
+    b.className = "tile tile-add";
+    b.type = "button";
+    b.title = "바로가기 추가";
+    var ic = document.createElement("span");
+    ic.className = "tile-ic";
+    ic.textContent = "+";
+    var nm = document.createElement("span");
+    nm.className = "tile-name";
+    nm.textContent = "추가";
+    b.appendChild(ic);
+    b.appendChild(nm);
+    b.addEventListener("click", function (e) {
+      e.stopPropagation();
+      pop.hidden = !pop.hidden;
+      if (!pop.hidden) $("addName").focus();
+    });
+    return b;
+  }
+
+  function topSitesGet() {
+    return new Promise(function (resolve) {
+      try {
+        if (chrome.topSites && chrome.topSites.get) {
+          chrome.topSites.get(function (sites) { resolve(sites || []); });
+        } else resolve([]);
+      } catch (e) { resolve([]); }
+    });
+  }
+
+  function render() {
+    Promise.all([sGet([KEY_CUSTOM, KEY_HIDDEN]), topSitesGet()]).then(function (r) {
+      var custom = Array.isArray(r[0][KEY_CUSTOM]) ? r[0][KEY_CUSTOM] : [];
+      var hidden = Array.isArray(r[0][KEY_HIDDEN]) ? r[0][KEY_HIDDEN] : [];
+      var state = { custom: custom, hidden: hidden };
+
+      var seen = {};
+      custom.forEach(function (c) { seen[hostOf(c.url)] = true; });
+
+      var tiles = custom.map(function (c) { return tileEl(c, true, state); });
+      r[1].forEach(function (s) {
+        if (tiles.length >= MAX_TILES) return;
+        if (hidden.indexOf(s.url) !== -1) return;
+        if (seen[hostOf(s.url)]) return;
+        seen[hostOf(s.url)] = true;
+        tiles.push(tileEl({ name: s.title, url: s.url }, false, state));
+      });
+
+      wrap.textContent = "";
+      tiles.slice(0, MAX_TILES).forEach(function (t) { wrap.appendChild(t); });
+      wrap.appendChild(addTileEl());
+    });
+  }
+
+  function hideAdd() {
+    pop.hidden = true;
+    $("addName").value = "";
+    $("addUrl").value = "";
+  }
+
+  $("addCancel").addEventListener("click", hideAdd);
+  $("addSave").addEventListener("click", function () {
+    var name = $("addName").value.trim();
+    var url = $("addUrl").value.trim();
+    if (!url) { $("addUrl").focus(); return; }
+    if (!/^https?:\/\//i.test(url)) url = "https://" + url;
+    sGet([KEY_CUSTOM]).then(function (res) {
+      var custom = Array.isArray(res[KEY_CUSTOM]) ? res[KEY_CUSTOM] : [];
+      custom.push({ name: name || hostOf(url), url: url });
+      var o = {}; o[KEY_CUSTOM] = custom;
+      return sSet(o);
+    }).then(function () { hideAdd(); render(); });
+  });
+  $("addUrl").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") { e.preventDefault(); $("addSave").click(); }
+  });
+
+  render();
+})();
