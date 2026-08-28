@@ -90,6 +90,11 @@
   var origin = DEFAULT_ORIGIN;
   var changeCbs = [];
 
+  var shownSrc = null;        // 지금 화면에 그려져 있는 사진 주소
+  var carryUnder = null;      // 셔플 직후, 새 사진이 올 때까지 깔아 둘 이전 사진
+  var nextCity = null;        // 다음 셔플에서 보여줄 도시(미리 받아 둔다)
+  var PREFETCH_MAX = 8;       // 오늘 받아 둔 사진이 이만큼 쌓이면 미리받기를 멈춘다
+
   function notifyChange() {
     for (var i = 0; i < changeCbs.length; i++) {
       try { changeCbs[i](currentCity); } catch (e) { /* 구독자 오류는 무시 */ }
@@ -282,6 +287,7 @@
     if (!imgs.length) return false;
     el.photo.style.backgroundImage = imgs.join(", ");
     el.photo.classList.add("is-ready");
+    shownSrc = src || shownSrc;
     return true;
   }
 
@@ -488,12 +494,18 @@
       var photos = (today && today.date === dateStr && today.photos) ? today.photos : {};
       var mine = photos[city.iata] || null;
 
-      // 0) 기다리지 않고 먼저 그린다: 같은 도시의 저장본이 있으면 그림을, 없으면 대표색을
+      // 0) 기다리지 않고 먼저 그린다.
+      //    ① 이 도시의 저장본이 있으면 그것 ② 셔플이면 직전 사진을 그대로 둔다 ③ 없으면 대표색
+      var carry = carryUnder;
+      carryUnder = null;
       underSrc = null;
       if (lastBytes && lastBytes.iata === city.iata && lastBytes.dataUrl) {
         underSrc = lastBytes.dataUrl;
         paint(underSrc);
         renderCredit(lastBytes);
+      } else if (carry) {
+        underSrc = carry;          // 새 사진이 올 때까지 화면이 비지 않는다
+        paint(carry);
       } else {
         paintColor((mine && mine.color) || (lastBytes && lastBytes.color) || null);
       }
@@ -506,10 +518,21 @@
         });
       }
 
-      // 1) 오늘 이 도시 사진이 이미 있으면 그대로 쓴다
+      // 1) 오늘 이 도시 사진이 이미 있으면 그대로 쓴다(미리 받아 둔 것 포함)
       if (mine) {
         return applyPhoto(mine).then(function (ok) {
-          if (!ok && !underSrc) return fallback();
+          if (!ok) { if (!underSrc) return fallback(); return; }
+          var key0 = accessKey();
+          if (key0 && !mine.pinged) {          // 화면에 쓴 순간에만 다운로드 핑
+            pingDownload(mine, key0);
+            mine.pinged = true;
+            photos[city.iata] = mine;
+            var sv = {}; sv[TODAY_KEY] = { date: dateStr, photos: photos };
+            storageSet(sv);
+          }
+          // 이 도시 저장본이 아직 없을 때만 저장한다(새 탭마다 다시 받지 않게)
+          if (!lastBytes || lastBytes.iata !== city.iata) cacheBytes(mine, city.iata);
+          planNext(photos, dateStr);
         });
       }
 
@@ -528,11 +551,12 @@
             if (!ok) throw new Error("이미지 로드 실패");
             pingDownload(photo, key);
             cacheBytes(photo, city.iata);
+            photo.pinged = true;
             photos[city.iata] = photo;
             var save = {};
             save[TODAY_KEY] = { date: dateStr, photos: photos };
             save[LAST_KEY] = photo;
-            return storageSet(save);
+            return storageSet(save).then(function () { planNext(photos, dateStr); });
           });
         })
         .catch(function (err) {
@@ -542,13 +566,59 @@
     });
   }
 
+  /*
+   * 다음에 셔플로 보여줄 도시를 미리 정해 사진까지 받아 둔다.
+   * 셔플을 누른 뒤에 받기 시작하면 사진이 한 박자 늦게 바뀌기 때문이다.
+   * 새 탭 한 번에 최대 1개만, 오늘 받아 둔 사진이 PREFETCH_MAX 개가 되면 멈춘다
+   * (Unsplash 무료 키는 시간당 50회 제한).
+   */
+  function planNext(photos, dateStr) {
+    var cities = allCities || [];
+    if (cities.length < 2 || !currentCity) return;
+
+    var pick = currentCity;
+    var guard = 0;
+    while ((pick.iata === currentCity.iata || pick.iata === origin) && guard++ < 50) {
+      pick = cities[Math.floor(Math.random() * cities.length)];
+    }
+    nextCity = pick;
+
+    var have = photos[pick.iata];
+    if (have) { warmImage(have); return; }          // 이미 있으면 브라우저 캐시만 데운다
+
+    var key = accessKey();
+    if (!key) return;
+    if (typeof navigator !== "undefined" && navigator.onLine === false) return;
+    if (Object.keys(photos).length >= PREFETCH_MAX) return;
+
+    fetchPhoto(pick.unsplash_query, key)
+      .then(function (photo) {
+        photo.pinged = false;                        // 화면에 쓸 때 핑을 보낸다
+        photos[pick.iata] = photo;
+        var save = {};
+        save[TODAY_KEY] = { date: dateStr, photos: photos };
+        return storageSet(save).then(function () { warmImage(photo); });
+      })
+      .catch(function (e) {
+        console.info("[Somenow] 다음 도시 미리받기 실패:", e && e.message);
+      });
+  }
+
+  // 사진을 미리 내려받아 브라우저 캐시에 넣어 둔다(화면에는 안 쓴다)
+  function warmImage(photo) {
+    var src = photoSrc(photo);
+    if (!src) return;
+    var img = new Image();
+    img.src = src;
+  }
+
   // 도시를 바꾸고 당일 동안 그 도시를 유지한다. 셔플과 위시리스트가 함께 쓴다.
   function goTo(city) {
     if (!city || !curDate) return;
     var o = {};
     o[OVERRIDE_KEY] = { date: curDate, iata: city.iata };
     storageSet(o);
-    el.photo.classList.remove("is-ready");   // 페이드 아웃 → 새 사진 페이드 인
+    carryUnder = shownSrc;                   // 새 사진이 준비될 때까지 지금 사진을 유지
     showCity(city, curDate);
   }
 
@@ -559,10 +629,17 @@
     btn.addEventListener("click", function () {
       var cities = allCities || [];
       if (!currentCity || cities.length < 2) return;
-      var next = currentCity;
-      while (next.iata === currentCity.iata || next.iata === origin) {
-        next = cities[Math.floor(Math.random() * cities.length)];
+      var next = null;
+      if (nextCity && nextCity.iata !== currentCity.iata && nextCity.iata !== origin) {
+        next = nextCity;                     // 사진을 미리 받아 둔 도시
+      } else {
+        next = currentCity;
+        var guard = 0;
+        while ((next.iata === currentCity.iata || next.iata === origin) && guard++ < 50) {
+          next = cities[Math.floor(Math.random() * cities.length)];
+        }
       }
+      nextCity = null;
       goTo(next);
     });
   }
