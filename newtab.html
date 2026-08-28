@@ -38,10 +38,14 @@
     <header class="place">
       <h1 id="city" class="city">Somenow</h1>
       <p id="tagline" class="tagline">언젠가 가야지, 하던 곳</p>
+      <p id="cityMeta" class="meta" hidden></p>
     </header>
 
     <div class="action">
       <a id="flightBtn" class="flight-btn" href="#" target="_blank" rel="noopener noreferrer">항공권 보기</a>
+      <button id="wishBtn" class="shuffle-btn wish-btn" title="위시리스트에 담기" aria-label="위시리스트에 담기" aria-pressed="false" hidden>
+        <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21s-6.7-4.35-9.33-8.06C.6 10.1 1.6 6.4 4.6 5.2c1.9-.76 4.1-.1 5.4 1.5L12 8.7l2-2c1.3-1.6 3.5-2.26 5.4-1.5 3 1.2 4 4.9 1.93 7.74C18.7 16.65 12 21 12 21z"/></svg>
+      </button>
       <button id="shuffleBtn" class="shuffle-btn" title="다른 도시 보기" aria-label="다른 도시 보기">
         <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M17.65 6.35A7.96 7.96 0 0 0 12 4a8 8 0 1 0 7.73 10h-2.08A6 6 0 1 1 12 6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
       </button>
@@ -78,6 +82,16 @@
     </div>
 
   </section>
+
+  <!-- 좌측 하단: 위시리스트 목록 -->
+  <button id="wishListBtn" class="set-btn wish-list-btn" title="위시리스트" aria-label="위시리스트" hidden>
+    <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21s-6.7-4.35-9.33-8.06C.6 10.1 1.6 6.4 4.6 5.2c1.9-.76 4.1-.1 5.4 1.5L12 8.7l2-2c1.3-1.6 3.5-2.26 5.4-1.5 3 1.2 4 4.9 1.93 7.74C18.7 16.65 12 21 12 21z"/></svg>
+    <span id="wishCount" class="wish-count" hidden>0</span>
+  </button>
+  <div id="wishPanel" class="set-panel wish-panel" hidden>
+    <div class="set-title">위시리스트</div>
+    <div id="wishRows" class="wish-rows"></div>
+  </div>
 
   <!-- 좌측 하단: 설정 -->
   <button id="setBtn" class="set-btn" title="화면 설정" aria-label="화면 설정">

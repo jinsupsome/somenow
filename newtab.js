@@ -19,6 +19,13 @@
   var TODAY_KEY = "somenow_today";
   var LAST_KEY = "somenow_last_photo";
   var OVERRIDE_KEY = "somenow_city_override";   // 셔플로 고른 도시(당일 한정)
+  var LAST_BYTES_KEY = "somenow_last_bytes";    // 마지막 사진의 실제 그림 데이터(오프라인 전용)
+
+  // 사진 URL 폭은 정해진 값으로만 만든다. 창 크기가 조금 달라졌다고
+  // 매번 새 주소가 되면 브라우저 캐시가 빗나가 사진을 다시 받는다.
+  var WIDTH_STEPS = [1280, 1600, 1920, 2560];
+  var OFFLINE_W = 1280;                         // 오프라인용으로 저장할 사진 폭
+  var OFFLINE_MAX_BYTES = 2 * 1024 * 1024;      // 이보다 크면 저장하지 않는다
 
   var FETCH_TIMEOUT_MS = 8000;
 
@@ -26,11 +33,24 @@
     photo: document.getElementById("photo"),
     city: document.getElementById("city"),
     tagline: document.getElementById("tagline"),
+    meta: document.getElementById("cityMeta"),
     btn: document.getElementById("flightBtn"),
     credit: document.getElementById("credit"),
     creditAuthor: document.getElementById("creditAuthor"),
     creditUnsplash: document.getElementById("creditUnsplash")
   };
+
+  // 화면에 지금 떠 있는 도시와 전체 목록. 셔플·위시리스트가 함께 쓴다.
+  var allCities = null;
+  var curDate = null;
+  var currentCity = null;
+  var changeCbs = [];
+
+  function notifyChange() {
+    for (var i = 0; i < changeCbs.length; i++) {
+      try { changeCbs[i](currentCity); } catch (e) { /* 구독자 오류는 무시 */ }
+    }
+  }
 
   /* ---------- 날짜 · 도시 선택 ---------- */
 
@@ -86,20 +106,65 @@
 
   /* ---------- 화면 ---------- */
 
+  /* ---------- 도시 정보 한 줄 ---------- */
+
+  // 분 -> "2시간 20분". 딱 떨어지면 "6시간".
+  function flyText(min) {
+    if (typeof min !== "number" || min <= 0) return null;
+    var h = Math.floor(min / 60);
+    var m = min % 60;
+    return "직항 " + (m ? h + "시간 " + m + "분" : h + "시간");
+  }
+
+  // 서울 기준 시차. cities.json 의 tz 는 표준시 기준이므로
+  // 유럽·미주의 서머타임 기간에는 실제 시차가 1시간 줄어든다(표기는 표준시로 통일).
+  function tzText(tz) {
+    if (typeof tz !== "number") return null;
+    if (tz === 0) return "시차 없음";
+    return "시차 " + (tz > 0 ? "+" : "-") + Math.abs(tz) + "시간";
+  }
+
+  function renderMeta(city) {
+    var parts = [];
+    var f = flyText(city.fly_min);
+    var t = tzText(city.tz);
+    if (f) parts.push(f);
+    if (t) parts.push(t);
+    if (city.best) parts.push("여행 적기 " + city.best);
+
+    if (!parts.length) { el.meta.hidden = true; el.meta.textContent = ""; return; }
+    el.meta.textContent = parts.join(" \u00b7 ");
+    el.meta.hidden = false;
+  }
+
   function renderCity(city) {
     el.city.textContent = city.name_ko;
     el.tagline.textContent = city.tagline;
+    renderMeta(city);
     el.btn.href = buildFlightUrl(city);
-    document.title = city.name_ko + " · Somenow";
+    document.title = city.name_ko + " \u00b7 Somenow";
   }
 
   // 화면 크기에 맞춰 사진 URL을 만든다. raw 를 저장해 두면 해상도별로 다시 만들 수 있다.
+  // 필요한 폭보다 크거나 같은 첫 계단값. 그보다 크면 가장 큰 값.
+  function stepWidth(px) {
+    for (var i = 0; i < WIDTH_STEPS.length; i++) {
+      if (px <= WIDTH_STEPS[i]) return WIDTH_STEPS[i];
+    }
+    return WIDTH_STEPS[WIDTH_STEPS.length - 1];
+  }
+
+  function rawSrc(raw, w) {
+    var sep = raw.indexOf("?") === -1 ? "?" : "&";
+    return raw + sep + "auto=format&fit=crop&fm=jpg&q=80&w=" + w;
+  }
+
   function photoSrc(photo) {
     if (!photo) return null;
+    if (photo.dataUrl) return photo.dataUrl;          // 오프라인 저장본
     if (photo.raw) {
-      var w = Math.min(2560, Math.ceil(window.innerWidth * (window.devicePixelRatio || 1)));
-      var sep = photo.raw.indexOf("?") === -1 ? "?" : "&";
-      return photo.raw + sep + "auto=format&fit=crop&fm=jpg&q=80&w=" + w;
+      var need = Math.ceil(window.innerWidth * (window.devicePixelRatio || 1));
+      return rawSrc(photo.raw, stepWidth(need));
     }
     return photo.url || null;
   }
@@ -219,6 +284,41 @@
     } catch (e) { /* 표기와 무관하므로 실패해도 무시 */ }
   }
 
+  /*
+   * 오프라인 대비: 사진을 주소가 아니라 그림 데이터 자체로 저장한다.
+   * 주소만 저장하면 인터넷이 끊긴 새 탭에서는 결국 아무것도 못 띄운다.
+   * 하루에 사진을 새로 받을 때 한 번만, 작은 폭(1280)으로 1장만 저장한다.
+   */
+  function cacheBytes(photo) {
+    if (!photo || !photo.raw) return;
+    var src = rawSrc(photo.raw, OFFLINE_W);
+    try {
+      fetch(src)
+        .then(function (r) { if (!r.ok) throw new Error("bytes " + r.status); return r.blob(); })
+        .then(function (blob) {
+          if (blob.size > OFFLINE_MAX_BYTES) throw new Error("사진이 너무 큼");
+          return new Promise(function (resolve, reject) {
+            var fr = new FileReader();
+            fr.onload = function () { resolve(fr.result); };
+            fr.onerror = function () { reject(new Error("읽기 실패")); };
+            fr.readAsDataURL(blob);
+          });
+        })
+        .then(function (dataUrl) {
+          var o = {};
+          o[LAST_BYTES_KEY] = {
+            dataUrl: dataUrl,
+            authorName: photo.authorName,
+            authorLink: photo.authorLink
+          };
+          return storageSet(o);
+        })
+        .catch(function (e) {
+          console.info("[Somenow] 오프라인용 사진 저장을 건너뛴다:", e && e.message);
+        });
+    } catch (e) { /* 화면과 무관하므로 무시 */ }
+  }
+
   /* ---------- 진행 ---------- */
 
   function loadCities() {
@@ -244,24 +344,35 @@
    */
   function showCity(city, dateStr) {
     renderCity(city);
+    currentCity = city;
+    notifyChange();
 
-    return storageGet([TODAY_KEY, LAST_KEY]).then(function (store) {
+    return storageGet([TODAY_KEY, LAST_KEY, LAST_BYTES_KEY]).then(function (store) {
       var today = store[TODAY_KEY];
       var lastPhoto = store[LAST_KEY] || null;
+      var lastBytes = store[LAST_BYTES_KEY] || null;
       var photos = (today && today.date === dateStr && today.photos) ? today.photos : {};
+
+      // 마지막 사진(주소) → 저장해 둔 그림 데이터 → 단색 배경 순으로 물러난다
+      function fallback() {
+        return applyPhoto(lastPhoto).then(function (ok) {
+          if (ok) return true;
+          return applyPhoto(lastBytes);
+        });
+      }
 
       // 1) 오늘 이 도시 사진이 이미 있으면 그대로 쓴다
       if (photos[city.iata]) {
         return applyPhoto(photos[city.iata]).then(function (ok) {
-          if (!ok && lastPhoto) return applyPhoto(lastPhoto);
+          if (!ok) return fallback();
         });
       }
 
       // 2) 키가 없으면 호출을 건너뛴다 (마지막 사진 → 단색 배경)
       var key = accessKey();
       if (!key) {
-        if (!lastPhoto) console.info("[Somenow] config.js 가 없어 단색 배경으로 표시한다.");
-        return applyPhoto(lastPhoto);
+        if (!lastPhoto && !lastBytes) console.info("[Somenow] config.js 가 없어 단색 배경으로 표시한다.");
+        return fallback();
       }
 
       // 3) 새로 받는다. 실패하면 마지막 사진.
@@ -270,6 +381,7 @@
           return applyPhoto(photo).then(function (ok) {
             if (!ok) throw new Error("이미지 로드 실패");
             pingDownload(photo, key);
+            cacheBytes(photo);        // 오프라인 대비 그림 데이터 저장
             photos[city.iata] = photo;
             var save = {};
             save[TODAY_KEY] = { date: dateStr, photos: photos };
@@ -279,27 +391,33 @@
         })
         .catch(function (err) {
           console.warn("[Somenow] 사진을 받지 못했다:", err && err.message);
-          return applyPhoto(lastPhoto);
+          return fallback();
         });
     });
   }
 
-  // 다른 도시 보기: 무작위 다른 도시로 전환하고, 당일 동안 그 도시를 유지한다
-  function setupShuffle(cities, dateStr, firstCity) {
+  // 도시를 바꾸고 당일 동안 그 도시를 유지한다. 셔플과 위시리스트가 함께 쓴다.
+  function goTo(city) {
+    if (!city || !curDate) return;
+    var o = {};
+    o[OVERRIDE_KEY] = { date: curDate, iata: city.iata };
+    storageSet(o);
+    el.photo.classList.remove("is-ready");   // 페이드 아웃 → 새 사진 페이드 인
+    showCity(city, curDate);
+  }
+
+  // 다른 도시 보기: 무작위로 다른 도시를 고른다
+  function setupShuffle() {
     var btn = document.getElementById("shuffleBtn");
     if (!btn) return;
-    var current = firstCity;
     btn.addEventListener("click", function () {
-      var next = current;
-      while (cities.length > 1 && next.iata === current.iata) {
+      var cities = allCities || [];
+      if (!currentCity || cities.length < 2) return;
+      var next = currentCity;
+      while (next.iata === currentCity.iata) {
         next = cities[Math.floor(Math.random() * cities.length)];
       }
-      current = next;
-      var o = {};
-      o[OVERRIDE_KEY] = { date: dateStr, iata: next.iata };
-      storageSet(o);
-      el.photo.classList.remove("is-ready");   // 페이드 아웃 → 새 사진 페이드 인
-      showCity(next, dateStr);
+      goTo(next);
     });
   }
 
@@ -310,6 +428,8 @@
 
         var now = new Date();
         var dateStr = todayKey(now);
+        allCities = cities;
+        curDate = dateStr;
 
         return storageGet([OVERRIDE_KEY]).then(function (st) {
           var ov = st[OVERRIDE_KEY];
@@ -317,7 +437,7 @@
           if (ov && ov.date === dateStr) city = cityByIata(cities, ov.iata);
           if (!city) city = pickCity(cities, now);
 
-          setupShuffle(cities, dateStr, city);
+          setupShuffle();
           return showCity(city, dateStr);
         });
       })
@@ -326,6 +446,24 @@
         console.error("[Somenow]", err);
       });
   }
+
+  /*
+   * 다른 IIFE(위시리스트)가 쓰는 최소 창구.
+   * 이것 말고는 서로를 참조하지 않는다. 여기가 없으면 위시리스트만 조용히 꺼진다.
+   */
+  window.SomenowCity = {
+    current: function () { return currentCity; },
+    goTo: function (iata) {
+      var c = cityByIata(allCities || [], iata);
+      if (c) goTo(c);
+      return !!c;
+    },
+    onChange: function (cb) {
+      if (typeof cb !== "function") return;
+      changeCbs.push(cb);
+      if (currentCity) cb(currentCity);
+    }
+  };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", start);
@@ -606,4 +744,153 @@
       });
     });
   });
+})();
+
+
+/*
+ * ---------- v0.2 위시리스트 ----------
+ * 마음에 든 도시를 하트로 담아 두고, 좌측 하단 목록에서 다시 꺼내 본다.
+ * 사진 로직과는 window.SomenowCity 창구로만 연결된다.
+ * 그 창구가 없으면(사진 로직이 죽었으면) 버튼을 아예 띄우지 않는다.
+ */
+(function () {
+  "use strict";
+
+  var KEY = "somenow_wishlist";   // [{ iata, name_ko }]
+  var MAX = 50;
+
+  function $(id) { return document.getElementById(id); }
+
+  var api = window.SomenowCity;
+  var heart = $("wishBtn");
+  var listBtn = $("wishListBtn");
+  var panel = $("wishPanel");
+  var rows = $("wishRows");
+  var countEl = $("wishCount");
+  if (!api || !heart || !listBtn || !panel || !rows) return;
+
+  heart.hidden = false;
+  listBtn.hidden = false;
+
+  function sGet() {
+    return new Promise(function (resolve) {
+      try {
+        chrome.storage.local.get([KEY], function (res) {
+          var v = res && res[KEY];
+          resolve(Array.isArray(v) ? v : []);
+        });
+      } catch (e) { resolve([]); }
+    });
+  }
+  function sSet(list) {
+    return new Promise(function (resolve) {
+      try { var o = {}; o[KEY] = list; chrome.storage.local.set(o, function () { resolve(); }); }
+      catch (e) { resolve(); }
+    });
+  }
+
+  function has(list, iata) {
+    for (var i = 0; i < list.length; i++) if (list[i].iata === iata) return true;
+    return false;
+  }
+
+  function paintHeart(list) {
+    var c = api.current();
+    var on = !!(c && has(list, c.iata));
+    heart.classList.toggle("is-on", on);
+    heart.setAttribute("aria-pressed", on ? "true" : "false");
+    heart.title = on ? "위시리스트에서 빼기" : "위시리스트에 담기";
+    heart.setAttribute("aria-label", heart.title);
+  }
+
+  function paintCount(list) {
+    if (!countEl) return;
+    countEl.textContent = String(list.length);
+    countEl.hidden = list.length === 0;
+  }
+
+  function paintRows(list) {
+    rows.textContent = "";
+    if (!list.length) {
+      var p = document.createElement("div");
+      p.className = "wish-empty";
+      p.textContent = "아직 담은 도시가 없습니다. 하트를 눌러 담아 두세요.";
+      rows.appendChild(p);
+      return;
+    }
+    list.forEach(function (item) {
+      var row = document.createElement("div");
+      row.className = "wish-row";
+
+      var go = document.createElement("button");
+      go.type = "button";
+      go.className = "wish-go";
+      go.textContent = item.name_ko || item.iata;
+      go.title = "이 도시 보기";
+      go.addEventListener("click", function () {
+        api.goTo(item.iata);
+        panel.hidden = true;
+      });
+
+      var x = document.createElement("button");
+      x.type = "button";
+      x.className = "wish-x";
+      x.title = "목록에서 빼기";
+      x.textContent = "×";
+      x.addEventListener("click", function () {
+        sGet().then(function (cur) {
+          var next = cur.filter(function (c) { return c.iata !== item.iata; });
+          return sSet(next).then(function () { paintAll(next); });
+        });
+      });
+
+      row.appendChild(go);
+      row.appendChild(x);
+      rows.appendChild(row);
+    });
+  }
+
+  function paintAll(list) {
+    paintHeart(list);
+    paintCount(list);
+    paintRows(list);
+  }
+
+  heart.addEventListener("click", function () {
+    var c = api.current();
+    if (!c) return;
+    sGet().then(function (list) {
+      var next;
+      if (has(list, c.iata)) {
+        next = list.filter(function (x) { return x.iata !== c.iata; });
+      } else {
+        if (list.length >= MAX) return sSet(list).then(function () { paintAll(list); });
+        next = list.concat([{ iata: c.iata, name_ko: c.name_ko }]);
+      }
+      return sSet(next).then(function () { paintAll(next); });
+    });
+  });
+
+  // 설정 패널과 자리가 겹치므로 한 번에 하나만 열리게 한다
+  var setPanel = $("setPanel");
+  var setBtn = $("setBtn");
+  if (setBtn) setBtn.addEventListener("click", function () { panel.hidden = true; });
+
+  listBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    if (setPanel) setPanel.hidden = true;
+    panel.hidden = !panel.hidden;
+    if (!panel.hidden) sGet().then(paintAll);
+  });
+  document.addEventListener("click", function (e) {
+    if (!panel.hidden && !panel.contains(e.target)) panel.hidden = true;
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") panel.hidden = true;
+  });
+
+  // 도시가 바뀌면(첫 표시·셔플·목록 선택) 하트 상태를 다시 칠한다
+  api.onChange(function () { sGet().then(paintHeart); });
+
+  sGet().then(paintAll);
 })();
