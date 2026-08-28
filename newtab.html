@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>Somenow</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 배경 사진. 로드가 확인된 뒤에만 .is-ready 가 붙어 화면에 나타난다. -->
+  <div id="photo" class="photo" aria-hidden="true"></div>
+  <div class="scrim" aria-hidden="true"></div>
+
+  <main class="stage">
+    <header class="place">
+      <h1 id="city" class="city">Somenow</h1>
+      <p id="tagline" class="tagline">언젠가 가야지, 하던 곳</p>
+    </header>
+
+    <div class="action">
+      <a id="flightBtn" class="flight-btn" href="#" target="_blank" rel="noopener noreferrer">항공권 보기</a>
+    </div>
+  </main>
+
+  <!-- Unsplash 표기 요건: 사진작가 이름 + Unsplash 링크 -->
+  <footer id="credit" class="credit" hidden>
+    Photo by <a id="creditAuthor" href="#" target="_blank" rel="noopener noreferrer"></a>
+    on <a id="creditUnsplash" href="#" target="_blank" rel="noopener noreferrer">Unsplash</a>
+  </footer>
+
+  <!-- config.js 는 저장소에 없을 수 있다(.gitignore). 없으면 404 로그만 남고 동작은 계속된다. -->
+  <script src="config.js"></script>
+  <script src="newtab.js"></script>
+</body>
+</html>

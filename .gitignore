@@ -1,0 +1,12 @@
+# 실제 API 키가 들어가는 파일 — 절대 커밋하지 않는다
+config.js
+
+# OS / 편집기
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# 스토어 업로드용 압축 파일
+*.zip

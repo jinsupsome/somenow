@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Somenow — Someday to Today",
+  "version": "0.1.0",
+  "description": "새 탭을 열 때마다 여행지 사진 한 장과 항공권 버튼. 언젠가 가야지 하던 곳에 오늘 날짜를 붙인다.",
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "permissions": ["storage"],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

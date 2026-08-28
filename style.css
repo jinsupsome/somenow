@@ -1,0 +1,151 @@
+/* Somenow v0.1 — 새 탭 화면 */
+
+:root {
+  /* 사진이 없을 때의 단색 배경 */
+  --fallback-bg: #14202b;
+  --ink: #ffffff;
+  --pad-x: clamp(28px, 5vw, 72px);
+  --pad-y: clamp(28px, 5vh, 60px);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  /* 한글 폰트는 시스템 기본 */
+  font-family: system-ui, -apple-system, "Malgun Gothic", "맑은 고딕",
+               "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  color: var(--ink);
+  background-color: var(--fallback-bg);
+  overflow: hidden;
+}
+
+/* ---------- 배경 사진 ---------- */
+.photo {
+  position: fixed;
+  inset: 0;
+  background-color: var(--fallback-bg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 900ms ease;
+}
+.photo.is-ready { opacity: 1; }
+
+/* 글씨가 사진 위에서 읽히도록: 위·아래 어둡게 */
+.scrim {
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(0, 0, 0, 0.18) 26%,
+      rgba(0, 0, 0, 0) 45%),
+    linear-gradient(to top,
+      rgba(0, 0, 0, 0.72) 0%,
+      rgba(0, 0, 0, 0.32) 22%,
+      rgba(0, 0, 0, 0) 52%);
+  pointer-events: none;
+}
+
+/* ---------- 레이아웃 ---------- */
+.stage {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--pad-y) var(--pad-x);
+}
+
+/* 좌상단: 도시 이름 + 한 줄 문장 */
+.place {
+  max-width: min(90vw, 40ch);
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
+  animation: rise 700ms ease both;
+}
+
+.city {
+  margin: 0;
+  font-size: clamp(40px, 6.4vw, 92px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.tagline {
+  margin: 14px 0 0;
+  font-size: clamp(15px, 1.55vw, 22px);
+  font-weight: 400;
+  line-height: 1.5;
+  opacity: 0.92;
+}
+
+/* 하단 중앙: 버튼 1개 */
+.action {
+  display: flex;
+  justify-content: center;
+  padding-bottom: clamp(8px, 3vh, 34px);
+  animation: rise 700ms 120ms ease both;
+}
+
+.flight-btn {
+  display: inline-block;
+  padding: 15px 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.13);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--ink);
+  font-size: clamp(15px, 1.3vw, 18px);
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: background 200ms ease, transform 200ms ease, border-color 200ms ease;
+}
+.flight-btn:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(255, 255, 255, 0.95);
+  color: #10161c;
+  transform: translateY(-2px);
+}
+.flight-btn:active { transform: translateY(0); }
+.flight-btn:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+
+/* 우측 하단: 사진 출처 (Unsplash 가이드라인) */
+.credit {
+  position: fixed;
+  right: var(--pad-x);
+  bottom: 16px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.72);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
+}
+.credit a {
+  color: rgba(255, 255, 255, 0.92);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+}
+.credit a:hover { border-bottom-color: rgba(255, 255, 255, 0.9); }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo, .place, .action, .flight-btn { transition: none; animation: none; }
+}
+
+/* 세로가 짧은 화면 */
+@media (max-height: 480px) {
+  .city { font-size: clamp(30px, 7vw, 48px); }
+  .action { padding-bottom: 4px; }
+}
