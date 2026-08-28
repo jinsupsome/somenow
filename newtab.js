@@ -66,9 +66,21 @@
    *   return "https://www.skyscanner.co.kr/transport/flights/icn/"
    *        + encodeURIComponent(String(city.iata).toLowerCase()) + "/";
    */
+  /*
+   * 트립닷컴 제휴 링크 (2026-08-28 적용).
+   * Allianceid·SID 는 제휴 계정 식별자로, 링크에 노출되는 것이 정상 용도다.
+   * cities.json 의 iata 는 트립닷컴 도시 코드(TYO·PAR·NYC 등)와 같은 체계다.
+   *
+   * 예) 구글 항공권으로 되돌릴 때:
+   *   var q = "Flights to " + city.name_en + " from Incheon";
+   *   return "https://www.google.com/travel/flights?q=" + encodeURIComponent(q);
+   */
   function buildFlightUrl(city) {
-    var q = "Flights to " + city.name_en + " from Incheon";
-    return "https://www.google.com/travel/flights?q=" + encodeURIComponent(q);
+    var slug = "Seoul-to-" + String(city.name_en).replace(/\s+/g, "-");
+    var code = String(city.iata).toUpperCase();
+    return "https://kr.trip.com/flights/" + slug + "/tickets-SEL-" + code
+      + "?flighttype=S&dcity=SEL&acity=" + code
+      + "&Allianceid=10331252&SID=329754573&trip_sub1=&trip_sub3=D19549133";
   }
 
   /* ---------- 화면 ---------- */
