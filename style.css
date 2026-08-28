@@ -188,6 +188,7 @@ body {
   place-items: center;
 }
 .apps-btn:hover, .apps-btn:focus-visible { background: rgba(255, 255, 255, .18); opacity: 1; }
+.apps-panel[hidden] { display: none; }
 .apps-panel {
   position: fixed;
   top: 62px;
@@ -348,42 +349,6 @@ body {
 }
 .tile:hover .tile-x { display: grid; }
 .tile-add .tile-ic { background: rgba(255, 255, 255, .25); color: #fff; font-size: 22px; font-weight: 400; }
-
-.add-pop {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: min(320px, 80vw);
-  padding: 14px;
-  border-radius: 14px;
-  background: rgba(18, 24, 32, .95);
-  border: 1px solid rgba(255, 255, 255, .12);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, .4);
-}
-.add-pop input {
-  height: 38px;
-  padding: 0 12px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, .25);
-  background: rgba(255, 255, 255, .08);
-  color: #fff;
-  font-size: 14px;
-  outline: none;
-  font-family: inherit;
-}
-.add-pop input:focus { border-color: rgba(255, 255, 255, .6); }
-.add-actions { display: flex; justify-content: flex-end; gap: 8px; }
-.add-btn {
-  padding: 8px 16px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, .3);
-  background: transparent;
-  color: #fff;
-  font-size: 13.5px;
-  cursor: pointer;
-  font-family: inherit;
-}
-.add-primary { background: rgba(255, 255, 255, .92); color: #10161c; border-color: transparent; font-weight: 600; }
 
 /* 홈 요소와 도시명이 겹치지 않게: 좁거나 낮은 화면에서는 도시명을 줄인다 */
 @media (max-height: 700px) {
