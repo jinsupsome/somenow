@@ -121,7 +121,11 @@
   function tzText(tz) {
     if (typeof tz !== "number") return null;
     if (tz === 0) return "시차 없음";
-    return "시차 " + (tz > 0 ? "+" : "-") + Math.abs(tz) + "시간";
+    var sign = tz > 0 ? "+" : "-";
+    var abs = Math.abs(tz);
+    var h = Math.floor(abs);
+    var m = Math.round((abs - h) * 60);          // 인도처럼 30분 단위인 곳
+    return "시차 " + sign + h + "시간" + (m ? " " + m + "분" : "");
   }
 
   function renderMeta(city) {

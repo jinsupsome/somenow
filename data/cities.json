@@ -10,6 +10,16 @@
     "best": "3~4월, 10~11월"
   },
   {
+    "name_ko": "나고야",
+    "name_en": "Nagoya",
+    "iata": "NGO",
+    "tagline": "장어덮밥 한 그릇의 이유",
+    "unsplash_query": "Nagoya castle Japan",
+    "fly_min": 110,
+    "tz": 0,
+    "best": "3~4월, 10~11월"
+  },
+  {
     "name_ko": "오사카",
     "name_en": "Osaka",
     "iata": "OSA",
@@ -20,14 +30,34 @@
     "best": "3~4월, 10~11월"
   },
   {
+    "name_ko": "가고시마",
+    "name_en": "Kagoshima",
+    "iata": "KOJ",
+    "tagline": "연기 나는 산과 온천 마을",
+    "unsplash_query": "Kagoshima Sakurajima volcano",
+    "fly_min": 100,
+    "tz": 0,
+    "best": "3~5월, 10~11월"
+  },
+  {
     "name_ko": "후쿠오카",
     "name_en": "Fukuoka",
     "iata": "FUK",
     "tagline": "두 시간이면 닿는 다른 공기",
-    "unsplash_query": "Fukuoka Japan city",
+    "unsplash_query": "Fukuoka Nakasu river night",
     "fly_min": 80,
     "tz": 0,
     "best": "3~4월, 10~11월"
+  },
+  {
+    "name_ko": "구마모토",
+    "name_en": "Kumamoto",
+    "iata": "KMJ",
+    "tagline": "성곽 아래 느린 오후",
+    "unsplash_query": "Kumamoto castle Japan",
+    "fly_min": 95,
+    "tz": 0,
+    "best": "3~5월, 10~11월"
   },
   {
     "name_ko": "삿포로",
@@ -40,6 +70,16 @@
     "best": "12~2월, 6~8월"
   },
   {
+    "name_ko": "히로시마",
+    "name_en": "Hiroshima",
+    "iata": "HIJ",
+    "tagline": "강을 따라 걷는 조용한 오후",
+    "unsplash_query": "Hiroshima river city",
+    "fly_min": 100,
+    "tz": 0,
+    "best": "3~4월, 10~11월"
+  },
+  {
     "name_ko": "오키나와",
     "name_en": "Okinawa",
     "iata": "OKA",
@@ -48,6 +88,16 @@
     "fly_min": 140,
     "tz": 0,
     "best": "4~6월, 10~11월"
+  },
+  {
+    "name_ko": "가오슝",
+    "name_en": "Kaohsiung",
+    "iata": "KHH",
+    "tagline": "남쪽으로 갈수록 느려지는 시간",
+    "unsplash_query": "Kaohsiung Taiwan harbor",
+    "fly_min": 180,
+    "tz": -1,
+    "best": "10~3월"
   },
   {
     "name_ko": "타이베이",
@@ -60,6 +110,16 @@
     "best": "10~12월, 3~4월"
   },
   {
+    "name_ko": "마카오",
+    "name_en": "Macau",
+    "iata": "MFM",
+    "tagline": "포르투갈이 남긴 골목",
+    "unsplash_query": "Macau street architecture",
+    "fly_min": 220,
+    "tz": -1,
+    "best": "10~12월"
+  },
+  {
     "name_ko": "방콕",
     "name_en": "Bangkok",
     "iata": "BKK",
@@ -68,6 +128,16 @@
     "fly_min": 350,
     "tz": -2,
     "best": "11~2월"
+  },
+  {
+    "name_ko": "하노이",
+    "name_en": "Hanoi",
+    "iata": "HAN",
+    "tagline": "낡은 것들이 더 멋있는 거리",
+    "unsplash_query": "Hanoi old quarter street",
+    "fly_min": 300,
+    "tz": -2,
+    "best": "10~11월, 3~4월"
   },
   {
     "name_ko": "다낭",
@@ -80,14 +150,34 @@
     "best": "2~5월"
   },
   {
+    "name_ko": "호치민",
+    "name_en": "Ho Chi Minh City",
+    "iata": "SGN",
+    "tagline": "오토바이 물결 위의 열기",
+    "unsplash_query": "Ho Chi Minh City street",
+    "fly_min": 330,
+    "tz": -2,
+    "best": "12~3월"
+  },
+  {
     "name_ko": "나트랑",
     "name_en": "Nha Trang",
     "iata": "CXR",
     "tagline": "파도가 시간을 대신 세어준다",
-    "unsplash_query": "Nha Trang coast",
+    "unsplash_query": "Nha Trang beach Vietnam",
     "fly_min": 320,
     "tz": -2,
     "best": "1~4월"
+  },
+  {
+    "name_ko": "푸꾸옥",
+    "name_en": "Phu Quoc",
+    "iata": "PQC",
+    "tagline": "노을이 바다를 다 가진다",
+    "unsplash_query": "Phu Quoc beach sunset",
+    "fly_min": 330,
+    "tz": -2,
+    "best": "11~3월"
   },
   {
     "name_ko": "세부",
@@ -100,6 +190,16 @@
     "best": "12~5월"
   },
   {
+    "name_ko": "치앙마이",
+    "name_en": "Chiang Mai",
+    "iata": "CNX",
+    "tagline": "산에 안긴 오래된 도시",
+    "unsplash_query": "Chiang Mai temple mountain",
+    "fly_min": 360,
+    "tz": -2,
+    "best": "11~2월"
+  },
+  {
     "name_ko": "홍콩",
     "name_en": "Hong Kong",
     "iata": "HKG",
@@ -108,6 +208,16 @@
     "fly_min": 220,
     "tz": -1,
     "best": "10~12월"
+  },
+  {
+    "name_ko": "푸껫",
+    "name_en": "Phuket",
+    "iata": "HKT",
+    "tagline": "해가 지면 다시 시작되는 섬",
+    "unsplash_query": "Phuket beach Thailand",
+    "fly_min": 390,
+    "tz": -2,
+    "best": "11~4월"
   },
   {
     "name_ko": "싱가포르",
@@ -120,6 +230,16 @@
     "best": "2~4월"
   },
   {
+    "name_ko": "코타키나발루",
+    "name_en": "Kota Kinabalu",
+    "iata": "BKI",
+    "tagline": "세상에서 가장 긴 노을",
+    "unsplash_query": "Kota Kinabalu sunset sea",
+    "fly_min": 330,
+    "tz": -1,
+    "best": "3~9월"
+  },
+  {
     "name_ko": "발리",
     "name_en": "Bali",
     "iata": "DPS",
@@ -128,6 +248,16 @@
     "fly_min": 430,
     "tz": -1,
     "best": "5~9월"
+  },
+  {
+    "name_ko": "쿠알라룸푸르",
+    "name_en": "Kuala Lumpur",
+    "iata": "KUL",
+    "tagline": "밤에도 식지 않는 도시",
+    "unsplash_query": "Kuala Lumpur skyline night",
+    "fly_min": 390,
+    "tz": -1,
+    "best": "5~7월"
   },
   {
     "name_ko": "괌",
@@ -140,6 +270,16 @@
     "best": "12~5월"
   },
   {
+    "name_ko": "마닐라",
+    "name_en": "Manila",
+    "iata": "MNL",
+    "tagline": "바다를 마주 본 항구의 저녁",
+    "unsplash_query": "Manila bay sunset",
+    "fly_min": 240,
+    "tz": -1,
+    "best": "12~4월"
+  },
+  {
     "name_ko": "사이판",
     "name_en": "Saipan",
     "iata": "SPN",
@@ -148,6 +288,16 @@
     "fly_min": 270,
     "tz": 1,
     "best": "12~5월"
+  },
+  {
+    "name_ko": "베이징",
+    "name_en": "Beijing",
+    "iata": "BJS",
+    "tagline": "성벽이 도시를 기억한다",
+    "unsplash_query": "Beijing Forbidden City",
+    "fly_min": 125,
+    "tz": -1,
+    "best": "4~5월, 9~10월"
   },
   {
     "name_ko": "상하이",
@@ -160,6 +310,16 @@
     "best": "3~5월, 9~11월"
   },
   {
+    "name_ko": "시엠립",
+    "name_en": "Siem Reap",
+    "iata": "REP",
+    "tagline": "숲이 삼킨 사원",
+    "unsplash_query": "Angkor Wat temple",
+    "fly_min": 350,
+    "tz": -2,
+    "best": "11~2월"
+  },
+  {
     "name_ko": "파리",
     "name_en": "Paris",
     "iata": "PAR",
@@ -168,6 +328,16 @@
     "fly_min": 840,
     "tz": -8,
     "best": "5~6월, 9~10월"
+  },
+  {
+    "name_ko": "델리",
+    "name_en": "Delhi",
+    "iata": "DEL",
+    "tagline": "색과 향이 먼저 말을 건다",
+    "unsplash_query": "Delhi India street architecture",
+    "fly_min": 510,
+    "tz": -3.5,
+    "best": "10~3월"
   },
   {
     "name_ko": "런던",
@@ -180,6 +350,16 @@
     "best": "5~9월"
   },
   {
+    "name_ko": "몰디브",
+    "name_en": "Maldives",
+    "iata": "MLE",
+    "tagline": "물 위에서 자는 며칠",
+    "unsplash_query": "Maldives overwater villa",
+    "fly_min": 570,
+    "tz": -4,
+    "best": "11~4월"
+  },
+  {
     "name_ko": "로마",
     "name_en": "Rome",
     "iata": "ROM",
@@ -188,6 +368,16 @@
     "fly_min": 780,
     "tz": -8,
     "best": "4~6월, 9~10월"
+  },
+  {
+    "name_ko": "아부다비",
+    "name_en": "Abu Dhabi",
+    "iata": "AUH",
+    "tagline": "사막이 만든 흰 사원",
+    "unsplash_query": "Abu Dhabi grand mosque",
+    "fly_min": 600,
+    "tz": -5,
+    "best": "11~3월"
   },
   {
     "name_ko": "바르셀로나",
@@ -200,6 +390,16 @@
     "best": "5~6월, 9~10월"
   },
   {
+    "name_ko": "도하",
+    "name_en": "Doha",
+    "iata": "DOH",
+    "tagline": "모래 위에 세운 항구",
+    "unsplash_query": "Doha Qatar skyline",
+    "fly_min": 630,
+    "tz": -6,
+    "best": "11~3월"
+  },
+  {
     "name_ko": "프라하",
     "name_en": "Prague",
     "iata": "PRG",
@@ -208,6 +408,16 @@
     "fly_min": 750,
     "tz": -8,
     "best": "5~9월"
+  },
+  {
+    "name_ko": "암스테르담",
+    "name_en": "Amsterdam",
+    "iata": "AMS",
+    "tagline": "운하가 도시를 나눈다",
+    "unsplash_query": "Amsterdam canal houses",
+    "fly_min": 720,
+    "tz": -8,
+    "best": "4~5월, 9~10월"
   },
   {
     "name_ko": "비엔나",
@@ -220,6 +430,16 @@
     "best": "4~6월, 9~10월"
   },
   {
+    "name_ko": "프랑크푸르트",
+    "name_en": "Frankfurt",
+    "iata": "FRA",
+    "tagline": "강 건너로 보이는 두 시대",
+    "unsplash_query": "Frankfurt skyline river",
+    "fly_min": 690,
+    "tz": -8,
+    "best": "5~9월"
+  },
+  {
     "name_ko": "뉴욕",
     "name_en": "New York",
     "iata": "NYC",
@@ -228,6 +448,16 @@
     "fly_min": 870,
     "tz": -14,
     "best": "4~6월, 9~11월"
+  },
+  {
+    "name_ko": "뮌헨",
+    "name_en": "Munich",
+    "iata": "MUC",
+    "tagline": "맥주잔 너머의 알프스",
+    "unsplash_query": "Munich Bavaria city",
+    "fly_min": 690,
+    "tz": -8,
+    "best": "5~6월, 9~10월"
   },
   {
     "name_ko": "로스앤젤레스",
@@ -240,6 +470,16 @@
     "best": "3~5월, 9~11월"
   },
   {
+    "name_ko": "마드리드",
+    "name_en": "Madrid",
+    "iata": "MAD",
+    "tagline": "해가 길어 저녁이 늦다",
+    "unsplash_query": "Madrid plaza architecture",
+    "fly_min": 810,
+    "tz": -8,
+    "best": "4~6월, 9~10월"
+  },
+  {
     "name_ko": "샌프란시스코",
     "name_en": "San Francisco",
     "iata": "SFO",
@@ -250,14 +490,34 @@
     "best": "9~10월"
   },
   {
+    "name_ko": "밀라노",
+    "name_en": "Milan",
+    "iata": "MIL",
+    "tagline": "옷차림이 인사를 대신한다",
+    "unsplash_query": "Milan duomo city",
+    "fly_min": 720,
+    "tz": -8,
+    "best": "4~6월, 9~10월"
+  },
+  {
     "name_ko": "하와이",
     "name_en": "Honolulu",
     "iata": "HNL",
     "tagline": "파도 소리로 아침이 온다",
-    "unsplash_query": "Hawaii Honolulu beach",
+    "unsplash_query": "Honolulu Waikiki beach Diamond Head",
     "fly_min": 510,
     "tz": -19,
     "best": "4~5월, 9~10월"
+  },
+  {
+    "name_ko": "부다페스트",
+    "name_en": "Budapest",
+    "iata": "BUD",
+    "tagline": "다뉴브가 켜지는 시간",
+    "unsplash_query": "Budapest parliament danube night",
+    "fly_min": 720,
+    "tz": -8,
+    "best": "4~6월, 9~10월"
   },
   {
     "name_ko": "시드니",
@@ -270,6 +530,16 @@
     "best": "9~11월, 3~5월"
   },
   {
+    "name_ko": "헬싱키",
+    "name_en": "Helsinki",
+    "iata": "HEL",
+    "tagline": "여름밤에는 해가 지지 않는다",
+    "unsplash_query": "Helsinki Finland city",
+    "fly_min": 630,
+    "tz": -7,
+    "best": "6~8월"
+  },
+  {
     "name_ko": "두바이",
     "name_en": "Dubai",
     "iata": "DXB",
@@ -278,6 +548,16 @@
     "fly_min": 590,
     "tz": -5,
     "best": "11~3월"
+  },
+  {
+    "name_ko": "밴쿠버",
+    "name_en": "Vancouver",
+    "iata": "YVR",
+    "tagline": "산과 바다가 붙어 있다",
+    "unsplash_query": "Vancouver mountains city",
+    "fly_min": 600,
+    "tz": -17,
+    "best": "6~9월"
   },
   {
     "name_ko": "이스탄불",
@@ -290,6 +570,16 @@
     "best": "4~5월, 9~10월"
   },
   {
+    "name_ko": "시애틀",
+    "name_en": "Seattle",
+    "iata": "SEA",
+    "tagline": "비와 커피가 어울리는 도시",
+    "unsplash_query": "Seattle skyline rain",
+    "fly_min": 630,
+    "tz": -17,
+    "best": "6~9월"
+  },
+  {
     "name_ko": "취리히",
     "name_en": "Zurich",
     "iata": "ZRH",
@@ -298,5 +588,15 @@
     "fly_min": 720,
     "tz": -8,
     "best": "6~9월, 12~3월"
+  },
+  {
+    "name_ko": "오클랜드",
+    "name_en": "Auckland",
+    "iata": "AKL",
+    "tagline": "초록과 항구 사이",
+    "unsplash_query": "Auckland New Zealand harbour",
+    "fly_min": 660,
+    "tz": 3,
+    "best": "11~4월"
   }
 ]
