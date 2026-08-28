@@ -33,7 +33,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   opacity: 0;
-  transition: opacity 900ms ease;
+  transition: opacity 520ms ease;
 }
 .photo.is-ready { opacity: 1; }
 
@@ -43,13 +43,16 @@ body {
   inset: 0;
   background:
     linear-gradient(to bottom,
-      rgba(0, 0, 0, 0.55) 0%,
-      rgba(0, 0, 0, 0.18) 26%,
-      rgba(0, 0, 0, 0) 45%),
+      rgba(0, 0, 0, 0.42) 0%,
+      rgba(0, 0, 0, 0.14) 30%,
+      rgba(0, 0, 0, 0) 52%),
     linear-gradient(to top,
-      rgba(0, 0, 0, 0.72) 0%,
-      rgba(0, 0, 0, 0.32) 22%,
-      rgba(0, 0, 0, 0) 52%);
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(0, 0, 0, 0.22) 26%,
+      rgba(0, 0, 0, 0) 58%),
+    radial-gradient(120% 90% at 50% 45%,
+      rgba(0, 0, 0, 0) 45%,
+      rgba(0, 0, 0, 0.28) 100%);
   pointer-events: none;
 }
 
@@ -74,31 +77,44 @@ body {
   animation: rise 700ms ease both;
 }
 
+/* 영문 도시명: 작게, 넓은 자간으로 얹는 머리글 */
+.city-en {
+  margin: 0 0 12px;
+  font-size: clamp(10.5px, 0.85vw, 12.5px);
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  text-indent: 0.34em;
+  opacity: 0.62;
+  text-transform: uppercase;
+}
+
 .city {
   margin: 0;
-  font-size: clamp(40px, 6.4vw, 92px);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.05;
+  font-size: clamp(36px, 5.2vw, 74px);
+  font-weight: 250;
+  letter-spacing: 0.005em;
+  line-height: 1.08;
 }
 
 .tagline {
-  margin: 14px 0 0;
-  font-size: clamp(15px, 1.55vw, 22px);
-  font-weight: 400;
-  line-height: 1.5;
-  opacity: 0.92;
+  margin: 18px 0 0;
+  font-size: clamp(15px, 1.4vw, 20px);
+  font-weight: 300;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  opacity: 0.86;
 }
 
 /* 도시 정보 한 줄: 직항 시간 · 시차 · 여행 적기 */
 .meta[hidden] { display: none; }
 .meta {
-  margin: 10px 0 0;
-  font-size: clamp(12.5px, 1.05vw, 15px);
+  margin: 20px 0 0;
+  font-size: clamp(11px, 0.88vw, 12.5px);
   font-weight: 400;
-  line-height: 1.5;
-  letter-spacing: 0.01em;
-  opacity: 0.78;
+  line-height: 1.6;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.75);
   word-break: keep-all;
   overflow-wrap: break-word;
 }
@@ -108,34 +124,29 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
-  padding-bottom: clamp(8px, 3vh, 34px);
+  gap: 18px;
+  padding-bottom: clamp(10px, 3.4vh, 38px);
   animation: rise 700ms 120ms ease both;
 }
 
 .flight-btn {
   display: inline-block;
-  padding: 15px 40px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  background: rgba(255, 255, 255, 0.13);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: var(--ink);
-  font-size: clamp(15px, 1.3vw, 18px);
-  font-weight: 600;
+  padding: 9px 2px;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.32);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 13.5px;
+  font-weight: 400;
   text-decoration: none;
-  letter-spacing: 0.01em;
-  transition: background 200ms ease, transform 200ms ease, border-color 200ms ease;
+  letter-spacing: 0.13em;
+  transition: color 220ms ease, border-color 220ms ease;
 }
 .flight-btn:hover {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(255, 255, 255, 0.95);
-  color: #10161c;
-  transform: translateY(-2px);
+  color: #fff;
+  border-bottom-color: rgba(255, 255, 255, 0.9);
 }
-.flight-btn:active { transform: translateY(0); }
-.flight-btn:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+.flight-btn:focus-visible { outline: 1px solid rgba(255, 255, 255, .8); outline-offset: 6px; }
 
 /* 우측 하단: 사진 출처 (Unsplash 가이드라인) */
 .credit {
@@ -258,8 +269,8 @@ body {
   z-index: 20;
 }
 .clock { text-align: center; text-shadow: 0 2px 24px rgba(0, 0, 0, .55); }
-.clock-time { font-size: clamp(40px, 5.4vw, 60px); font-weight: 600; letter-spacing: .02em; line-height: 1; }
-.clock-date { font-size: 14px; opacity: .88; margin-top: 6px; }
+.clock-time { font-size: clamp(38px, 4.8vw, 54px); font-weight: 200; letter-spacing: .05em; line-height: 1; }
+.clock-date { font-size: 12.5px; font-weight: 300; letter-spacing: .08em; opacity: .72; margin-top: 10px; }
 
 .search {
   width: 100%;
@@ -270,7 +281,7 @@ body {
   padding: 0 8px 0 18px;
   border-radius: 999px;
   background: rgba(255, 255, 255, .96);
-  box-shadow: 0 6px 28px rgba(0, 0, 0, .3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, .22);
 }
 .search:focus-within { background: #fff; }
 .sicon { display: grid; place-items: center; }
@@ -469,34 +480,28 @@ body.hide-sites .topsites, body.hide-sites .add-pop { display: none !important; 
 
 /* ---------- v0.2 다른 도시 보기(셔플) ---------- */
 .shuffle-btn {
-  width: 48px;
-  height: 48px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  background: rgba(255, 255, 255, 0.13);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: var(--ink);
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
   cursor: pointer;
   display: grid;
   place-items: center;
-  transition: background 200ms ease, transform 200ms ease;
+  transition: color 200ms ease, background 200ms ease;
 }
-.shuffle-btn:hover { background: rgba(255, 255, 255, 0.95); color: #10161c; transform: translateY(-2px); }
-.shuffle-btn:active { transform: translateY(0); }
-.shuffle-btn:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+.shuffle-btn svg { width: 17px; height: 17px; }
+.shuffle-btn:hover { background: rgba(255, 255, 255, 0.14); color: #fff; }
+.shuffle-btn:focus-visible { outline: 1px solid rgba(255, 255, 255, .8); outline-offset: 3px; }
 
 
 /* ---------- v0.2 위시리스트 ---------- */
 /* 하트 버튼: 셔플 버튼과 같은 모양, 담긴 상태면 채워진 붉은색 */
 .wish-btn[hidden] { display: none; }
 .wish-btn { color: rgba(255, 255, 255, 0.9); }
-.wish-btn.is-on {
-  background: rgba(255, 90, 110, 0.92);
-  border-color: rgba(255, 255, 255, 0.75);
-  color: #fff;
-}
-.wish-btn.is-on:hover { background: rgba(255, 60, 85, 1); color: #fff; }
+.wish-btn.is-on { color: #ff8a9b; }
+.wish-btn.is-on:hover { background: rgba(255, 255, 255, .14); color: #ff9fad; }
 
 /* 좌측 하단: 설정(⚙) 오른쪽에 나란히 */
 .wish-list-btn[hidden] { display: none; }
@@ -569,3 +574,37 @@ body.hide-sites .topsites, body.hide-sites .add-pop { display: none !important; 
   padding: 6px 6px 8px;
   word-break: keep-all;
 }
+
+
+/* ---------- v0.3 설정: 출발 도시 ---------- */
+.set-panel { width: 210px; }
+.set-sep {
+  height: 1px;
+  margin: 8px 4px;
+  background: rgba(255, 255, 255, .12);
+}
+.set-row-col {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 7px;
+  cursor: default;
+}
+.set-row-col:hover { background: transparent; }
+.set-label { font-size: 12px; opacity: .6; letter-spacing: .04em; }
+.set-select {
+  width: 100%;
+  height: 34px;
+  padding: 0 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, .22);
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+  font-family: inherit;
+  font-size: 13.5px;
+  cursor: pointer;
+  outline: none;
+}
+.set-select:focus { border-color: rgba(255, 255, 255, .55); }
+/* 펼친 목록은 브라우저가 그리므로 밝은 배경에서도 읽히게 색을 지정한다 */
+.set-select option { background: #121820; color: #fff; }

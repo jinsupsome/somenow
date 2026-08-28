@@ -36,6 +36,7 @@
 
   <main class="stage">
     <header class="place">
+      <p id="cityEn" class="city-en" aria-hidden="true">SOMENOW</p>
       <h1 id="city" class="city">Somenow</h1>
       <p id="tagline" class="tagline">언젠가 가야지, 하던 곳</p>
       <p id="cityMeta" class="meta" hidden></p>
@@ -102,6 +103,11 @@
     <label class="set-row"><input type="checkbox" id="optClock"> 시계 표시</label>
     <label class="set-row"><input type="checkbox" id="optSearch"> 검색창 표시</label>
     <label class="set-row"><input type="checkbox" id="optSites"> 바로가기 표시</label>
+    <div class="set-sep"></div>
+    <label class="set-row set-row-col" for="optOrigin">
+      <span class="set-label">출발 도시</span>
+      <select id="optOrigin" class="set-select"></select>
+    </label>
   </div>
 
   <!-- Unsplash 표기 요건: 사진작가 이름 + Unsplash 링크 -->

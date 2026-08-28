@@ -1,10 +1,11 @@
 /*
- * Somenow v0.1 — 새 탭 로직
+ * Somenow v0.3 — 새 탭 로직
  *
  * 1) 오늘 날짜로 도시 1개를 정한다. 같은 날이면 항상 같은 도시.
  * 2) 그 도시 사진 1장을 Unsplash에서 받아 chrome.storage.local 에 저장한다.
  *    같은 날 다시 새 탭을 열면 API를 호출하지 않고 저장된 것을 쓴다.
  * 3) 실패하거나 오프라인이면 마지막으로 성공한 사진을 쓴다. 그것도 없으면 단색 배경.
+ * 4) 출발지는 브라우저 시간대로 추정하고 설정에서 바꿀 수 있다.
  */
 
 (function () {
@@ -13,25 +14,67 @@
   var CITIES_URL = "data/cities.json";
   var UTM = "?utm_source=somenow&utm_medium=referral";
 
-  // 저장 키를 두 개로 나눈다.
-  //  TODAY_KEY : 오늘 것(날짜가 바뀌면 무효)
-  //  LAST_KEY  : 마지막으로 성공한 사진(날짜와 무관하게 살아남는 오프라인 대비용)
+  // 저장 키
+  //  TODAY_KEY      : 오늘 것(날짜가 바뀌면 무효)
+  //  LAST_KEY       : 마지막으로 성공한 사진 정보(오프라인 대비)
+  //  LAST_BYTES_KEY : 그 사진의 실제 그림 데이터(오프라인 + 즉시 표시)
   var TODAY_KEY = "somenow_today";
   var LAST_KEY = "somenow_last_photo";
+  var LAST_BYTES_KEY = "somenow_last_bytes";
   var OVERRIDE_KEY = "somenow_city_override";   // 셔플로 고른 도시(당일 한정)
-  var LAST_BYTES_KEY = "somenow_last_bytes";    // 마지막 사진의 실제 그림 데이터(오프라인 전용)
+  var ORIGIN_KEY = "somenow_origin";            // 출발 도시 코드
 
   // 사진 URL 폭은 정해진 값으로만 만든다. 창 크기가 조금 달라졌다고
   // 매번 새 주소가 되면 브라우저 캐시가 빗나가 사진을 다시 받는다.
   var WIDTH_STEPS = [1280, 1600, 1920, 2560];
-  var OFFLINE_W = 1280;                         // 오프라인용으로 저장할 사진 폭
+  var OFFLINE_W = 1280;                         // 즉시 표시·오프라인용으로 저장할 사진 폭
   var OFFLINE_MAX_BYTES = 2 * 1024 * 1024;      // 이보다 크면 저장하지 않는다
 
   var FETCH_TIMEOUT_MS = 8000;
 
+  /*
+   * 출발 도시. 트립닷컴 도시 코드와 IANA 시간대를 함께 갖는다.
+   * 처음 한 번 브라우저 시간대로 추정하고, 그 뒤로는 설정에서 고른 값을 쓴다.
+   */
+  var ORIGINS = [
+    { code: "SEL", ko: "서울",         tzid: "Asia/Seoul" },
+    { code: "PUS", ko: "부산",         tzid: "Asia/Seoul" },
+    { code: "TYO", ko: "도쿄",         tzid: "Asia/Tokyo" },
+    { code: "OSA", ko: "오사카",       tzid: "Asia/Tokyo" },
+    { code: "TPE", ko: "타이베이",     tzid: "Asia/Taipei" },
+    { code: "HKG", ko: "홍콩",         tzid: "Asia/Hong_Kong" },
+    { code: "SIN", ko: "싱가포르",     tzid: "Asia/Singapore" },
+    { code: "BKK", ko: "방콕",         tzid: "Asia/Bangkok" },
+    { code: "SGN", ko: "호치민",       tzid: "Asia/Ho_Chi_Minh" },
+    { code: "BJS", ko: "베이징",       tzid: "Asia/Shanghai" },
+    { code: "SHA", ko: "상하이",       tzid: "Asia/Shanghai" },
+    { code: "MNL", ko: "마닐라",       tzid: "Asia/Manila" },
+    { code: "KUL", ko: "쿠알라룸푸르", tzid: "Asia/Kuala_Lumpur" },
+    { code: "DEL", ko: "델리",         tzid: "Asia/Kolkata" },
+    { code: "DXB", ko: "두바이",       tzid: "Asia/Dubai" },
+    { code: "IST", ko: "이스탄불",     tzid: "Europe/Istanbul" },
+    { code: "LON", ko: "런던",         tzid: "Europe/London" },
+    { code: "PAR", ko: "파리",         tzid: "Europe/Paris" },
+    { code: "FRA", ko: "프랑크푸르트", tzid: "Europe/Berlin" },
+    { code: "AMS", ko: "암스테르담",   tzid: "Europe/Amsterdam" },
+    { code: "MAD", ko: "마드리드",     tzid: "Europe/Madrid" },
+    { code: "ROM", ko: "로마",         tzid: "Europe/Rome" },
+    { code: "NYC", ko: "뉴욕",         tzid: "America/New_York" },
+    { code: "CHI", ko: "시카고",       tzid: "America/Chicago" },
+    { code: "LAX", ko: "로스앤젤레스", tzid: "America/Los_Angeles" },
+    { code: "SFO", ko: "샌프란시스코", tzid: "America/Los_Angeles" },
+    { code: "YTO", ko: "토론토",       tzid: "America/Toronto" },
+    { code: "YVR", ko: "밴쿠버",       tzid: "America/Vancouver" },
+    { code: "SYD", ko: "시드니",       tzid: "Australia/Sydney" },
+    { code: "MEL", ko: "멜버른",       tzid: "Australia/Melbourne" },
+    { code: "AKL", ko: "오클랜드",     tzid: "Pacific/Auckland" }
+  ];
+  var DEFAULT_ORIGIN = "SEL";
+
   var el = {
     photo: document.getElementById("photo"),
     city: document.getElementById("city"),
+    cityEn: document.getElementById("cityEn"),
     tagline: document.getElementById("tagline"),
     meta: document.getElementById("cityMeta"),
     btn: document.getElementById("flightBtn"),
@@ -44,6 +87,7 @@
   var allCities = null;
   var curDate = null;
   var currentCity = null;
+  var origin = DEFAULT_ORIGIN;
   var changeCbs = [];
 
   function notifyChange() {
@@ -67,10 +111,61 @@
     return Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86400000);
   }
 
-  // 순차 회전. 도시 수가 몇 개든 전부 한 바퀴 돈다.
+  // 순차 회전. 출발지와 같은 도시는 건너뛴다(도쿄에서 도쿄행을 권할 수는 없다).
   function pickCity(cities, d) {
     var n = ((dayNumber(d) % cities.length) + cities.length) % cities.length;
+    for (var i = 0; i < cities.length; i++) {
+      var c = cities[(n + i) % cities.length];
+      if (c.iata !== origin) return c;
+    }
     return cities[n];
+  }
+
+  function cityByIata(cities, iata) {
+    for (var i = 0; i < cities.length; i++) {
+      if (cities[i].iata === iata) return cities[i];
+    }
+    return null;
+  }
+
+  /* ---------- 출발지 ---------- */
+
+  function originByCode(code) {
+    for (var i = 0; i < ORIGINS.length; i++) {
+      if (ORIGINS[i].code === code) return ORIGINS[i];
+    }
+    return null;
+  }
+
+  // 브라우저 시간대로 출발지를 추정한다. 모르면 서울.
+  function guessOrigin() {
+    var tzid = null;
+    try { tzid = Intl.DateTimeFormat().resolvedOptions().timeZone; } catch (e) { tzid = null; }
+    if (!tzid) return DEFAULT_ORIGIN;
+    for (var i = 0; i < ORIGINS.length; i++) {
+      if (ORIGINS[i].tzid === tzid) return ORIGINS[i].code;
+    }
+    return DEFAULT_ORIGIN;
+  }
+
+  /* ---------- 시차 ---------- */
+
+  /*
+   * 어떤 시간대가 지금 UTC와 몇 분 차이인지 구한다.
+   * 시간대 이름(Asia/Tokyo)으로 계산하므로 서머타임이 자동으로 반영된다.
+   */
+  function tzOffsetMinutes(tzid, date) {
+    try {
+      var dtf = new Intl.DateTimeFormat("en-US", {
+        timeZone: tzid, hour12: false,
+        year: "numeric", month: "2-digit", day: "2-digit",
+        hour: "2-digit", minute: "2-digit", second: "2-digit"
+      });
+      var p = {};
+      dtf.formatToParts(date).forEach(function (x) { p[x.type] = x.value; });
+      var asUTC = Date.UTC(+p.year, +p.month - 1, +p.day, (+p.hour) % 24, +p.minute, +p.second);
+      return Math.round((asUTC - date.getTime()) / 60000);
+    } catch (e) { return null; }
   }
 
   /* ---------- 항공권 링크 ---------- */
@@ -80,31 +175,25 @@
    * 나중에 제휴 링크(트립닷컴·스카이스캐너·아고다)로 바꿀 때 여기만 고치면 되고,
    * 호출부(renderCity)는 손대지 않는다.
    *
-   * city 객체를 통째로 받으므로 name_en 을 쓰든 iata 를 쓰든 시그니처가 그대로다.
-   * 지금은 name_en 만 쓰지만 cities.json 의 iata 는 제휴 전환용으로 남겨둔다.
-   *
-   * 예) 스카이스캐너로 되돌릴 때:
-   *   return "https://www.skyscanner.co.kr/transport/flights/icn/"
-   *        + encodeURIComponent(String(city.iata).toLowerCase()) + "/";
-   */
-  /*
    * 트립닷컴 제휴 링크 (2026-08-28 적용).
    * Allianceid·SID 는 제휴 계정 식별자로, 링크에 노출되는 것이 정상 용도다.
    * cities.json 의 iata 는 트립닷컴 도시 코드(TYO·PAR·NYC 등)와 같은 체계다.
    *
    * 예) 구글 항공권으로 되돌릴 때:
-   *   var q = "Flights to " + city.name_en + " from Incheon";
+   *   var q = "Flights to " + city.name_en + " from " + origin;
    *   return "https://www.google.com/travel/flights?q=" + encodeURIComponent(q);
+   * 예) 스카이스캐너로 되돌릴 때(봇 검사가 떠서 지금은 쓰지 않는다):
+   *   return "https://www.skyscanner.co.kr/transport/flights/"
+   *        + origin.toLowerCase() + "/" + String(city.iata).toLowerCase() + "/";
    */
   function buildFlightUrl(city) {
-    var slug = "Seoul-to-" + String(city.name_en).replace(/\s+/g, "-");
+    var from = originByCode(origin) || originByCode(DEFAULT_ORIGIN);
+    var slug = from.code + "-to-" + String(city.name_en).replace(/\s+/g, "-");
     var code = String(city.iata).toUpperCase();
-    return "https://kr.trip.com/flights/" + slug + "/tickets-SEL-" + code
-      + "?flighttype=S&dcity=SEL&acity=" + code
+    return "https://kr.trip.com/flights/" + slug + "/tickets-" + from.code + "-" + code
+      + "?flighttype=S&dcity=" + from.code + "&acity=" + code
       + "&Allianceid=10331252&SID=329754573&trip_sub1=&trip_sub3=D19549133";
   }
-
-  /* ---------- 화면 ---------- */
 
   /* ---------- 도시 정보 한 줄 ---------- */
 
@@ -116,40 +205,49 @@
     return "직항 " + (m ? h + "시간 " + m + "분" : h + "시간");
   }
 
-  // 서울 기준 시차. cities.json 의 tz 는 표준시 기준이므로
-  // 유럽·미주의 서머타임 기간에는 실제 시차가 1시간 줄어든다(표기는 표준시로 통일).
-  function tzText(tz) {
-    if (typeof tz !== "number") return null;
-    if (tz === 0) return "시차 없음";
-    var sign = tz > 0 ? "+" : "-";
-    var abs = Math.abs(tz);
-    var h = Math.floor(abs);
-    var m = Math.round((abs - h) * 60);          // 인도처럼 30분 단위인 곳
-    return "시차 " + sign + h + "시간" + (m ? " " + m + "분" : "");
+  // 지금 이 브라우저와 목적지의 실제 시차. 서머타임까지 반영된다.
+  function tzText(city) {
+    if (!city.tzid) return null;
+    var now = new Date();
+    var there = tzOffsetMinutes(city.tzid, now);
+    if (there === null) return null;
+    var here = -now.getTimezoneOffset();
+    var diff = there - here;
+    if (diff === 0) return "시차 없음";
+    var sign = diff > 0 ? "+" : "-";
+    var abs = Math.abs(diff);
+    var h = Math.floor(abs / 60);
+    var m = abs % 60;
+    return "시차 " + sign + (h ? h + "시간" : "") + (m ? (h ? " " : "") + m + "분" : "");
   }
 
   function renderMeta(city) {
     var parts = [];
-    var f = flyText(city.fly_min);
-    var t = tzText(city.tz);
-    if (f) parts.push(f);
+    // 직항 소요시간은 인천 출발 기준으로만 갖고 있다. 다른 출발지에서는 숨긴다.
+    if (origin === "SEL") {
+      var f = flyText(city.fly_min_icn);
+      if (f) parts.push(f);
+    }
+    var t = tzText(city);
     if (t) parts.push(t);
     if (city.best) parts.push("여행 적기 " + city.best);
 
     if (!parts.length) { el.meta.hidden = true; el.meta.textContent = ""; return; }
-    el.meta.textContent = parts.join(" \u00b7 ");
+    el.meta.textContent = parts.join("  ·  ");
     el.meta.hidden = false;
   }
 
   function renderCity(city) {
     el.city.textContent = city.name_ko;
+    if (el.cityEn) el.cityEn.textContent = String(city.name_en || "").toUpperCase();
     el.tagline.textContent = city.tagline;
     renderMeta(city);
     el.btn.href = buildFlightUrl(city);
-    document.title = city.name_ko + " \u00b7 Somenow";
+    document.title = city.name_ko + " · Somenow";
   }
 
-  // 화면 크기에 맞춰 사진 URL을 만든다. raw 를 저장해 두면 해상도별로 다시 만들 수 있다.
+  /* ---------- 사진 그리기 ---------- */
+
   // 필요한 폭보다 크거나 같은 첫 계단값. 그보다 크면 가장 큰 값.
   function stepWidth(px) {
     for (var i = 0; i < WIDTH_STEPS.length; i++) {
@@ -165,7 +263,7 @@
 
   function photoSrc(photo) {
     if (!photo) return null;
-    if (photo.dataUrl) return photo.dataUrl;          // 오프라인 저장본
+    if (photo.dataUrl) return photo.dataUrl;          // 저장해 둔 그림
     if (photo.raw) {
       var need = Math.ceil(window.innerWidth * (window.devicePixelRatio || 1));
       return rawSrc(photo.raw, stepWidth(need));
@@ -173,17 +271,37 @@
     return photo.url || null;
   }
 
+  // 아래 그림(저장본)을 깔아 둔 채로 위에 큰 사진을 얹는다.
+  // 큰 사진이 다 받아지기 전까지는 아래 것이 보이므로 화면이 비지 않는다.
+  var underSrc = null;
+
+  function paint(src) {
+    var imgs = [];
+    if (src) imgs.push('url("' + src + '")');
+    if (underSrc && underSrc !== src) imgs.push('url("' + underSrc + '")');
+    if (!imgs.length) return false;
+    el.photo.style.backgroundImage = imgs.join(", ");
+    el.photo.classList.add("is-ready");
+    return true;
+  }
+
+  // 사진의 대표색을 먼저 깔면 사진이 오기 전에도 화면이 비어 보이지 않는다.
+  function paintColor(color) {
+    if (!color) return;
+    el.photo.style.backgroundColor = color;
+    el.photo.classList.add("is-ready");
+  }
+
   // 이미지가 실제로 로드된 뒤에만 배경을 바꾼다.
-  // (오프라인에서 깨진 이미지가 잠깐 보이는 것을 막는다)
   function applyPhoto(photo) {
     var src = photoSrc(photo);
     if (!src) return Promise.resolve(false);
+    if (photo && photo.color) paintColor(photo.color);
 
     return new Promise(function (resolve) {
       var img = new Image();
       img.onload = function () {
-        el.photo.style.backgroundImage = 'url("' + src + '")';
-        el.photo.classList.add("is-ready");
+        paint(src);
         renderCredit(photo);
         resolve(true);
       };
@@ -242,15 +360,21 @@
     return k;
   }
 
-  function fetchPhoto(query, key) {
-    var url = "https://api.unsplash.com/photos/random"
-      + "?query=" + encodeURIComponent(query)
-      + "&orientation=landscape"
-      + "&content_filter=high";
+  function toPhoto(p) {
+    if (!p || !p.urls) return null;
+    return {
+      raw: p.urls.raw || null,
+      url: p.urls.regular || p.urls.full || null,
+      color: p.color || null,
+      authorName: (p.user && p.user.name) || "Unsplash",
+      authorLink: (p.user && p.user.links && p.user.links.html) || null,
+      downloadLocation: (p.links && p.links.download_location) || null
+    };
+  }
 
+  function askUnsplash(url, key) {
     var ctrl = new AbortController();
     var timer = setTimeout(function () { ctrl.abort(); }, FETCH_TIMEOUT_MS);
-
     return fetch(url, {
       headers: {
         // 키는 헤더로 보낸다. 쿼리스트링에 넣으면 로그에 남는다.
@@ -263,18 +387,29 @@
         if (!res.ok) throw new Error("Unsplash " + res.status);
         return res.json();
       })
-      .then(function (d) {
-        var p = Array.isArray(d) ? d[0] : d;
-        if (!p || !p.urls) throw new Error("Unsplash: 사진 없음");
-        return {
-          raw: p.urls.raw || null,
-          url: p.urls.regular || p.urls.full || null,
-          authorName: (p.user && p.user.name) || "Unsplash",
-          authorLink: (p.user && p.user.links && p.user.links.html) || null,
-          downloadLocation: (p.links && p.links.download_location) || null
-        };
-      })
       .finally(function () { clearTimeout(timer); });
+  }
+
+  /*
+   * 검색 API의 관련도 상위 결과 중에서 고른다.
+   * random API 는 검색어와 상관없는 사진이 섞여 나오는 일이 잦았다.
+   * 상위 12장 안에서만 무작위로 골라 "그 도시 사진"에서 벗어나지 않게 한다.
+   */
+  function fetchPhoto(query, key) {
+    var url = "https://api.unsplash.com/search/photos"
+      + "?query=" + encodeURIComponent(query)
+      + "&orientation=landscape"
+      + "&content_filter=high"
+      + "&order_by=relevant"
+      + "&per_page=12";
+
+    return askUnsplash(url, key).then(function (d) {
+      var list = (d && d.results) || [];
+      if (!list.length) throw new Error("검색 결과 없음: " + query);
+      var p = toPhoto(list[Math.floor(Math.random() * list.length)]);
+      if (!p) throw new Error("Unsplash: 사진 없음");
+      return p;
+    });
   }
 
   // Unsplash 가이드라인: 배경으로 쓰는 것은 "다운로드"에 해당한다.
@@ -289,11 +424,10 @@
   }
 
   /*
-   * 오프라인 대비: 사진을 주소가 아니라 그림 데이터 자체로 저장한다.
-   * 주소만 저장하면 인터넷이 끊긴 새 탭에서는 결국 아무것도 못 띄운다.
-   * 하루에 사진을 새로 받을 때 한 번만, 작은 폭(1280)으로 1장만 저장한다.
+   * 사진을 주소가 아니라 그림 데이터 자체로 한 장 저장한다.
+   * 쓰임 두 가지: ① 인터넷이 끊겨도 배경이 뜬다 ② 다음 새 탭에서 기다림 없이 바로 그린다.
    */
-  function cacheBytes(photo) {
+  function cacheBytes(photo, iata) {
     if (!photo || !photo.raw) return;
     var src = rawSrc(photo.raw, OFFLINE_W);
     try {
@@ -311,14 +445,16 @@
         .then(function (dataUrl) {
           var o = {};
           o[LAST_BYTES_KEY] = {
+            iata: iata,
             dataUrl: dataUrl,
+            color: photo.color || null,
             authorName: photo.authorName,
             authorLink: photo.authorLink
           };
           return storageSet(o);
         })
         .catch(function (e) {
-          console.info("[Somenow] 오프라인용 사진 저장을 건너뛴다:", e && e.message);
+          console.info("[Somenow] 사진 저장을 건너뛴다:", e && e.message);
         });
     } catch (e) { /* 화면과 무관하므로 무시 */ }
   }
@@ -332,32 +468,37 @@
     });
   }
 
-  function cityByIata(cities, iata) {
-    for (var i = 0; i < cities.length; i++) {
-      if (cities[i].iata === iata) return cities[i];
-    }
-    return null;
-  }
-
   /*
    * 도시 하나를 화면에 띄운다(글자·버튼·사진).
    * 사진은 "오늘 + 이 도시" 단위로 캐시한다. 셔플로 왔다 갔다 해도
    * 같은 날 같은 도시는 API를 다시 부르지 않는다.
    * 저장 형식: TODAY_KEY = { date, photos: { TYO: photo, PAR: photo, ... } }
-   * (구버전 { date, iata, photo } 는 캐시 없음으로 취급되어 자연히 대체된다)
    */
-  function showCity(city, dateStr) {
+  function showCity(city, dateStr, store) {
     renderCity(city);
     currentCity = city;
     notifyChange();
 
-    return storageGet([TODAY_KEY, LAST_KEY, LAST_BYTES_KEY]).then(function (store) {
-      var today = store[TODAY_KEY];
-      var lastPhoto = store[LAST_KEY] || null;
-      var lastBytes = store[LAST_BYTES_KEY] || null;
-      var photos = (today && today.date === dateStr && today.photos) ? today.photos : {};
+    var pre = store ? Promise.resolve(store) : storageGet([TODAY_KEY, LAST_KEY, LAST_BYTES_KEY]);
 
-      // 마지막 사진(주소) → 저장해 둔 그림 데이터 → 단색 배경 순으로 물러난다
+    return pre.then(function (s) {
+      var today = s[TODAY_KEY];
+      var lastPhoto = s[LAST_KEY] || null;
+      var lastBytes = s[LAST_BYTES_KEY] || null;
+      var photos = (today && today.date === dateStr && today.photos) ? today.photos : {};
+      var mine = photos[city.iata] || null;
+
+      // 0) 기다리지 않고 먼저 그린다: 같은 도시의 저장본이 있으면 그림을, 없으면 대표색을
+      underSrc = null;
+      if (lastBytes && lastBytes.iata === city.iata && lastBytes.dataUrl) {
+        underSrc = lastBytes.dataUrl;
+        paint(underSrc);
+        renderCredit(lastBytes);
+      } else {
+        paintColor((mine && mine.color) || (lastBytes && lastBytes.color) || null);
+      }
+
+      // 마지막 사진 주소 → 저장된 그림 → 단색 배경 순으로 물러난다
       function fallback() {
         return applyPhoto(lastPhoto).then(function (ok) {
           if (ok) return true;
@@ -366,36 +507,37 @@
       }
 
       // 1) 오늘 이 도시 사진이 이미 있으면 그대로 쓴다
-      if (photos[city.iata]) {
-        return applyPhoto(photos[city.iata]).then(function (ok) {
-          if (!ok) return fallback();
+      if (mine) {
+        return applyPhoto(mine).then(function (ok) {
+          if (!ok && !underSrc) return fallback();
         });
       }
 
-      // 2) 키가 없으면 호출을 건너뛴다 (마지막 사진 → 단색 배경)
+      // 2) 키가 없으면 호출을 건너뛴다
       var key = accessKey();
       if (!key) {
         if (!lastPhoto && !lastBytes) console.info("[Somenow] config.js 가 없어 단색 배경으로 표시한다.");
-        return fallback();
+        return underSrc ? null : fallback();
       }
 
       // 3) 새로 받는다. 실패하면 마지막 사진.
       return fetchPhoto(city.unsplash_query, key)
         .then(function (photo) {
+          paintColor(photo.color);
           return applyPhoto(photo).then(function (ok) {
             if (!ok) throw new Error("이미지 로드 실패");
             pingDownload(photo, key);
-            cacheBytes(photo);        // 오프라인 대비 그림 데이터 저장
+            cacheBytes(photo, city.iata);
             photos[city.iata] = photo;
             var save = {};
             save[TODAY_KEY] = { date: dateStr, photos: photos };
-            save[LAST_KEY] = photo;   // 날짜와 무관한 오프라인 대비용
+            save[LAST_KEY] = photo;
             return storageSet(save);
           });
         })
         .catch(function (err) {
           console.warn("[Somenow] 사진을 받지 못했다:", err && err.message);
-          return fallback();
+          if (!underSrc) return fallback();
         });
     });
   }
@@ -418,32 +560,68 @@
       var cities = allCities || [];
       if (!currentCity || cities.length < 2) return;
       var next = currentCity;
-      while (next.iata === currentCity.iata) {
+      while (next.iata === currentCity.iata || next.iata === origin) {
         next = cities[Math.floor(Math.random() * cities.length)];
       }
       goTo(next);
     });
   }
 
+  // 설정 패널의 출발지 선택
+  function setupOriginSelect() {
+    var sel = document.getElementById("optOrigin");
+    if (!sel) return;
+    sel.textContent = "";
+    ORIGINS.forEach(function (o) {
+      var op = document.createElement("option");
+      op.value = o.code;
+      op.textContent = o.ko;
+      sel.appendChild(op);
+    });
+    sel.value = origin;
+    sel.addEventListener("change", function () {
+      origin = sel.value;
+      var o = {}; o[ORIGIN_KEY] = origin;
+      storageSet(o);
+      if (currentCity) {
+        if (currentCity.iata === origin) {          // 출발지와 같은 도시면 다른 곳으로
+          var next = pickCity(allCities || [], new Date());
+          goTo(next);
+        } else {
+          renderCity(currentCity);                  // 링크·시차·직항 표시만 다시 그린다
+        }
+      }
+    });
+  }
+
   function start() {
-    loadCities()
-      .then(function (cities) {
+    Promise.all([
+      loadCities(),
+      storageGet([OVERRIDE_KEY, ORIGIN_KEY, TODAY_KEY, LAST_KEY, LAST_BYTES_KEY])
+    ])
+      .then(function (r) {
+        var cities = r[0];
+        var st = r[1];
         if (!Array.isArray(cities) || cities.length === 0) throw new Error("도시 목록이 비어 있다");
 
         var now = new Date();
         var dateStr = todayKey(now);
         allCities = cities;
         curDate = dateStr;
+        origin = (st[ORIGIN_KEY] && originByCode(st[ORIGIN_KEY])) ? st[ORIGIN_KEY] : guessOrigin();
+        if (!st[ORIGIN_KEY]) {
+          var o = {}; o[ORIGIN_KEY] = origin;
+          storageSet(o);                             // 추정 결과를 한 번 저장해 둔다
+        }
 
-        return storageGet([OVERRIDE_KEY]).then(function (st) {
-          var ov = st[OVERRIDE_KEY];
-          var city = null;
-          if (ov && ov.date === dateStr) city = cityByIata(cities, ov.iata);
-          if (!city) city = pickCity(cities, now);
+        var ov = st[OVERRIDE_KEY];
+        var city = null;
+        if (ov && ov.date === dateStr) city = cityByIata(cities, ov.iata);
+        if (!city) city = pickCity(cities, now);
 
-          setupShuffle();
-          return showCity(city, dateStr);
-        });
+        setupShuffle();
+        setupOriginSelect();
+        return showCity(city, dateStr, st);
       })
       .catch(function (err) {
         // 여기까지 오면 도시 목록도 못 읽은 것. 글자만이라도 남긴다.
