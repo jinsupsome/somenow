@@ -65,7 +65,11 @@ body {
 
 /* 좌상단: 도시 이름 + 한 줄 문장 */
 .place {
-  max-width: min(90vw, 40ch);
+  /* ch 단위는 .place 의 작은 글자 기준이라 대형 도시명이 2~3자마다 꺾였다.
+     px 상한으로 바꾸고, 한국어 어절 중간 줄바꿈을 막는다. */
+  max-width: min(88vw, 760px);
+  word-break: keep-all;
+  overflow-wrap: break-word;
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
   animation: rise 700ms ease both;
 }
