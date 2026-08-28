@@ -361,6 +361,7 @@
 
   /* ----- 바로가기 ----- */
   var wrap = $("topSites");
+  var pop = $("addPop");
 
   function hostOf(url) {
     try { return new URL(url).hostname.replace(/^www\./, ""); } catch (e) { return url; }
@@ -416,6 +417,27 @@
     return a;
   }
 
+  function addTileEl() {
+    var b = document.createElement("button");
+    b.className = "tile tile-add";
+    b.type = "button";
+    b.title = "바로가기 추가";
+    var ic = document.createElement("span");
+    ic.className = "tile-ic";
+    ic.textContent = "+";
+    var nm = document.createElement("span");
+    nm.className = "tile-name";
+    nm.textContent = "추가";
+    b.appendChild(ic);
+    b.appendChild(nm);
+    b.addEventListener("click", function (e) {
+      e.stopPropagation();
+      pop.hidden = !pop.hidden;
+      if (!pop.hidden) $("addName").focus();
+    });
+    return b;
+  }
+
   function topSitesGet() {
     return new Promise(function (resolve) {
       try {
@@ -446,8 +468,32 @@
 
       wrap.textContent = "";
       tiles.slice(0, MAX_TILES).forEach(function (t) { wrap.appendChild(t); });
+      wrap.appendChild(addTileEl());
     });
   }
+
+  function hideAdd() {
+    pop.hidden = true;
+    $("addName").value = "";
+    $("addUrl").value = "";
+  }
+
+  $("addCancel").addEventListener("click", hideAdd);
+  $("addSave").addEventListener("click", function () {
+    var name = $("addName").value.trim();
+    var url = $("addUrl").value.trim();
+    if (!url) { $("addUrl").focus(); return; }
+    if (!/^https?:\/\//i.test(url)) url = "https://" + url;
+    sGet([KEY_CUSTOM]).then(function (res) {
+      var custom = Array.isArray(res[KEY_CUSTOM]) ? res[KEY_CUSTOM] : [];
+      custom.push({ name: name || hostOf(url), url: url });
+      var o = {}; o[KEY_CUSTOM] = custom;
+      return sSet(o);
+    }).then(function () { hideAdd(); render(); });
+  });
+  $("addUrl").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") { e.preventDefault(); $("addSave").click(); }
+  });
 
   render();
 })();
