@@ -94,6 +94,8 @@ body {
 .action {
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 12px;
   padding-bottom: clamp(8px, 3vh, 34px);
   animation: rise 700ms 120ms ease both;
 }
@@ -449,3 +451,23 @@ body {
 body.hide-clock .clock { display: none; }
 body.hide-search .search { display: none; }
 body.hide-sites .topsites, body.hide-sites .add-pop { display: none !important; }
+
+
+/* ---------- v0.2 다른 도시 보기(셔플) ---------- */
+.shuffle-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.13);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--ink);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 200ms ease, transform 200ms ease;
+}
+.shuffle-btn:hover { background: rgba(255, 255, 255, 0.95); color: #10161c; transform: translateY(-2px); }
+.shuffle-btn:active { transform: translateY(0); }
+.shuffle-btn:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }

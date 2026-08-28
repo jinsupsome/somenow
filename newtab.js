@@ -18,6 +18,7 @@
   //  LAST_KEY  : 마지막으로 성공한 사진(날짜와 무관하게 살아남는 오프라인 대비용)
   var TODAY_KEY = "somenow_today";
   var LAST_KEY = "somenow_last_photo";
+  var OVERRIDE_KEY = "somenow_city_override";   // 셔플로 고른 도시(당일 한정)
 
   var FETCH_TIMEOUT_MS = 8000;
 
@@ -227,6 +228,81 @@
     });
   }
 
+  function cityByIata(cities, iata) {
+    for (var i = 0; i < cities.length; i++) {
+      if (cities[i].iata === iata) return cities[i];
+    }
+    return null;
+  }
+
+  /*
+   * 도시 하나를 화면에 띄운다(글자·버튼·사진).
+   * 사진은 "오늘 + 이 도시" 단위로 캐시한다. 셔플로 왔다 갔다 해도
+   * 같은 날 같은 도시는 API를 다시 부르지 않는다.
+   * 저장 형식: TODAY_KEY = { date, photos: { TYO: photo, PAR: photo, ... } }
+   * (구버전 { date, iata, photo } 는 캐시 없음으로 취급되어 자연히 대체된다)
+   */
+  function showCity(city, dateStr) {
+    renderCity(city);
+
+    return storageGet([TODAY_KEY, LAST_KEY]).then(function (store) {
+      var today = store[TODAY_KEY];
+      var lastPhoto = store[LAST_KEY] || null;
+      var photos = (today && today.date === dateStr && today.photos) ? today.photos : {};
+
+      // 1) 오늘 이 도시 사진이 이미 있으면 그대로 쓴다
+      if (photos[city.iata]) {
+        return applyPhoto(photos[city.iata]).then(function (ok) {
+          if (!ok && lastPhoto) return applyPhoto(lastPhoto);
+        });
+      }
+
+      // 2) 키가 없으면 호출을 건너뛴다 (마지막 사진 → 단색 배경)
+      var key = accessKey();
+      if (!key) {
+        if (!lastPhoto) console.info("[Somenow] config.js 가 없어 단색 배경으로 표시한다.");
+        return applyPhoto(lastPhoto);
+      }
+
+      // 3) 새로 받는다. 실패하면 마지막 사진.
+      return fetchPhoto(city.unsplash_query, key)
+        .then(function (photo) {
+          return applyPhoto(photo).then(function (ok) {
+            if (!ok) throw new Error("이미지 로드 실패");
+            pingDownload(photo, key);
+            photos[city.iata] = photo;
+            var save = {};
+            save[TODAY_KEY] = { date: dateStr, photos: photos };
+            save[LAST_KEY] = photo;   // 날짜와 무관한 오프라인 대비용
+            return storageSet(save);
+          });
+        })
+        .catch(function (err) {
+          console.warn("[Somenow] 사진을 받지 못했다:", err && err.message);
+          return applyPhoto(lastPhoto);
+        });
+    });
+  }
+
+  // 다른 도시 보기: 무작위 다른 도시로 전환하고, 당일 동안 그 도시를 유지한다
+  function setupShuffle(cities, dateStr, firstCity) {
+    var btn = document.getElementById("shuffleBtn");
+    if (!btn) return;
+    var current = firstCity;
+    btn.addEventListener("click", function () {
+      var next = current;
+      while (cities.length > 1 && next.iata === current.iata) {
+        next = cities[Math.floor(Math.random() * cities.length)];
+      }
+      current = next;
+      var o = {};
+      o[OVERRIDE_KEY] = { date: dateStr, iata: next.iata };
+      storageSet(o);
+      el.photo.classList.remove("is-ready");   // 페이드 아웃 → 새 사진 페이드 인
+      showCity(next, dateStr);
+    });
+  }
+
   function start() {
     loadCities()
       .then(function (cities) {
@@ -234,45 +310,15 @@
 
         var now = new Date();
         var dateStr = todayKey(now);
-        var city = pickCity(cities, now);
 
-        renderCity(city);   // 사진과 무관하게 글자·버튼은 즉시 보인다
+        return storageGet([OVERRIDE_KEY]).then(function (st) {
+          var ov = st[OVERRIDE_KEY];
+          var city = null;
+          if (ov && ov.date === dateStr) city = cityByIata(cities, ov.iata);
+          if (!city) city = pickCity(cities, now);
 
-        return storageGet([TODAY_KEY, LAST_KEY]).then(function (store) {
-          var today = store[TODAY_KEY];
-          var lastPhoto = store[LAST_KEY] || null;
-
-          // 1) 오늘 것이 이미 있으면 API를 부르지 않는다
-          if (today && today.date === dateStr && today.iata === city.iata && today.photo) {
-            return applyPhoto(today.photo).then(function (ok) {
-              if (!ok && lastPhoto) return applyPhoto(lastPhoto);
-            });
-          }
-
-          // 2) 키가 없으면 호출 자체를 건너뛴다 (마지막 사진 → 단색 배경)
-          var key = accessKey();
-          if (!key) {
-            if (!lastPhoto) console.info("[Somenow] config.js 가 없어 단색 배경으로 표시한다.");
-            return applyPhoto(lastPhoto);
-          }
-
-          // 3) 새로 받는다. 실패하면 마지막 사진.
-          return fetchPhoto(city.unsplash_query, key)
-            .then(function (photo) {
-              return applyPhoto(photo).then(function (ok) {
-                if (!ok) throw new Error("이미지 로드 실패");
-                pingDownload(photo, key);
-                var record = { date: dateStr, iata: city.iata, name_ko: city.name_ko, photo: photo };
-                var save = {};
-                save[TODAY_KEY] = record;
-                save[LAST_KEY] = photo;   // 날짜와 무관한 오프라인 대비용
-                return storageSet(save);
-              });
-            })
-            .catch(function (err) {
-              console.warn("[Somenow] 사진을 받지 못했다:", err && err.message);
-              return applyPhoto(lastPhoto);   // 날짜가 달라도 마지막 사진을 그대로 쓴다
-            });
+          setupShuffle(cities, dateStr, city);
+          return showCity(city, dateStr);
         });
       })
       .catch(function (err) {
