@@ -61,10 +61,10 @@
 
 ## 10. 계정
 - 부업 전용 구글 계정: jinsupsome@gmail.com — GitHub·Unsplash·웹스토어·제휴 가입을 전부 이 계정으로 통일 (2026-08-28 생성)
-- GitHub: (아이디 / 저장소 주소)
+- GitHub: jinsupsome / https://github.com/jinsupsome/somenow · 소개 페이지 https://jinsupsome.github.io/somenow/ (index.html, Travelpayouts 인증 코드 포함)
 - Unsplash 개발자: (등록일 / 앱 이름)
 - 크롬 웹스토어 개발자: (등록일)
-- 제휴: 트립닷컴 (2026-08-28 가입, 링크 적용) / 스카이스캐너 ( ) / 아고다 (2026-08-28 신청, 심사 영업일 7일)
+- 제휴: 트립닷컴 (2026-08-28 가입, 링크 적용) / 스카이스캐너 (2026-08-28 Travelpayouts 가입, 프로젝트 심사 수일 후 연결 가능) / 아고다 (2026-08-28 신청, 심사 영업일 7일)
 
 ## 11. 부록: 제휴 신청 절차 (쉬운 순서)
 왜 하나: 버튼을 눌러 예약이 되면 수수료를 받기 위해. 승인까지 1~2주 걸리므로 먼저 신청해 둔다.
