@@ -73,6 +73,8 @@
 
   var el = {
     photo: document.getElementById("photo"),
+    photoB: document.getElementById("photoB"),
+    place: document.querySelector(".place"),
     city: document.getElementById("city"),
     cityEn: document.getElementById("cityEn"),
     tagline: document.getElementById("tagline"),
@@ -91,9 +93,11 @@
   var changeCbs = [];
 
   var shownSrc = null;        // 지금 화면에 그려져 있는 사진 주소
-  var carryUnder = null;      // 셔플 직후, 새 사진이 올 때까지 깔아 둘 이전 사진
   var nextCity = null;        // 다음 셔플에서 보여줄 도시(미리 받아 둔다)
   var PREFETCH_MAX = 8;       // 오늘 받아 둔 사진이 이만큼 쌓이면 미리받기를 멈춘다
+  var TEXT_WAIT_MS = 800;     // 사진을 이만큼 기다렸다가 안 오면 글자만 먼저 바꾼다
+  var layers = null;          // 겹쳐 쓰는 사진 두 장
+  var active = 0;
 
   function notifyChange() {
     for (var i = 0; i < changeCbs.length; i++) {
@@ -276,38 +280,39 @@
     return photo.url || null;
   }
 
-  // 아래 그림(저장본)을 깔아 둔 채로 위에 큰 사진을 얹는다.
-  // 큰 사진이 다 받아지기 전까지는 아래 것이 보이므로 화면이 비지 않는다.
-  var underSrc = null;
+  /*
+   * 사진 두 장을 겹쳐 두고 새 사진을 위에 띄운다.
+   * 한 장만 쓰면 배경 교체가 순간 잘라내기가 되어 툭 끊겨 보인다.
+   * 아래 장은 새 사진이 다 나타난 뒤에 내린다.
+   */
+  function paint(src, color) {
+    if (!layers) layers = [el.photo, el.photoB];
+    var cur = layers[active];
+    var next = layers[1 - active];
 
-  function paint(src) {
-    var imgs = [];
-    if (src) imgs.push('url("' + src + '")');
-    if (underSrc && underSrc !== src) imgs.push('url("' + underSrc + '")');
-    if (!imgs.length) return false;
-    el.photo.style.backgroundImage = imgs.join(", ");
-    el.photo.classList.add("is-ready");
-    shownSrc = src || shownSrc;
+    if (color) next.style.backgroundColor = color;
+    next.style.backgroundImage = src ? 'url("' + src + '")' : "none";
+    next.style.zIndex = "2";
+    cur.style.zIndex = "1";
+    // 방금 넣은 배경이 적용된 뒤에 나타나게 한다(같은 프레임에 바꾸면 전환이 생략된다)
+    void next.offsetWidth;
+    next.classList.add("is-ready");
+    window.setTimeout(function () { cur.classList.remove("is-ready"); }, 620);
+
+    active = 1 - active;
+    if (src) shownSrc = src;
     return true;
-  }
-
-  // 사진의 대표색을 먼저 깔면 사진이 오기 전에도 화면이 비어 보이지 않는다.
-  function paintColor(color) {
-    if (!color) return;
-    el.photo.style.backgroundColor = color;
-    el.photo.classList.add("is-ready");
   }
 
   // 이미지가 실제로 로드된 뒤에만 배경을 바꾼다.
   function applyPhoto(photo) {
     var src = photoSrc(photo);
     if (!src) return Promise.resolve(false);
-    if (photo && photo.color) paintColor(photo.color);
 
     return new Promise(function (resolve) {
       var img = new Image();
       img.onload = function () {
-        paint(src);
+        paint(src, photo && photo.color);
         renderCredit(photo);
         resolve(true);
       };
@@ -481,11 +486,33 @@
    * 저장 형식: TODAY_KEY = { date, photos: { TYO: photo, PAR: photo, ... } }
    */
   function showCity(city, dateStr, store) {
-    renderCity(city);
-    currentCity = city;
-    notifyChange();
-
     var pre = store ? Promise.resolve(store) : storageGet([TODAY_KEY, LAST_KEY, LAST_BYTES_KEY]);
+
+    /*
+     * 글자는 사진이 준비된 순간에 함께 바꾼다.
+     * 글자를 먼저 바꾸면 사진이 한 박자 늦게 따라오는 것처럼 보인다.
+     * 사진이 TEXT_WAIT_MS 안에 안 오면 글자만 먼저 보여준다(무한정 기다리지 않는다).
+     */
+    var revealed = false;
+    var painted = false;
+    var timer = null;
+
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      if (timer) { window.clearTimeout(timer); timer = null; }
+      renderCity(city);
+      currentCity = city;
+      notifyChange();
+      if (el.place) {
+        el.place.classList.remove("is-shown");
+        void el.place.offsetWidth;          // 나타나는 동작을 다시 재생시킨다
+        el.place.classList.add("is-shown");
+      }
+    }
+
+    if (el.place) el.place.classList.remove("is-shown");   // 바뀌는 동안 잠시 감춘다
+    timer = window.setTimeout(reveal, TEXT_WAIT_MS);
 
     return pre.then(function (s) {
       var today = s[TODAY_KEY];
@@ -494,23 +521,15 @@
       var photos = (today && today.date === dateStr && today.photos) ? today.photos : {};
       var mine = photos[city.iata] || null;
 
-      // 0) 기다리지 않고 먼저 그린다.
-      //    ① 이 도시의 저장본이 있으면 그것 ② 셔플이면 직전 사진을 그대로 둔다 ③ 없으면 대표색
-      var carry = carryUnder;
-      carryUnder = null;
-      underSrc = null;
+      // 0) 이 도시의 저장본이 있으면 기다릴 것 없이 사진과 글자를 함께 바꾼다
       if (lastBytes && lastBytes.iata === city.iata && lastBytes.dataUrl) {
-        underSrc = lastBytes.dataUrl;
-        paint(underSrc);
+        paint(lastBytes.dataUrl, lastBytes.color);
         renderCredit(lastBytes);
-      } else if (carry) {
-        underSrc = carry;          // 새 사진이 올 때까지 화면이 비지 않는다
-        paint(carry);
-      } else {
-        paintColor((mine && mine.color) || (lastBytes && lastBytes.color) || null);
+        painted = true;
+        reveal();
       }
 
-      // 마지막 사진 주소 → 저장된 그림 → 단색 배경 순으로 물러난다
+      // 마지막 사진 주소 → 저장된 그림 순으로 물러난다
       function fallback() {
         return applyPhoto(lastPhoto).then(function (ok) {
           if (ok) return true;
@@ -521,7 +540,12 @@
       // 1) 오늘 이 도시 사진이 이미 있으면 그대로 쓴다(미리 받아 둔 것 포함)
       if (mine) {
         return applyPhoto(mine).then(function (ok) {
-          if (!ok) { if (!underSrc) return fallback(); return; }
+          if (!ok) {
+            if (!painted) return fallback().then(reveal);
+            reveal();
+            return;
+          }
+          reveal();
           var key0 = accessKey();
           if (key0 && !mine.pinged) {          // 화면에 쓴 순간에만 다운로드 핑
             pingDownload(mine, key0);
@@ -540,18 +564,19 @@
       var key = accessKey();
       if (!key) {
         if (!lastPhoto && !lastBytes) console.info("[Somenow] config.js 가 없어 단색 배경으로 표시한다.");
-        return underSrc ? null : fallback();
+        if (painted) { reveal(); return null; }
+        return fallback().then(reveal);
       }
 
       // 3) 새로 받는다. 실패하면 마지막 사진.
       return fetchPhoto(city.unsplash_query, key)
         .then(function (photo) {
-          paintColor(photo.color);
           return applyPhoto(photo).then(function (ok) {
             if (!ok) throw new Error("이미지 로드 실패");
+            reveal();
             pingDownload(photo, key);
-            cacheBytes(photo, city.iata);
             photo.pinged = true;
+            cacheBytes(photo, city.iata);
             photos[city.iata] = photo;
             var save = {};
             save[TODAY_KEY] = { date: dateStr, photos: photos };
@@ -561,7 +586,8 @@
         })
         .catch(function (err) {
           console.warn("[Somenow] 사진을 받지 못했다:", err && err.message);
-          if (!underSrc) return fallback();
+          if (painted) { reveal(); return null; }
+          return fallback().then(reveal);
         });
     });
   }
@@ -618,8 +644,7 @@
     var o = {};
     o[OVERRIDE_KEY] = { date: curDate, iata: city.iata };
     storageSet(o);
-    carryUnder = shownSrc;                   // 새 사진이 준비될 때까지 지금 사진을 유지
-    showCity(city, curDate);
+    showCity(city, curDate);                 // 사진 두 장을 겹쳐 넘기므로 화면이 비지 않는다
   }
 
   // 다른 도시 보기: 무작위로 다른 도시를 고른다
@@ -703,6 +728,7 @@
       .catch(function (err) {
         // 여기까지 오면 도시 목록도 못 읽은 것. 글자만이라도 남긴다.
         console.error("[Somenow]", err);
+        if (el.place) el.place.classList.add("is-shown");
       });
   }
 
@@ -723,6 +749,11 @@
       if (currentCity) cb(currentCity);
     }
   };
+
+  // 무슨 일이 있어도 글자는 2.5초 안에 나온다(사진 로직이 막혀도 화면이 비지 않게)
+  window.setTimeout(function () {
+    if (el.place && !el.place.classList.contains("is-shown")) el.place.classList.add("is-shown");
+  }, 2500);
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", start);
