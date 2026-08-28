@@ -22,6 +22,8 @@
   var LAST_KEY = "somenow_last_photo";
   var LAST_BYTES_KEY = "somenow_last_bytes";
   var OVERRIDE_KEY = "somenow_city_override";   // 셔플로 고른 도시(당일 한정)
+  var LIMIT_KEY = "somenow_api_pause";          // Unsplash 요청 한도에 걸린 시각
+  var PREFETCH_KEY = "somenow_prefetch_at";     // 마지막 미리받기 시각
   var ORIGIN_KEY = "somenow_origin";            // 출발 도시 코드
 
   // 사진 URL 폭은 정해진 값으로만 만든다. 창 크기가 조금 달라졌다고
@@ -95,7 +97,11 @@
   var shownSrc = null;        // 지금 화면에 그려져 있는 사진 주소
   var nextCity = null;        // 다음 셔플에서 보여줄 도시(미리 받아 둔다)
   var PREFETCH_MAX = 8;       // 오늘 받아 둔 사진이 이만큼 쌓이면 미리받기를 멈춘다
-  var TEXT_WAIT_MS = 800;     // 사진을 이만큼 기다렸다가 안 오면 글자만 먼저 바꾼다
+  var TEXT_WAIT_FIRST_MS = 800;   // 첫 화면: 이만큼 기다렸다가 안 오면 글자만 먼저
+  var TEXT_WAIT_SWAP_MS = 6000;   // 도시를 바꿀 때: 사진이 준비될 때까지 이전 화면을 유지
+  var PREFETCH_GAP_MS = 5 * 60 * 1000;   // 미리받기는 5분에 한 번까지만
+  var COOLDOWN_MS = 30 * 60 * 1000;      // 요청 한도에 걸리면 30분 쉰다
+  var DEFAULT_BG = "#14202b";     // 사진이 없을 때 배경색
   var layers = null;          // 겹쳐 쓰는 사진 두 장
   var active = 0;
 
@@ -292,7 +298,9 @@
     var next = layers[1 - active];
 
     if (color) next.style.backgroundColor = color;
-    next.style.backgroundImage = src ? 'url("' + src + '")' : "none";
+    next.style.backgroundImage = src
+      ? 'url("' + src + '")'
+      : "linear-gradient(160deg, rgba(255,255,255,0.10) 0%, rgba(0,0,0,0.55) 100%)";
     next.style.zIndex = "2";
     cur.style.zIndex = "1";
     // 방금 넣은 배경이 적용된 뒤에 나타나게 한다(같은 프레임에 바꾸면 전환이 생략된다)
@@ -412,6 +420,13 @@
       signal: ctrl.signal
     })
       .then(function (res) {
+        var left = res.headers.get("X-Ratelimit-Remaining");
+        if (res.status === 403 || (left !== null && Number(left) <= 0)) {
+          var o = {}; o[LIMIT_KEY] = Date.now();
+          storageSet(o);
+          console.warn("[Somenow] Unsplash 시간당 요청 한도에 걸렸다. 30분 뒤에 다시 시도한다.");
+          throw new Error("요청 한도 초과");
+        }
         if (!res.ok) throw new Error("Unsplash " + res.status);
         return res.json();
       })
@@ -505,13 +520,16 @@
    * 저장 형식: TODAY_KEY = { date, photos: { TYO: photo, PAR: photo, ... } }
    */
   function showCity(city, dateStr, store) {
-    var pre = store ? Promise.resolve(store) : storageGet([TODAY_KEY, LAST_KEY, LAST_BYTES_KEY]);
+    var pre = store ? Promise.resolve(store)
+                    : storageGet([TODAY_KEY, LAST_KEY, LAST_BYTES_KEY, LIMIT_KEY, PREFETCH_KEY]);
 
     /*
      * 글자는 사진이 준비된 순간에 함께 바꾼다.
-     * 글자를 먼저 바꾸면 사진이 한 박자 늦게 따라오는 것처럼 보인다.
-     * 사진이 TEXT_WAIT_MS 안에 안 오면 글자만 먼저 보여준다(무한정 기다리지 않는다).
+     *  - 첫 화면: 사진을 0.8초까지만 기다리고, 안 오면 글자와 배경색만 먼저 보여준다.
+     *  - 도시를 바꿀 때: 새 사진이 준비될 때까지 이전 화면(사진+글자)을 그대로 둔다.
+     *    글자만 먼저 바꾸면 "베이징인데 취리히 사진"처럼 도시와 사진이 어긋나 보인다.
      */
+    var hadPhoto = !!shownSrc;
     var revealed = false;
     var painted = false;
     var timer = null;
@@ -530,13 +548,27 @@
       }
     }
 
-    if (el.place) el.place.classList.remove("is-shown");   // 바뀌는 동안 잠시 감춘다
-    timer = window.setTimeout(reveal, TEXT_WAIT_MS);
+    // 이 도시 사진을 끝내 못 구했을 때: 다른 도시 사진을 쓰지 않고 배경색으로 간다.
+    function giveUp(color) {
+      if (!painted) {
+        paint(null, color || DEFAULT_BG);
+        el.credit.hidden = true;            // 남의 사진 작가 표기가 남지 않게
+        painted = true;
+      }
+      reveal();
+    }
+
+    if (!hadPhoto && el.place) el.place.classList.remove("is-shown");
+    timer = window.setTimeout(function () {
+      if (hadPhoto) giveUp(null);           // 오래 기다렸는데도 못 받았으면 정리한다
+      else reveal();
+    }, hadPhoto ? TEXT_WAIT_SWAP_MS : TEXT_WAIT_FIRST_MS);
 
     return pre.then(function (s) {
       var today = s[TODAY_KEY];
       var lastPhoto = s[LAST_KEY] || null;
       var lastBytes = s[LAST_BYTES_KEY] || null;
+      var pausedAt = s[LIMIT_KEY] || 0;
       var photos = (today && today.date === dateStr && today.photos) ? today.photos : {};
       var mine = photos[city.iata] || null;
 
@@ -550,11 +582,17 @@
         reveal();
       }
 
-      // 마지막 사진 주소 → 저장된 그림 순으로 물러난다
+      // 이 도시 것만 폴백으로 쓴다. 다른 도시 사진을 띄우면 도시명과 어긋난다.
       function fallback() {
-        return applyPhoto(lastPhoto).then(function (ok) {
+        var same = (lastPhoto && lastPhoto.iata === city.iata) ? lastPhoto : null;
+        var sameBytes = (lastBytes && lastBytes.iata === city.iata) ? lastBytes : null;
+        return applyPhoto(same).then(function (ok) {
           if (ok) return true;
-          return applyPhoto(lastBytes);
+          return applyPhoto(sameBytes);
+        }).then(function (ok) {
+          if (!ok) giveUp((mine && mine.color) || null);
+          else reveal();
+          return ok;
         });
       }
 
@@ -562,15 +600,11 @@
       if (mine) {
         // 저장본이 이 화면에 충분히 크면 더 받지 않는다. 사진이 두 번 바뀌는 것처럼 보이지 않는다.
         if (painted && savedW >= neededWidth()) {
-          planNext(photos, dateStr);
+          planNext(photos, dateStr, s);
           return null;
         }
         return applyPhoto(mine, painted).then(function (ok) {
-          if (!ok) {
-            if (!painted) return fallback().then(reveal);
-            reveal();
-            return;
-          }
+          if (!ok) return fallback();
           reveal();
           var key0 = accessKey();
           if (key0 && !mine.pinged) {          // 화면에 쓴 순간에만 다운로드 핑
@@ -582,22 +616,23 @@
           }
           // 저장본이 없거나, 있어도 지금 화면보다 작으면 다시 저장한다
           if (!painted || savedW < neededWidth()) cacheBytes(mine, city.iata);
-          planNext(photos, dateStr);
+          planNext(photos, dateStr, s);
         });
       }
 
-      // 2) 키가 없으면 호출을 건너뛴다
+      // 2) 키가 없거나 요청 한도에 걸린 동안에는 부르지 않는다
       var key = accessKey();
-      if (!key) {
-        if (!lastPhoto && !lastBytes) console.info("[Somenow] config.js 가 없어 단색 배경으로 표시한다.");
-        if (painted) { reveal(); return null; }
-        return fallback().then(reveal);
+      var paused = pausedAt && (Date.now() - pausedAt) < COOLDOWN_MS;
+      if (!key || paused) {
+        if (!key) console.info("[Somenow] config.js 가 없어 단색 배경으로 표시한다.");
+        return fallback();
       }
 
-      // 3) 새로 받는다. 실패하면 마지막 사진.
+      // 3) 새로 받는다.
       return fetchPhoto(city.unsplash_query, key)
         .then(function (photo) {
-          return applyPhoto(photo).then(function (ok) {
+          photo.iata = city.iata;            // 어느 도시 사진인지 남긴다(폴백 판단용)
+          return applyPhoto(photo, painted).then(function (ok) {
             if (!ok) throw new Error("이미지 로드 실패");
             reveal();
             pingDownload(photo, key);
@@ -607,13 +642,12 @@
             var save = {};
             save[TODAY_KEY] = { date: dateStr, photos: photos };
             save[LAST_KEY] = photo;
-            return storageSet(save).then(function () { planNext(photos, dateStr); });
+            return storageSet(save).then(function () { planNext(photos, dateStr, s); });
           });
         })
         .catch(function (err) {
           console.warn("[Somenow] 사진을 받지 못했다:", err && err.message);
-          if (painted) { reveal(); return null; }
-          return fallback().then(reveal);
+          return fallback();
         });
     });
   }
@@ -624,7 +658,7 @@
    * 새 탭 한 번에 최대 1개만, 오늘 받아 둔 사진이 PREFETCH_MAX 개가 되면 멈춘다
    * (Unsplash 무료 키는 시간당 50회 제한).
    */
-  function planNext(photos, dateStr) {
+  function planNext(photos, dateStr, store) {
     var cities = allCities || [];
     if (cities.length < 2 || !currentCity) return;
 
@@ -643,9 +677,19 @@
     if (typeof navigator !== "undefined" && navigator.onLine === false) return;
     if (Object.keys(photos).length >= PREFETCH_MAX) return;
 
+    var s0 = store || {};
+    var pausedAt = s0[LIMIT_KEY] || 0;
+    if (pausedAt && (Date.now() - pausedAt) < COOLDOWN_MS) return;   // 요청 한도 대기 중
+    var lastAt = s0[PREFETCH_KEY] || 0;
+    if (Date.now() - lastAt < PREFETCH_GAP_MS) return;               // 5분에 한 번까지만
+
+    var stamp = {}; stamp[PREFETCH_KEY] = Date.now();
+    storageSet(stamp);
+
     fetchPhoto(pick.unsplash_query, key)
       .then(function (photo) {
         photo.pinged = false;                        // 화면에 쓸 때 핑을 보낸다
+        photo.iata = pick.iata;
         photos[pick.iata] = photo;
         var save = {};
         save[TODAY_KEY] = { date: dateStr, photos: photos };
@@ -725,7 +769,8 @@
   function start() {
     Promise.all([
       loadCities(),
-      storageGet([OVERRIDE_KEY, ORIGIN_KEY, TODAY_KEY, LAST_KEY, LAST_BYTES_KEY])
+      storageGet([OVERRIDE_KEY, ORIGIN_KEY, TODAY_KEY, LAST_KEY, LAST_BYTES_KEY,
+                  LIMIT_KEY, PREFETCH_KEY])
     ])
       .then(function (r) {
         var cities = r[0];
