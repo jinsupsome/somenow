@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>개인정보 처리방침 — Somenow</title>
+<meta name="description" content="Somenow 크롬 확장 프로그램의 개인정보 처리방침. Privacy policy for the Somenow Chrome extension.">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    font-family: system-ui, -apple-system, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+    background: #10161c; color: #fff; line-height: 1.75;
+    padding: 56px 24px 80px; word-break: keep-all;
+  }
+  main { max-width: 720px; margin: 0 auto; }
+  .badge { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; opacity: .5; }
+  h1 { font-size: clamp(28px, 5vw, 40px); font-weight: 400; letter-spacing: -0.01em; margin: 10px 0 6px; }
+  .updated { font-size: 13px; opacity: .5; margin-bottom: 40px; }
+  h2 { font-size: 17px; font-weight: 500; margin: 36px 0 10px; }
+  p, li { opacity: .85; }
+  ul { padding-left: 20px; }
+  li { margin: 6px 0; }
+  .key { background: rgba(255,255,255,.06); border-radius: 12px; padding: 18px 20px; margin: 24px 0; }
+  .key p { opacity: .95; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14.5px; }
+  th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid rgba(255,255,255,.12); vertical-align: top; }
+  th { font-weight: 400; opacity: .5; font-size: 12.5px; letter-spacing: .06em; }
+  hr { border: none; border-top: 1px solid rgba(255,255,255,.12); margin: 56px 0 40px; }
+  a { color: #8ec5ff; }
+  footer { max-width: 720px; margin: 48px auto 0; font-size: 13px; opacity: .5; }
+</style>
+</head>
+<body>
+<main>
+  <div class="badge">Somenow</div>
+  <h1>개인정보 처리방침</h1>
+  <div class="updated">시행일 2026년 8월 29일</div>
+
+  <div class="key">
+    <p><strong>Somenow는 어떤 개인정보도 수집하거나 외부로 보내지 않습니다.</strong>
+    서버가 없습니다. 설정과 기록은 전부 사용자의 브라우저 안에만 저장되며, 개발자는 그 내용을 볼 수 없습니다.</p>
+  </div>
+
+  <h2>1. 브라우저에 저장되는 것</h2>
+  <p>아래 항목은 크롬의 <code>chrome.storage.local</code>, 즉 사용자의 컴퓨터에만 저장됩니다. 확장 프로그램을 삭제하면 함께 사라집니다.</p>
+  <table>
+    <tr><th>항목</th><th>이유</th></tr>
+    <tr><td>오늘 보여줄 도시와 사진</td><td>같은 날 새 탭을 여러 번 열어도 화면이 바뀌지 않게 하고, 사진을 다시 내려받지 않기 위해</td></tr>
+    <tr><td>사진 한 장의 이미지 데이터</td><td>인터넷이 끊겨도 배경이 뜨도록, 그리고 새 탭이 즉시 열리도록</td></tr>
+    <tr><td>위시리스트와 목표 날짜</td><td>담아 둔 도시와 D-day를 다시 보여주기 위해</td></tr>
+    <tr><td>직접 추가한 바로가기, 숨긴 바로가기</td><td>새 탭의 바로가기 구성을 유지하기 위해</td></tr>
+    <tr><td>화면 설정(시계·검색창·바로가기 표시)</td><td>선택한 화면 구성을 유지하기 위해</td></tr>
+    <tr><td>출발 도시</td><td>항공권 검색의 출발지와 시차 계산에 쓰기 위해</td></tr>
+    <tr><td>도시별 날씨 조회 결과</td><td>30분 동안 재사용해 불필요한 조회를 줄이기 위해</td></tr>
+  </table>
+
+  <h2>2. 요청하는 권한과 이유</h2>
+  <ul>
+    <li><strong>storage</strong> — 위 1번 항목을 저장하기 위해 필요합니다.</li>
+    <li><strong>topSites</strong> — 크롬이 이미 갖고 있는 "자주 방문한 사이트" 목록을 읽어 새 탭에 바로가기로 보여주기 위해 필요합니다. 이 목록은 화면에 표시하는 용도로만 쓰이며, 브라우저 밖으로 나가지 않습니다.</li>
+    <li><strong>favicon</strong> — 바로가기에 각 사이트의 아이콘을 표시하기 위해 필요합니다.</li>
+  </ul>
+  <p>방문 기록, 열려 있는 탭의 내용, 입력한 검색어를 읽는 권한은 요청하지 않습니다.</p>
+
+  <h2>3. 외부와 주고받는 통신</h2>
+  <p>Somenow는 화면을 그리기 위해 아래 서비스와 통신합니다. 사용자를 식별하는 정보는 보내지 않습니다.</p>
+  <ul>
+    <li><strong>Unsplash</strong> — 여행지 사진을 받아옵니다. 도시 이름이 검색어로 전달됩니다.</li>
+    <li><strong>Open-Meteo</strong> — 도시 정보 카드의 현재 날씨를 받아옵니다. 그 도시의 좌표가 전달됩니다. 사용자의 위치는 사용하지 않습니다.</li>
+    <li><strong>Google</strong> — 검색창에 입력한 내용은 구글 검색으로 전달됩니다. 바로가기 아이콘도 브라우저가 구글에서 가져옵니다.</li>
+    <li><strong>Trip.com</strong> — [항공권 보기] 버튼을 눌렀을 때만 이동합니다. 누르지 않으면 아무것도 전달되지 않습니다.</li>
+  </ul>
+
+  <h2>4. 제휴 링크 안내</h2>
+  <p>[항공권 보기] 버튼은 <strong>제휴 링크</strong>입니다. 이 링크를 통해 예약이 이루어지면 개발자가 판매처로부터 수수료를 받을 수 있습니다.
+  사용자가 지불하는 금액은 달라지지 않습니다. 링크에는 어느 제휴자를 통해 들어왔는지 알려주는 식별자가 포함되며, 여기에 개인정보는 들어 있지 않습니다.
+  Somenow는 검색 결과에 나오는 항공사나 여행사와 어떤 관계도 없습니다.</p>
+
+  <h2>5. 하지 않는 것</h2>
+  <ul>
+    <li>개인정보를 수집하지 않으며, 따라서 판매하거나 제3자에게 제공할 것도 없습니다.</li>
+    <li>사용 기록을 분석하는 도구(애널리틱스)를 넣지 않았습니다.</li>
+    <li>광고를 표시하지 않습니다.</li>
+    <li>계정이나 로그인을 요구하지 않습니다.</li>
+    <li>만 13세 미만을 대상으로 하지 않습니다.</li>
+  </ul>
+
+  <h2>6. 저장된 내용을 지우는 방법</h2>
+  <p>크롬에서 <code>chrome://extensions</code> 를 열고 Somenow를 삭제하면 저장된 내용이 모두 사라집니다.</p>
+
+  <h2>7. 방침이 바뀔 때</h2>
+  <p>내용이 바뀌면 이 페이지를 고치고 위의 시행일을 갱신합니다. 수집하는 정보가 생기는 변경이라면 확장 프로그램 업데이트 전에 먼저 알립니다.</p>
+
+  <h2>8. 문의</h2>
+  <p><a href="mailto:jinsupsome@gmail.com">jinsupsome@gmail.com</a></p>
+
+  <hr>
+
+  <h1 style="font-size:26px">Privacy Policy (English)</h1>
+  <div class="updated">Effective 29 August 2026</div>
+
+  <div class="key">
+    <p><strong>Somenow collects no personal data and sends none anywhere.</strong>
+    There is no server. Settings and history stay in your own browser, and the developer cannot see them.</p>
+  </div>
+
+  <h2>1. What is stored in your browser</h2>
+  <p>The following is kept in <code>chrome.storage.local</code> on your own computer and is deleted when you remove the extension: the city and photo chosen for today, one cached photo image (so the page works offline and opens instantly), your wishlist and target dates, shortcuts you add or hide, display settings, your departure city, and weather results cached for 30 minutes.</p>
+
+  <h2>2. Permissions and why they are needed</h2>
+  <ul>
+    <li><strong>storage</strong> — to keep the items listed above.</li>
+    <li><strong>topSites</strong> — to read the "most visited sites" list Chrome already maintains and show it as shortcuts on the new tab. The list is used for display only and never leaves the browser.</li>
+    <li><strong>favicon</strong> — to show each shortcut's site icon.</li>
+  </ul>
+  <p>The extension does not request access to your browsing history, the contents of your tabs, or what you type elsewhere.</p>
+
+  <h2>3. Outside connections</h2>
+  <p>Somenow contacts Unsplash (destination photos, sending the city name as a search term), Open-Meteo (current weather, sending that city's coordinates — never your location), Google (only what you type into the search box, plus shortcut icons), and Trip.com (only when you click the flight button). No identifying information is sent.</p>
+
+  <h2>4. Affiliate disclosure</h2>
+  <p>The flight button is an affiliate link. If a booking is made through it, the developer may receive a commission from the merchant. The price you pay is not affected. The link carries an identifier showing which affiliate referred the visit; it contains no personal data. Somenow is not affiliated with the airlines or travel agencies shown in search results.</p>
+
+  <h2>5. What Somenow does not do</h2>
+  <p>No data collection, and therefore nothing to sell or share. No analytics. No ads. No account or sign-in. Not directed to children under 13.</p>
+
+  <h2>6. Deleting stored data</h2>
+  <p>Open <code>chrome://extensions</code> in Chrome and remove Somenow. Everything stored is deleted with it.</p>
+
+  <h2>7. Changes</h2>
+  <p>Changes are published on this page with an updated effective date. If a change would introduce any data collection, it will be announced before the extension update ships.</p>
+
+  <h2>8. Contact</h2>
+  <p><a href="mailto:jinsupsome@gmail.com">jinsupsome@gmail.com</a></p>
+</main>
+<footer>Somenow · <a href="./">소개 페이지</a> · <a href="https://github.com/jinsupsome/somenow">GitHub</a></footer>
+</body>
+</html>
