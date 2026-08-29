@@ -46,6 +46,8 @@ body {
   opacity: 1;
   animation: kenburns-a 32s ease-out both;
 }
+/* 새 탭 첫 화면: 저장본 즉시 표시(길게 페이드하면 로딩처럼 느껴진다) */
+.photo.is-instant { transition-duration: 160ms; }
 #photoB.is-ready { animation-name: kenburns-b; }
 @keyframes kenburns-a {
   from { transform: scale(1); }

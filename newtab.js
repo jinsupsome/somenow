@@ -292,7 +292,7 @@
    * 한 장만 쓰면 배경 교체가 순간 잘라내기가 되어 툭 끊겨 보인다.
    * 아래 장은 새 사진이 다 나타난 뒤에 내린다.
    */
-  function paint(src, color) {
+  function paint(src, color, instant) {
     if (!layers) layers = [el.photo, el.photoB];
     var cur = layers[active];
     var next = layers[1 - active];
@@ -303,6 +303,9 @@
       : "linear-gradient(160deg, rgba(255,255,255,0.10) 0%, rgba(0,0,0,0.55) 100%)";
     next.style.zIndex = "2";
     cur.style.zIndex = "1";
+    // 첫 화면의 저장본은 이미 손안에 있으므로 길게 페이드하지 않는다(새로고침 체감 지연의 주범).
+    // 도시 전환 크로스페이드는 기존 520ms 그대로.
+    next.classList.toggle("is-instant", !!instant);
     // 방금 넣은 배경이 적용된 뒤에 나타나게 한다(같은 프레임에 바꾸면 전환이 생략된다)
     void next.offsetWidth;
     next.classList.add("is-ready");
@@ -575,7 +578,7 @@
       // 0) 이 도시의 저장본이 있으면 기다릴 것 없이 사진과 글자를 함께 바꾼다
       var savedW = 0;
       if (lastBytes && lastBytes.iata === city.iata && lastBytes.dataUrl) {
-        paint(lastBytes.dataUrl, lastBytes.color);
+        paint(lastBytes.dataUrl, lastBytes.color, !hadPhoto);
         renderCredit(lastBytes);
         painted = true;
         savedW = lastBytes.w || 1280;      // 폭을 기록하기 전에 저장된 것은 1280으로 본다
