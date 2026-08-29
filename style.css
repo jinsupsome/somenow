@@ -289,6 +289,8 @@ body {
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, .4);
+  max-height: min(72vh, 560px);
+  overflow-y: auto;
 }
 .apps-panel a {
   display: flex;
@@ -303,14 +305,9 @@ body {
 }
 .apps-panel a:hover { background: rgba(255, 255, 255, .09); }
 .app-ic {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-weight: 700;
-  font-size: 17px;
-  color: #fff;
+  width: 36px;
+  height: 36px;
+  object-fit: contain;   /* 실제 서비스 파비콘(정사각) — 구글 런처처럼 원판 그대로 */
 }
 
 /* ---------- v0.2 홈 기능: 시계 · 검색 · 바로가기 ---------- */
