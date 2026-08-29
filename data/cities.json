@@ -42,6 +42,37 @@
         "name_en": "Ginza",
         "desc": "정갈하고 어디든 이동 편리. 가격대 높음"
       }
+    ],
+    "direct_from": [
+      "PUS",
+      "OSA",
+      "TPE",
+      "HKG",
+      "SIN",
+      "BKK",
+      "SGN",
+      "BJS",
+      "SHA",
+      "MNL",
+      "KUL",
+      "DEL",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "MAD",
+      "ROM",
+      "NYC",
+      "CHI",
+      "LAX",
+      "SFO",
+      "YTO",
+      "YVR",
+      "SYD",
+      "MEL",
+      "AKL"
     ]
   },
   {
@@ -87,6 +118,16 @@
         "name_en": "Kanayama",
         "desc": "공항 급행 정차, 가성비. 중심가까지 전철 5분"
       }
+    ],
+    "direct_from": [
+      "PUS",
+      "TPE",
+      "HKG",
+      "SIN",
+      "BKK",
+      "SGN",
+      "SHA",
+      "MNL"
     ]
   },
   {
@@ -132,6 +173,25 @@
         "name_en": "Tennoji",
         "desc": "조용하고 저렴, 공항 급행 정차. 중심가까지 전철 10분"
       }
+    ],
+    "direct_from": [
+      "PUS",
+      "TYO",
+      "TPE",
+      "HKG",
+      "SIN",
+      "BKK",
+      "SGN",
+      "BJS",
+      "SHA",
+      "MNL",
+      "KUL",
+      "DXB",
+      "IST",
+      "PAR",
+      "AMS",
+      "SFO",
+      "YVR"
     ]
   },
   {
@@ -177,6 +237,10 @@
         "name_en": "Kagoshima Waterfront",
         "desc": "사쿠라지마 페리·야경, 조용"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "OSA"
     ]
   },
   {
@@ -222,6 +286,19 @@
         "name_en": "Nakasu",
         "desc": "야타이·야경 도보권. 밤엔 유흥가라 번잡"
       }
+    ],
+    "direct_from": [
+      "PUS",
+      "TYO",
+      "OSA",
+      "TPE",
+      "HKG",
+      "SIN",
+      "BKK",
+      "SGN",
+      "BJS",
+      "SHA",
+      "MNL"
     ]
   },
   {
@@ -262,6 +339,10 @@
         "name_en": "Kumamoto Station",
         "desc": "신칸센 거점, 가성비. 중심가까지 트램 15분"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "OSA"
     ]
   },
   {
@@ -307,6 +388,16 @@
         "name_en": "Odori",
         "desc": "공원 옆 중간 지점, 조용하고 무난"
       }
+    ],
+    "direct_from": [
+      "PUS",
+      "TYO",
+      "OSA",
+      "TPE",
+      "HKG",
+      "SIN",
+      "BKK",
+      "SHA"
     ]
   },
   {
@@ -347,6 +438,10 @@
         "name_en": "Hiroshima Station",
         "desc": "신칸센·미야지마 이동 편리, 비즈니스호텔 가성비"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "TPE"
     ]
   },
   {
@@ -392,6 +487,13 @@
         "name_en": "Onna Okinawa",
         "desc": "해변 대형 리조트 지역, 렌터카 필수"
       }
+    ],
+    "direct_from": [
+      "PUS",
+      "TYO",
+      "OSA",
+      "TPE",
+      "HKG"
     ]
   },
   {
@@ -437,6 +539,14 @@
         "name_en": "Liuhe Night Market",
         "desc": "먹거리 도보권, 저렴"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "OSA",
+      "HKG",
+      "BKK",
+      "SGN",
+      "SHA"
     ]
   },
   {
@@ -482,6 +592,34 @@
         "name_en": "Zhongshan",
         "desc": "조용한 골목 카페 감성, 접근성 좋음"
       }
+    ],
+    "direct_from": [
+      "PUS",
+      "TYO",
+      "OSA",
+      "HKG",
+      "SIN",
+      "BKK",
+      "SGN",
+      "BJS",
+      "SHA",
+      "MNL",
+      "KUL",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "ROM",
+      "NYC",
+      "CHI",
+      "LAX",
+      "SFO",
+      "YTO",
+      "YVR",
+      "SYD",
+      "MEL"
     ]
   },
   {
@@ -522,6 +660,16 @@
         "name_en": "Cotai",
         "desc": "대형 리조트·쇼핑 단지, 무료 셔틀 이동"
       }
+    ],
+    "direct_from": [
+      "PUS",
+      "TYO",
+      "OSA",
+      "TPE",
+      "BJS",
+      "SHA",
+      "MNL",
+      "KUL"
     ]
   },
   {
@@ -567,6 +715,28 @@
         "name_en": "Riverside Bangkok",
         "desc": "강변 뷰 리조트 분위기, 5성급이 시내보다 저렴. 이동은 배·차"
       }
+    ],
+    "direct_from": [
+      "PUS",
+      "TYO",
+      "OSA",
+      "TPE",
+      "HKG",
+      "SIN",
+      "SGN",
+      "BJS",
+      "SHA",
+      "MNL",
+      "KUL",
+      "DEL",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "SYD",
+      "MEL"
     ]
   },
   {
@@ -612,6 +782,28 @@
         "name_en": "West Lake Hanoi",
         "desc": "호수 카페 감성, 조용. 시내까지 차 15분"
       }
+    ],
+    "direct_from": [
+      "PUS",
+      "TYO",
+      "OSA",
+      "TPE",
+      "HKG",
+      "SIN",
+      "BKK",
+      "SGN",
+      "BJS",
+      "SHA",
+      "MNL",
+      "KUL",
+      "DEL",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "SYD",
+      "MEL"
     ]
   },
   {
@@ -657,6 +849,18 @@
         "name_en": "Non Nuoc Beach",
         "desc": "남쪽 대형 리조트 지역, 조용한 휴양 전용. 시내는 멀다"
       }
+    ],
+    "direct_from": [
+      "PUS",
+      "TYO",
+      "OSA",
+      "TPE",
+      "HKG",
+      "SIN",
+      "BKK",
+      "SGN",
+      "SHA",
+      "KUL"
     ]
   },
   {
@@ -702,6 +906,28 @@
         "name_en": "Phu My Hung",
         "desc": "한인타운, 조용하고 깔끔. 시내까지 차 20분"
       }
+    ],
+    "direct_from": [
+      "PUS",
+      "TYO",
+      "OSA",
+      "TPE",
+      "HKG",
+      "SIN",
+      "BKK",
+      "BJS",
+      "SHA",
+      "MNL",
+      "KUL",
+      "DEL",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "SFO",
+      "SYD",
+      "MEL"
     ]
   },
   {
@@ -747,6 +973,14 @@
         "name_en": "North Nha Trang",
         "desc": "조용하고 저렴, 중심가까지 차 10분"
       }
+    ],
+    "direct_from": [
+      "PUS",
+      "TPE",
+      "BKK",
+      "SGN",
+      "BJS",
+      "SHA"
     ]
   },
   {
@@ -792,6 +1026,9 @@
         "name_en": "Vinpearl Phu Quoc",
         "desc": "테마파크·사파리 인접 대형 리조트, 시내는 멀다"
       }
+    ],
+    "direct_from": [
+      "SGN"
     ]
   },
   {
@@ -832,6 +1069,17 @@
         "name_en": "Cebu City",
         "desc": "아얄라·IT파크 쇼핑과 먹거리, 해변은 없음"
       }
+    ],
+    "direct_from": [
+      "PUS",
+      "TYO",
+      "OSA",
+      "TPE",
+      "HKG",
+      "SIN",
+      "MNL",
+      "KUL",
+      "DXB"
     ]
   },
   {
@@ -877,6 +1125,12 @@
         "name_en": "Night Bazaar Chiang Mai",
         "desc": "야시장 도보권, 강변. 저렴"
       }
+    ],
+    "direct_from": [
+      "HKG",
+      "SIN",
+      "BKK",
+      "KUL"
     ]
   },
   {
@@ -922,6 +1176,35 @@
         "name_en": "Mong Kok",
         "desc": "야시장·로컬, 저렴하나 번잡"
       }
+    ],
+    "direct_from": [
+      "PUS",
+      "TYO",
+      "OSA",
+      "TPE",
+      "SIN",
+      "BKK",
+      "SGN",
+      "BJS",
+      "SHA",
+      "MNL",
+      "KUL",
+      "DEL",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "NYC",
+      "CHI",
+      "LAX",
+      "SFO",
+      "YTO",
+      "YVR",
+      "SYD",
+      "MEL",
+      "AKL"
     ]
   },
   {
@@ -967,6 +1250,16 @@
         "name_en": "Bang Tao",
         "desc": "라구나 대형 리조트, 조용한 휴양"
       }
+    ],
+    "direct_from": [
+      "TPE",
+      "HKG",
+      "SIN",
+      "BKK",
+      "BJS",
+      "SHA",
+      "KUL",
+      "DXB"
     ]
   },
   {
@@ -1012,6 +1305,33 @@
         "name_en": "Bugis",
         "desc": "MRT 좋고 가성비"
       }
+    ],
+    "direct_from": [
+      "PUS",
+      "TYO",
+      "OSA",
+      "TPE",
+      "HKG",
+      "BKK",
+      "SGN",
+      "BJS",
+      "SHA",
+      "MNL",
+      "KUL",
+      "DEL",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "ROM",
+      "NYC",
+      "LAX",
+      "SFO",
+      "SYD",
+      "MEL",
+      "AKL"
     ]
   },
   {
@@ -1057,6 +1377,13 @@
         "name_en": "Rasa Ria Tuaran",
         "desc": "조용한 휴양 전용, 시내까지 차 30분"
       }
+    ],
+    "direct_from": [
+      "TPE",
+      "HKG",
+      "SIN",
+      "BKK",
+      "KUL"
     ]
   },
   {
@@ -1102,6 +1429,23 @@
         "name_en": "Nusa Dua",
         "desc": "대형 리조트 단지, 가족 휴양"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "TPE",
+      "HKG",
+      "SIN",
+      "BKK",
+      "SGN",
+      "BJS",
+      "SHA",
+      "MNL",
+      "KUL",
+      "DEL",
+      "DXB",
+      "IST",
+      "SYD",
+      "MEL"
     ]
   },
   {
@@ -1147,6 +1491,27 @@
         "name_en": "Chinatown Kuala Lumpur",
         "desc": "구시가, 저렴"
       }
+    ],
+    "direct_from": [
+      "PUS",
+      "TYO",
+      "OSA",
+      "TPE",
+      "HKG",
+      "SIN",
+      "BKK",
+      "SGN",
+      "BJS",
+      "SHA",
+      "MNL",
+      "DEL",
+      "DXB",
+      "IST",
+      "LON",
+      "AMS",
+      "SYD",
+      "MEL",
+      "AKL"
     ]
   },
   {
@@ -1187,6 +1552,12 @@
         "name_en": "Hagatna",
         "desc": "로컬 분위기, 조용. 렌터카 필요"
       }
+    ],
+    "direct_from": [
+      "PUS",
+      "TYO",
+      "TPE",
+      "MNL"
     ]
   },
   {
@@ -1232,6 +1603,30 @@
         "name_en": "Ermita Manila",
         "desc": "명소 인접 구시가, 저렴"
       }
+    ],
+    "direct_from": [
+      "PUS",
+      "TYO",
+      "OSA",
+      "TPE",
+      "HKG",
+      "SIN",
+      "BKK",
+      "SGN",
+      "BJS",
+      "SHA",
+      "KUL",
+      "DXB",
+      "IST",
+      "LON",
+      "NYC",
+      "LAX",
+      "SFO",
+      "YTO",
+      "YVR",
+      "SYD",
+      "MEL",
+      "AKL"
     ]
   },
   {
@@ -1317,6 +1712,34 @@
         "name_en": "Nanluoguxiang",
         "desc": "옛 골목 감성, 조용"
       }
+    ],
+    "direct_from": [
+      "PUS",
+      "TYO",
+      "OSA",
+      "TPE",
+      "HKG",
+      "SIN",
+      "BKK",
+      "SGN",
+      "SHA",
+      "MNL",
+      "KUL",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "MAD",
+      "ROM",
+      "NYC",
+      "CHI",
+      "LAX",
+      "SFO",
+      "YTO",
+      "YVR",
+      "SYD",
+      "MEL"
     ]
   },
   {
@@ -1362,6 +1785,34 @@
         "name_en": "Lujiazui",
         "desc": "스카이라인 뷰 고층 호텔, 가격대 높음"
       }
+    ],
+    "direct_from": [
+      "PUS",
+      "TYO",
+      "OSA",
+      "TPE",
+      "HKG",
+      "SIN",
+      "BKK",
+      "SGN",
+      "BJS",
+      "MNL",
+      "KUL",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "ROM",
+      "NYC",
+      "LAX",
+      "SFO",
+      "YTO",
+      "YVR",
+      "SYD",
+      "MEL",
+      "AKL"
     ]
   },
   {
@@ -1407,6 +1858,12 @@
         "name_en": "National Road 6 Siem Reap",
         "desc": "수영장 대형 리조트, 이동은 툭툭"
       }
+    ],
+    "direct_from": [
+      "SIN",
+      "BKK",
+      "SGN",
+      "KUL"
     ]
   },
   {
@@ -1452,6 +1909,31 @@
         "name_en": "Opera Paris",
         "desc": "쇼핑·교통 좋고 상대적으로 합리적 가격"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "OSA",
+      "TPE",
+      "HKG",
+      "SIN",
+      "BKK",
+      "SGN",
+      "BJS",
+      "SHA",
+      "DEL",
+      "DXB",
+      "IST",
+      "LON",
+      "FRA",
+      "AMS",
+      "MAD",
+      "ROM",
+      "NYC",
+      "CHI",
+      "LAX",
+      "SFO",
+      "YTO",
+      "YVR"
     ]
   },
   {
@@ -1497,6 +1979,28 @@
         "name_en": "Paharganj",
         "desc": "역 앞 배낭여행자 거리, 저렴하나 번잡"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "HKG",
+      "SIN",
+      "BKK",
+      "SGN",
+      "KUL",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "ROM",
+      "NYC",
+      "CHI",
+      "SFO",
+      "YTO",
+      "YVR",
+      "SYD",
+      "MEL"
     ]
   },
   {
@@ -1542,6 +2046,32 @@
         "name_en": "Kings Cross",
         "desc": "교통 허브, 상대적으로 합리적 가격"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "TPE",
+      "HKG",
+      "SIN",
+      "BKK",
+      "SGN",
+      "BJS",
+      "SHA",
+      "MNL",
+      "KUL",
+      "DEL",
+      "DXB",
+      "IST",
+      "PAR",
+      "FRA",
+      "AMS",
+      "MAD",
+      "ROM",
+      "NYC",
+      "CHI",
+      "LAX",
+      "SFO",
+      "YTO",
+      "YVR"
     ]
   },
   {
@@ -1587,6 +2117,19 @@
         "name_en": "Maafushi",
         "desc": "게스트하우스 가성비, 리조트 대비 제약 있음"
       }
+    ],
+    "direct_from": [
+      "HKG",
+      "SIN",
+      "BKK",
+      "KUL",
+      "DEL",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "ROM"
     ]
   },
   {
@@ -1632,6 +2175,26 @@
         "name_en": "Termini",
         "desc": "교통 허브, 저렴. 밤엔 한산"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "TPE",
+      "SIN",
+      "BJS",
+      "SHA",
+      "DEL",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "MAD",
+      "NYC",
+      "CHI",
+      "LAX",
+      "SFO",
+      "YTO"
     ]
   },
   {
@@ -1677,6 +2240,23 @@
         "name_en": "Saadiyat",
         "desc": "루브르·해변 리조트, 조용"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "SIN",
+      "BKK",
+      "BJS",
+      "MNL",
+      "DEL",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "ROM",
+      "NYC",
+      "CHI",
+      "YTO",
+      "SYD"
     ]
   },
   {
@@ -1722,6 +2302,19 @@
         "name_en": "Gracia",
         "desc": "로컬 분위기, 조용"
       }
+    ],
+    "direct_from": [
+      "SIN",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "MAD",
+      "ROM",
+      "NYC",
+      "YTO"
     ]
   },
   {
@@ -1767,6 +2360,35 @@
         "name_en": "The Pearl Doha",
         "desc": "마리나 리조트, 조용"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "OSA",
+      "HKG",
+      "SIN",
+      "BKK",
+      "SGN",
+      "BJS",
+      "SHA",
+      "MNL",
+      "KUL",
+      "DEL",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "MAD",
+      "ROM",
+      "NYC",
+      "CHI",
+      "LAX",
+      "SFO",
+      "YTO",
+      "SYD",
+      "MEL",
+      "AKL"
     ]
   },
   {
@@ -1812,6 +2434,17 @@
         "name_en": "New Town Prague",
         "desc": "바츨라프광장, 교통 좋고 합리적 가격"
       }
+    ],
+    "direct_from": [
+      "TPE",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "MAD",
+      "ROM"
     ]
   },
   {
@@ -1857,6 +2490,29 @@
         "name_en": "Amsterdam Centraal",
         "desc": "교통 좋으나 번잡"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "TPE",
+      "HKG",
+      "SIN",
+      "BKK",
+      "SHA",
+      "KUL",
+      "DEL",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "MAD",
+      "ROM",
+      "NYC",
+      "CHI",
+      "LAX",
+      "SFO",
+      "YTO",
+      "YVR"
     ]
   },
   {
@@ -1902,6 +2558,22 @@
         "name_en": "Mariahilfer Strasse",
         "desc": "쇼핑 거리, 합리적 가격"
       }
+    ],
+    "direct_from": [
+      "TPE",
+      "BKK",
+      "BJS",
+      "DEL",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "MAD",
+      "ROM",
+      "NYC",
+      "YTO"
     ]
   },
   {
@@ -1947,6 +2619,30 @@
         "name_en": "Frankfurt Hauptbahnhof",
         "desc": "교통·가성비. 밤 역 주변 주의"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "TPE",
+      "HKG",
+      "SIN",
+      "BKK",
+      "SGN",
+      "BJS",
+      "SHA",
+      "DEL",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "AMS",
+      "MAD",
+      "ROM",
+      "NYC",
+      "CHI",
+      "LAX",
+      "SFO",
+      "YTO",
+      "YVR"
     ]
   },
   {
@@ -1992,6 +2688,30 @@
         "name_en": "Long Island City",
         "desc": "맨해튼 전철 10~15분, 가성비. 밤엔 한산"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "TPE",
+      "HKG",
+      "SIN",
+      "BJS",
+      "SHA",
+      "MNL",
+      "DEL",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "MAD",
+      "ROM",
+      "CHI",
+      "LAX",
+      "SFO",
+      "YTO",
+      "YVR",
+      "AKL"
     ]
   },
   {
@@ -2037,6 +2757,28 @@
         "name_en": "Schwabing",
         "desc": "대학가·영국정원, 조용한 감성"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "TPE",
+      "SIN",
+      "BKK",
+      "SHA",
+      "DEL",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "MAD",
+      "ROM",
+      "NYC",
+      "CHI",
+      "LAX",
+      "SFO",
+      "YTO",
+      "YVR"
     ]
   },
   {
@@ -2082,6 +2824,31 @@
         "name_en": "Downtown LA",
         "desc": "교통 중심, 밤거리 주의"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "TPE",
+      "HKG",
+      "SIN",
+      "BJS",
+      "SHA",
+      "MNL",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "MAD",
+      "ROM",
+      "NYC",
+      "CHI",
+      "SFO",
+      "YTO",
+      "YVR",
+      "SYD",
+      "MEL",
+      "AKL"
     ]
   },
   {
@@ -2127,6 +2894,21 @@
         "name_en": "Huertas Madrid",
         "desc": "타파스 골목·문학지구, 활기"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "BJS",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "ROM",
+      "NYC",
+      "CHI",
+      "LAX",
+      "YTO"
     ]
   },
   {
@@ -2172,6 +2954,33 @@
         "name_en": "Nob Hill",
         "desc": "언덕 위 조용, 전망 좋음"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "OSA",
+      "TPE",
+      "HKG",
+      "SIN",
+      "SGN",
+      "BJS",
+      "SHA",
+      "MNL",
+      "DEL",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "ROM",
+      "NYC",
+      "CHI",
+      "LAX",
+      "YTO",
+      "YVR",
+      "SYD",
+      "MEL",
+      "AKL"
     ]
   },
   {
@@ -2217,6 +3026,22 @@
         "name_en": "Milano Centrale",
         "desc": "교통 허브, 합리적 가격"
       }
+    ],
+    "direct_from": [
+      "TPE",
+      "HKG",
+      "SIN",
+      "BJS",
+      "SHA",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "MAD",
+      "ROM",
+      "NYC"
     ]
   },
   {
@@ -2262,6 +3087,19 @@
         "name_en": "Ko Olina",
         "desc": "서부 리조트 단지, 가족 휴양. 렌터카 필요"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "OSA",
+      "TPE",
+      "MNL",
+      "NYC",
+      "CHI",
+      "LAX",
+      "SFO",
+      "YVR",
+      "SYD",
+      "AKL"
     ]
   },
   {
@@ -2307,6 +3145,18 @@
         "name_en": "Buda Castle",
         "desc": "야경·조용, 페스트까지 도보 다리"
       }
+    ],
+    "direct_from": [
+      "BJS",
+      "SHA",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "MAD",
+      "ROM"
     ]
   },
   {
@@ -2352,6 +3202,25 @@
         "name_en": "Sydney CBD",
         "desc": "쇼핑·교통 중간 지점, 무난"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "TPE",
+      "HKG",
+      "SIN",
+      "BKK",
+      "SGN",
+      "BJS",
+      "SHA",
+      "MNL",
+      "KUL",
+      "DEL",
+      "DXB",
+      "LAX",
+      "SFO",
+      "YVR",
+      "MEL",
+      "AKL"
     ]
   },
   {
@@ -2397,6 +3266,22 @@
         "name_en": "Katajanokka",
         "desc": "항구 옆 조용한 지구"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "SIN",
+      "BKK",
+      "SHA",
+      "DEL",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "MAD",
+      "ROM",
+      "NYC"
     ]
   },
   {
@@ -2442,6 +3327,35 @@
         "name_en": "Deira",
         "desc": "수크·전통, 저렴"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "OSA",
+      "TPE",
+      "HKG",
+      "SIN",
+      "BKK",
+      "SGN",
+      "BJS",
+      "SHA",
+      "MNL",
+      "KUL",
+      "DEL",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "MAD",
+      "ROM",
+      "NYC",
+      "CHI",
+      "LAX",
+      "SFO",
+      "YTO",
+      "SYD",
+      "MEL",
+      "AKL"
     ]
   },
   {
@@ -2487,6 +3401,30 @@
         "name_en": "Yaletown",
         "desc": "다이닝 감성 지구"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "OSA",
+      "TPE",
+      "HKG",
+      "SIN",
+      "BJS",
+      "SHA",
+      "MNL",
+      "DEL",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "NYC",
+      "CHI",
+      "LAX",
+      "SFO",
+      "YTO",
+      "SYD",
+      "MEL",
+      "AKL"
     ]
   },
   {
@@ -2532,6 +3470,32 @@
         "name_en": "Taksim",
         "desc": "번화가, 밤 시끄러움"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "OSA",
+      "HKG",
+      "SIN",
+      "BKK",
+      "SGN",
+      "BJS",
+      "SHA",
+      "MNL",
+      "KUL",
+      "DEL",
+      "DXB",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "MAD",
+      "ROM",
+      "NYC",
+      "CHI",
+      "LAX",
+      "SFO",
+      "YTO",
+      "YVR"
     ]
   },
   {
@@ -2577,6 +3541,24 @@
         "name_en": "Capitol Hill",
         "desc": "카페·로컬, 밤 활기"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "TPE",
+      "SIN",
+      "MNL",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "NYC",
+      "CHI",
+      "LAX",
+      "SFO",
+      "YTO",
+      "YVR"
     ]
   },
   {
@@ -2622,6 +3604,28 @@
         "name_en": "Zurich West",
         "desc": "재개발 감성 지구, 상대적으로 합리적"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "HKG",
+      "SIN",
+      "BKK",
+      "SHA",
+      "DEL",
+      "DXB",
+      "IST",
+      "LON",
+      "PAR",
+      "FRA",
+      "AMS",
+      "MAD",
+      "ROM",
+      "NYC",
+      "CHI",
+      "LAX",
+      "SFO",
+      "YTO",
+      "YVR"
     ]
   },
   {
@@ -2667,6 +3671,22 @@
         "name_en": "Viaduct Harbour",
         "desc": "마리나 다이닝, 뷰 좋음"
       }
+    ],
+    "direct_from": [
+      "TYO",
+      "HKG",
+      "SIN",
+      "BJS",
+      "SHA",
+      "MNL",
+      "KUL",
+      "DXB",
+      "NYC",
+      "LAX",
+      "SFO",
+      "YVR",
+      "SYD",
+      "MEL"
     ]
   }
 ]

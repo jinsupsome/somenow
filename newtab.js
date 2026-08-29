@@ -271,7 +271,12 @@
       if (f) parts.push(f);
     } else {
       var ef = estFlyText(originByCode(origin), city);
-      if (ef) parts.push(ef);
+      if (ef) {
+        // 정기 직항이 확인된 노선(direct_from)만 "직항"으로 표기.
+        // 목록에 없다고 직항이 없다고 단정하지는 않는다(중립 표기 "비행 약").
+        var direct = city.direct_from && city.direct_from.indexOf(origin) !== -1;
+        parts.push(direct ? ef.replace("비행 약", "직항 약") : ef);
+      }
     }
     var t = tzText(city);
     if (t) parts.push(t);
