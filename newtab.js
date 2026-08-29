@@ -25,6 +25,7 @@
   var LIMIT_KEY = "somenow_api_pause";          // Unsplash 요청 한도에 걸린 시각
   var PREFETCH_KEY = "somenow_prefetch_at";     // 마지막 미리받기 시각
   var ORIGIN_KEY = "somenow_origin";            // 출발 도시 코드
+  var POOL_KEY = "somenow_pool";                // 지금 도시의 검색 결과 12장(같은 도시 다른 사진 순환용)
 
   // 사진 URL 폭은 정해진 값으로만 만든다. 창 크기가 조금 달라졌다고
   // 매번 새 주소가 되면 브라우저 캐시가 빗나가 사진을 다시 받는다.
@@ -100,6 +101,8 @@
   var TEXT_WAIT_FIRST_MS = 800;   // 첫 화면: 이만큼 기다렸다가 안 오면 글자만 먼저
   var TEXT_WAIT_SWAP_MS = 6000;   // 도시를 바꿀 때: 사진이 준비될 때까지 이전 화면을 유지
   var PREFETCH_GAP_MS = 5 * 60 * 1000;   // 미리받기는 5분에 한 번까지만
+  var ROTATE_MS = 40 * 1000;   // 탭을 열어둔 동안 같은 도시의 다른 사진으로 넘어가는 간격
+  var ROTATE_MAX = 8;          // 한 탭에서 이만큼 돌면 멈춘다(방치된 탭이 전력을 계속 쓰지 않게)
   var COOLDOWN_MS = 30 * 60 * 1000;      // 요청 한도에 걸리면 30분 쉰다
   var DEFAULT_BG = "#14202b";     // 사진이 없을 때 배경색
   var layers = null;          // 겹쳐 쓰는 사진 두 장
@@ -452,8 +455,16 @@
     return askUnsplash(url, key).then(function (d) {
       var list = (d && d.results) || [];
       if (!list.length) throw new Error("검색 결과 없음: " + query);
-      var p = toPhoto(list[Math.floor(Math.random() * list.length)]);
-      if (!p) throw new Error("Unsplash: 사진 없음");
+      var pool = [];
+      for (var i = 0; i < list.length; i++) {
+        var t = toPhoto(list[i]);
+        if (t) pool.push(t);
+      }
+      if (!pool.length) throw new Error("Unsplash: 사진 없음");
+      var at = Math.floor(Math.random() * pool.length);
+      var p = pool[at];
+      p._pool = pool;                  // 같은 도시 다른 사진 순환용(저장 전에 떼어낸다)
+      p._poolIdx = at;
       return p;
     });
   }
@@ -540,6 +551,7 @@
     function reveal() {
       if (revealed) return;
       revealed = true;
+      startRotation();                  // 머무는 탭에서만 같은 도시의 다른 사진으로 천천히 넘어간다
       if (timer) { window.clearTimeout(timer); timer = null; }
       renderCity(city);
       currentCity = city;
@@ -641,8 +653,15 @@
             pingDownload(photo, key);
             photo.pinged = true;
             cacheBytes(photo, city.iata);
-            photos[city.iata] = photo;
             var save = {};
+            if (photo._pool) {
+              photo._pool[photo._poolIdx].pinged = true;
+              save[POOL_KEY] = { date: dateStr, iata: city.iata,
+                                 idx: photo._poolIdx, items: photo._pool };
+              delete photo._pool;      // 오늘/마지막 기록까지 12장을 싣지 않는다
+              delete photo._poolIdx;
+            }
+            photos[city.iata] = photo;
             save[TODAY_KEY] = { date: dateStr, photos: photos };
             save[LAST_KEY] = photo;
             return storageSet(save).then(function () { planNext(photos, dateStr, s); });
@@ -710,6 +729,87 @@
     var img = new Image();
     img.src = src;
   }
+
+  /*
+   * ---------- 같은 도시, 다른 사진 ----------
+   * 이 화면은 빨리 지나치는 사람이 아니라 머무는 사람을 위한 것이다.
+   * 탭을 열어 둔 동안 40초마다 같은 도시의 다른 컷으로 천천히 넘어가고,
+   * 마지막으로 보여준 컷을 저장해 다음 새로고침이 그 컷으로 즉시 뜨게 한다
+   * (새로고침마다 다른 사진이 되는 효과).
+   *  - 다운로드 핑은 컷마다 하루 한 번만(요청 한도 보호)
+   *  - 백그라운드 탭에서는 멈추고, 돌아오면 다시 잰다
+   *  - 풀이 없으면(미리받은 도시 등) 한 번만 새로 검색해 채운다
+   */
+  var rotTimer = null;
+  var rotCount = 0;
+  var poolAskedFor = null;              // 이 탭에서 풀 검색을 이미 시도한 도시
+
+  function stopRotation() {
+    if (rotTimer) { window.clearTimeout(rotTimer); rotTimer = null; }
+  }
+
+  function startRotation() {
+    stopRotation();
+    rotCount = 0;
+    scheduleRotation();
+  }
+
+  function scheduleRotation() {
+    stopRotation();
+    if (document.hidden) return;        // 돌아오면 visibilitychange 가 다시 잰다
+    if (rotCount >= ROTATE_MAX) return;
+    rotTimer = window.setTimeout(rotateOnce, ROTATE_MS);
+  }
+
+  function rotateOnce() {
+    rotTimer = null;
+    if (document.hidden || !currentCity || !curDate) return;
+    var cityNow = currentCity;
+    storageGet([POOL_KEY, LIMIT_KEY]).then(function (s) {
+      var pool = s[POOL_KEY];
+      var paused = s[LIMIT_KEY] && (Date.now() - s[LIMIT_KEY]) < COOLDOWN_MS;
+      var fresh = pool && pool.date === curDate && pool.iata === cityNow.iata
+                  && pool.items && pool.items.length > 1;
+
+      // 풀이 없으면 한 번만 새로 채운다(미리받기로 온 도시 등)
+      if (!fresh) {
+        var key = accessKey();
+        if (!key || paused || poolAskedFor === cityNow.iata) return;
+        poolAskedFor = cityNow.iata;
+        return fetchPhoto(cityNow.unsplash_query, key).then(function (p) {
+          if (!p._pool || currentCity !== cityNow) return;
+          var o = {};
+          o[POOL_KEY] = { date: curDate, iata: cityNow.iata,
+                          idx: p._poolIdx, items: p._pool };
+          return storageSet(o).then(scheduleRotation);
+        }).catch(function () { /* 못 채우면 조용히 멈춘다 */ });
+      }
+
+      var idx = (pool.idx + 1) % pool.items.length;
+      var ph = pool.items[idx];
+      ph.iata = pool.iata;
+      return applyPhoto(ph).then(function (ok) {
+        if (!ok || currentCity !== cityNow) return;
+        renderCredit(ph);
+        var key2 = accessKey();
+        if (key2 && !ph.pinged && !paused) {   // 컷마다 하루 한 번만 핑
+          pingDownload(ph, key2);
+          ph.pinged = true;
+        }
+        pool.idx = idx;
+        var o2 = {}; o2[POOL_KEY] = pool;
+        storageSet(o2);
+        cacheBytes(ph, pool.iata);   // 다음 새로고침은 이 컷으로 즉시 뜬다
+        rotCount++;
+        scheduleRotation();
+      });
+    });
+  }
+
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) stopRotation();
+    else scheduleRotation();
+  });
 
   // 도시를 바꾸고 당일 동안 그 도시를 유지한다. 셔플과 위시리스트가 함께 쓴다.
   function goTo(city) {
