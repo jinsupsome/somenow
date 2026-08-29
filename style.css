@@ -44,19 +44,19 @@ body {
    레이어 두 장이 사진마다 번갈아 쓰이므로 방향을 다르게 줘 단조로움을 피한다. */
 .photo.is-ready {
   opacity: 1;
-  /* 머무는 화면: 36초 확대 → 36초 축소를 아주 천천히 반복한다(쉼의 리듬) */
-  animation: kenburns-a 36s ease-in-out infinite alternate;
+  /* 머무는 화면: 18초 확대 → 18초 축소를 반복한다. 응시하면 움직임이 분명히 느껴지는 속도 */
+  animation: kenburns-a 18s ease-in-out infinite alternate;
 }
 /* 새 탭 첫 화면: 저장본 즉시 표시(길게 페이드하면 로딩처럼 느껴진다) */
 .photo.is-instant { transition-duration: 160ms; }
 #photoB.is-ready { animation-name: kenburns-b; }
 @keyframes kenburns-a {
-  from { transform: scale(1); }
-  to   { transform: scale(1.05) translate(-0.6%, -0.4%); }
+  from { transform: scale(1.02); }
+  to   { transform: scale(1.09) translate(-1%, -0.7%); }
 }
 @keyframes kenburns-b {
-  from { transform: scale(1); }
-  to   { transform: scale(1.05) translate(0.6%, 0.4%); }
+  from { transform: scale(1.02); }
+  to   { transform: scale(1.09) translate(1%, 0.7%); }
 }
 
 /* 글씨가 사진 위에서 읽히도록: 위·아래 어둡게 */
