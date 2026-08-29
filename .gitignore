@@ -13,3 +13,5 @@ desktop.ini
 
 # Claude 프로젝트 문서(로컬 전용)
 claude/
+
+_to_delete/

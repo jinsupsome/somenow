@@ -25,6 +25,28 @@ SID = "329754573"
 TRIP_SUB3 = "D19549133"
 ORIGIN = "SEL"
 
+# Travelpayouts 제휴 링크(2026-08-29 생성, Sub ID = site-guide). 소개 사이트 전용이며
+# 확장 프로그램(zip)에는 넣지 않는다. 링크를 바꾸면 여기만 고친다.
+PARTNERS = [
+    ("eSIM 데이터", "도착 즉시 켜지는 현지 데이터. 출국 전에 설치해 둔다.",
+     "https://yesim.tpx.li/dbeNJnX2"),
+    ("공항 픽업", "밤 도착이나 짐이 많을 때. 요금을 미리 확정해 둔다.",
+     "https://kiwitaxi.tpx.li/Ckvr4jd5"),
+    ("입장권·투어", "줄 서는 곳은 미리 끊는 편이 시간을 아낀다.",
+     "https://klook.tpx.li/I94mDUO8"),
+    ("여행자 보험", "짧은 일정에도 분실·의료비는 대비해 두는 편이 낫다.",
+     "https://ektatraveling.tpx.li/tzXPa0d2"),
+]
+
+
+def partner_block(title="여행 준비"):
+    cards = "".join(
+        '<a href="%s" target="_blank" rel="noopener nofollow sponsored">%s<span class="sub">%s</span></a>'
+        % (url, esc(name), esc(desc)) for name, desc, url in PARTNERS)
+    return ('<h2>%s</h2><div class="grid">%s</div>'
+            '<p class="note">제휴 링크입니다. 이 링크로 결제가 이루어지면 운영자가 수수료를 받을 수 있으며, '
+            '이용자가 내는 금액은 달라지지 않습니다.</p>') % (esc(title), cards)
+
 # Travelpayouts 사이트 인증 스크립트. index.html 과 동일 — 지우면 인증이 풀린다.
 TP_SCRIPT = """<script nowprocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1" data-cmp-ab="2">
   (function () {
@@ -133,13 +155,13 @@ def page(title, desc, canonical, body, h=210):
 <meta property="og:description" content="%s">
 <meta property="og:type" content="article">
 %s
-<style>:root { --h: %d; }%s</style>
+<style>:root { --h: %d; }%s%s</style>
 </head>
 <body>
 %s
 </body>
 </html>
-""" % (esc(title), esc(desc), canonical, esc(title), esc(desc), TP_SCRIPT, h, CSS, body)
+""" % (esc(title), esc(desc), canonical, esc(title), esc(desc), TP_SCRIPT, h, CSS, article_style(), body)
 
 
 FOOT = """<footer>
@@ -196,6 +218,8 @@ def city_page(city):
   <a class="cta" href="%s" target="_blank" rel="noopener nofollow sponsored">인천 → %s 항공권 보기</a>
   <p class="note">트립닷컴 제휴 링크입니다. 예약이 이루어지면 운영자가 수수료를 받을 수 있고, 이용자가 내는 금액은 달라지지 않습니다.</p>
 
+  %s
+
   <h2>다른 도시</h2>
   <div class="grid">%s</div>
 
@@ -209,6 +233,7 @@ def city_page(city):
         esc(city.get("climate", "")),
         facts,
         esc(name), flight_url(city), esc(name),
+        partner_block(),
         "".join('<a href="%s">%s</a>' % (x, y) for x, y in
                 [(('./%s.html' % slugify(c["name_en"])),
                   esc(c["name_ko"])) for c in nav_pool(city)]),
@@ -257,7 +282,7 @@ def index_page():
 </header>
 <div class="wrap">
   <div class="top"><a href="%s/">Somenow</a> › 도시</div>
-  <p>인천에서 갈아타지 않고 갈 수 있는 도시만 모았습니다. 비행시간이 짧은 순서입니다.</p>
+  <p>인천에서 갈아타지 않고 갈 수 있는 도시만 모았습니다. 비행시간이 짧은 순서입니다.\n  일정 짜는 법은 <a href="../guide/">여행 글</a>에 정리해 두었습니다.</p>
   %s
   %s
 </div>""" % (len(ALL), SITE, "".join(blocks), FOOT)
@@ -266,11 +291,92 @@ def index_page():
                 "%s/city/" % SITE, body, 210)
 
 
-def sitemap(slugs):
+def sitemap(slugs, article_slugs=None):
     today = datetime.date.today().isoformat()
     urls = ["%s/" % SITE, "%s/city/" % SITE] + ["%s/city/%s.html" % (SITE, s) for s in slugs]
+    if article_slugs:
+        urls += ["%s/guide/" % SITE] + ["%s/guide/%s.html" % (SITE, s) for s in article_slugs]
     items = "".join("<url><loc>%s</loc><lastmod>%s</lastmod></url>\n" % (u, today) for u in urls)
     return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n%s</urlset>\n' % items
+
+
+
+# ---------- 글(가이드) ----------
+
+GUIDE = os.path.join(ROOT, "guide")
+
+
+def article_style():
+    return """
+.article { max-width: 720px; margin: 0 auto; padding: 0 24px 64px; }
+.article h2 { margin-top: 44px; }
+.article h3 { font-size: 17px; margin: 28px 0 8px; opacity: .95; }
+.article p { margin: 12px 0; }
+.article blockquote { margin: 20px 0; padding: 14px 18px; border-left: 3px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.05); border-radius: 0 12px 12px 0; }
+.article .date { font-size: 13px; opacity: .5; }
+"""
+
+
+def load_articles():
+    path = os.path.join(ROOT, "content", "articles.json")
+    if not os.path.exists(path):
+        return []
+    with io.open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def article_page(a, others):
+    with io.open(os.path.join(ROOT, "content", "articles", a["body"]), encoding="utf-8") as f:
+        body_html = f.read()
+
+    city_links = ""
+    if a.get("cities"):
+        city_links = '<h2>이 글에 나온 도시</h2><div class="grid">%s</div>' % "".join(
+            '<a href="../city/%s.html">%s<span class="sub">도시 정보</span></a>' % (c, esc(t))
+            for c, t in a["cities"])
+
+    more = '<h2>다른 글</h2><div class="grid">%s</div>' % "".join(
+        '<a href="./%s.html">%s<span class="sub">%s</span></a>' % (o["slug"], esc(o["title"]), esc(o["date"]))
+        for o in others[:4]) if others else ""
+
+    body = """<header class="hero">
+  <div class="en">SOMENOW GUIDE</div>
+  <h1>%s</h1>
+  <div class="tagline">%s</div>
+</header>
+<div class="article">
+  <div class="top" style="padding:18px 0;font-size:13px;opacity:.6"><a href="%s/">Somenow</a> › <a href="./">글</a></div>
+  <p class="date">%s</p>
+  %s
+  %s
+  %s
+  %s
+  %s
+</div>""" % (esc(a["title"]), esc(a["lead"]), SITE, esc(a["date"]),
+             body_html, partner_block("이 여행에 미리 준비할 것"), city_links, more, FOOT)
+    return page(a["title"] + " | Somenow", a["desc"],
+                "%s/guide/%s.html" % (SITE, a["slug"]), body, hue(a["slug"]))
+
+
+def guide_index(articles):
+    cards = "".join(
+        '<a href="./%s.html">%s<span class="sub">%s · %s</span></a>' % (
+            a["slug"], esc(a["title"]), esc(a["date"]), esc(a["lead"]))
+        for a in articles)
+    body = """<header class="hero">
+  <div class="en">SOMENOW GUIDE</div>
+  <h1>여행 글</h1>
+  <div class="tagline">떠나기 전에 한 번 읽어 두면 덜 헤매는 것들.</div>
+</header>
+<div class="wrap">
+  <div class="top"><a href="%s/">Somenow</a> › 글</div>
+  <div class="grid" style="margin-top:20px">%s</div>
+  %s
+</div>""" % (SITE, cards, FOOT)
+    return page("여행 글 — 코스·준비물·항공권 타이밍 | Somenow",
+                "직접 겪고 정리한 여행 글. 도시별 동선, 준비물, 항공권을 언제 잡아야 하는지.",
+                "%s/guide/" % SITE, body, 190)
 
 
 def main():
@@ -287,9 +393,19 @@ def main():
         slugs.append(slug)
     with io.open(os.path.join(OUT, "index.html"), "w", encoding="utf-8") as f:
         f.write(index_page())
+    articles = load_articles()
+    if articles:
+        if not os.path.isdir(GUIDE):
+            os.makedirs(GUIDE)
+        for a in articles:
+            others = [o for o in articles if o["slug"] != a["slug"]]
+            with io.open(os.path.join(GUIDE, a["slug"] + ".html"), "w", encoding="utf-8") as f:
+                f.write(article_page(a, others))
+        with io.open(os.path.join(GUIDE, "index.html"), "w", encoding="utf-8") as f:
+            f.write(guide_index(articles))
     with io.open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8") as f:
-        f.write(sitemap(slugs))
-    print("도시 페이지 %d개 + 목록 + sitemap.xml 생성" % len(slugs))
+        f.write(sitemap(slugs, [a["slug"] for a in articles]))
+    print("도시 %d개 + 글 %d편 + 목록 + sitemap.xml 생성" % (len(slugs), len(articles)))
 
 
 if __name__ == "__main__":
