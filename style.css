@@ -188,6 +188,9 @@ body {
   position: fixed;
   right: var(--pad-x);
   bottom: 16px;
+  /* 스크림(z-index 5)보다 위에 있어야 한다. 이게 없으면 사진작가 표기가 가려진다.
+     Unsplash 가이드라인상 표기는 반드시 보여야 하므로 절대 낮추지 말 것. */
+  z-index: 20;
   font-size: 12px;
   line-height: 1.4;
   color: rgba(255, 255, 255, 0.72);
