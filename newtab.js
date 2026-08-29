@@ -223,13 +223,16 @@
     return "직항 " + (m ? h + "시간 " + m + "분" : h + "시간");
   }
 
-  // 지금 이 브라우저와 목적지의 실제 시차. 서머타임까지 반영된다.
+  // 설정에서 고른 출발지와 목적지의 실제 시차. 서머타임까지 반영된다.
+  // (예전에는 브라우저 시간대 기준이라 출발지를 바꿔도 시차가 안 바뀌었다.)
   function tzText(city) {
     if (!city.tzid) return null;
     var now = new Date();
     var there = tzOffsetMinutes(city.tzid, now);
     if (there === null) return null;
-    var here = -now.getTimezoneOffset();
+    var o = originByCode(origin);
+    var here = (o && o.tzid) ? tzOffsetMinutes(o.tzid, now) : null;
+    if (here === null) here = -now.getTimezoneOffset();
     var diff = there - here;
     if (diff === 0) return "시차 없음";
     var sign = diff > 0 ? "+" : "-";
