@@ -199,3 +199,10 @@ Displays each shortcut's site icon next to its name on the new tab page. Without
 - 대응: 이의신청 대신 문안 수정. 도시 이름 나열을 삭제하고 같은 내용을 문장으로 다시 썼다(위 3·4번 반영).
 - 교훈: 설명문 어디에도 지명·검색어를 가운뎃점으로 나열하지 않는다. 기능 설명은 문장으로 쓴다.
   패키지는 문제가 없었으므로 버전을 올릴 필요 없이 등록정보만 고쳐 재제출한다.
+
+## 12. 소개 사이트 콘텐츠화 (2026-08-29)
+
+- `tools/build_pages.py` 하나로 `city/`(도시 60), `guide/`(글 4편), `sitemap.xml` 을 생성한다. 도시나 글을 추가하면 재실행만 하면 된다.
+- 글 원문은 `content/articles/*.html`, 목록·메타는 `content/articles.json`.
+- 제휴 링크는 스크립트 상단 `PARTNERS` 한 곳에서만 관리한다(eSIM·픽업·입장권·보험, Sub ID = site-guide).
+- 확장 프로그램 zip 에는 이 파일들이 들어가지 않는다. 사이트 전용이다.
