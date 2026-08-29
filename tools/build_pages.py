@@ -181,6 +181,14 @@ def city_page(city):
     sights = "".join("<li>%s</li>" % esc(s) for s in city.get("sights", []))
     foods = "".join("<li>%s</li>" % esc(s) for s in city.get("foods", []))
 
+    # 숙소 지역: 어느 동네에 묵을지 판단 재료(조용함·접근성·가격대 트레이드오프)
+    areas = "".join(
+        '<li><strong>%s</strong> — %s <a href="https://www.google.com/maps/search/%s" target="_blank" rel="noopener">지도</a></li>'
+        % (esc(a["name_ko"]), esc(a["desc"]),
+           esc((a.get("name_en", "") + " " + en).replace(" ", "+")))
+        for a in city.get("areas", []))
+    areas_sec = ('<h2>어느 동네에 묵을까</h2>\n  <ul>%s</ul>\n' % areas) if areas else ""
+
     rows = [
         ("통화", city.get("currency")),
         ("언어", city.get("language")),
@@ -207,6 +215,7 @@ def city_page(city):
   <h2>먹을 것</h2>
   <ul>%s</ul>
 
+  %s
   <h2>언제 가면 좋은가</h2>
   <p>%s %s</p>
 
@@ -229,6 +238,7 @@ def city_page(city):
         esc(" · ".join(meta_bits)),
         SITE, esc(name),
         sights, foods,
+        areas_sec,
         esc("여행 적기는 %s입니다." % city["best"]) if city.get("best") else "",
         esc(city.get("climate", "")),
         facts,
@@ -240,7 +250,7 @@ def city_page(city):
         FOOT,
     )
     title = "%s 여행 — 적기·가볼 곳·먹을 것·항공권 | Somenow" % name
-    desc = "%s: %s. %s 가볼 곳과 먹을 것, 통화·비자·전기, 인천 직항 시간과 여행 적기를 한 장에 정리했습니다." % (
+    desc = "%s: %s. %s 가볼 곳과 먹을 것, 어느 동네에 묵을지, 통화·비자·전기, 인천 직항 시간과 여행 적기를 한 장에 정리했습니다." % (
         name, city.get("tagline", ""), name)
     return slug, page(title, desc, "%s/city/%s.html" % (SITE, slug), body, hue(en))
 
