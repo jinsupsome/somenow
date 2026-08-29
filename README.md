@@ -106,7 +106,12 @@
 - Unsplash 개발자: (등록일 / 앱 이름)
 - 크롬 웹스토어 개발자: (등록일)
 - 제휴: 트립닷컴 (2026-08-28 가입, 링크 적용 중) / Travelpayouts (2026-08-28 가입, **2026-08-28 프로젝트 심사 통과 — 브랜드 프로그램 연결 완료** 메일 수신. 대시보드에서 연결된 프로그램과 딥링크 확인 필요) / 아고다 (2026-08-28 신청, 심사 영업일 7일)
-- 다음 판단: 항공권 링크를 트립닷컴 그대로 둘지, Travelpayouts 쪽(스카이스캐너 등)으로 바꿀지는 대시보드의 실제 수수료율·전환율을 보고 정한다. 링크를 바꿀 때는 newtab.js 의 buildFlightUrl 본문만 교체한다.
+- Travelpayouts 대시보드 확인 결과 (2026-08-29, 계정 ID 771175)
+  - **사용 가능 26개**: 항공은 Aviasales(수익배분 40%, 쿠키 30일)와 Kiwi.com(3%) 뿐. 그 외 eSIM(Yesim 18% / Saily 15% / Airalo 12% / GigSky 20%), 공항 픽업(Kiwitaxi 9~11%, Welcome Pickups 8~9%, GetTransfer 4~25%), 여행자보험(EKTA 25%), 액티비티(Klook 2~5%, Tiqets 3.5~8%, KKday 1~5%, WeGoTrip), 렌터카(Localrent 7.5~12%, QEEQ 5~10%), 항공지연 보상(AirHelp 15~16.6%, Compensair €5~12), 짐보관(Radical Storage 8%).
+  - **잠긴 20개**: Booking.com, Agoda, Expedia, Hotels.com, Trip.com, Vio.com, Hostelworld, GetYourGuide, Viator, DiscoverCars 등 호텔·투어 주요 브랜드가 전부 여기 있다.
+  - 잠긴 사유(대시보드 문구): "사이트에 여행 콘텐츠가 부족하다. 대부분의 브랜드는 정기적으로 갱신되고 트래픽이 있는, 여행 가이드·후기·목적지 이야기 같은 원본 글을 싣는 콘텐츠 사이트하고만 연결한다." **2026-08-29 이후 프로젝트를 보완해 재심사 신청 가능.**
+- 결론: 항공권 링크는 트립닷컴 직접 제휴를 그대로 둔다. Travelpayouts 경유 트립닷컴은 잠겨 있고, 직접 제휴는 이미 승인돼 동작 중이다. Aviasales 는 수익배분율이 높지만 러시아·CIS 중심 서비스라 한국 사용자에게 맞지 않는다.
+- 다음 수: 소개 페이지(jinsupsome.github.io/somenow)를 실제 도시 가이드 글이 있는 콘텐츠 사이트로 키운 뒤 재심사 → 아고다·부킹 승인 시 v0.5 호텔 버튼 검토. 링크를 바꿀 때는 newtab.js 의 buildFlightUrl 본문만 교체한다.
 
 ## 11. 부록: 제휴 신청 절차 (쉬운 순서)
 왜 하나: 버튼을 눌러 예약이 되면 수수료를 받기 위해. 승인까지 1~2주 걸리므로 먼저 신청해 둔다.
