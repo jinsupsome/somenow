@@ -106,6 +106,11 @@
 - Unsplash 개발자: (등록일 / 앱 이름)
 - 크롬 웹스토어 개발자: (등록일)
 - 제휴: 트립닷컴 (2026-08-28 가입, 링크 적용 중) / Travelpayouts (2026-08-28 가입, **2026-08-28 프로젝트 심사 통과 — 브랜드 프로그램 연결 완료** 메일 수신. 대시보드에서 연결된 프로그램과 딥링크 확인 필요) / 아고다 (2026-08-28 신청, 심사 영업일 7일)
+- 지급 설정
+  - Travelpayouts: **페이팔(jinsupsome@gmail.com) 등록 완료 (2026-08-29).** 최소 지급 $50, 플랫폼 수수료 0. 국가는 반드시 "Korea, Republic of" (목록에서 북한이 바로 위라 잘못 잡히기 쉽다).
+  - 트립닷컴: 페이팔 선택지가 없고 **해외 송금 계좌만** 받는다. Account → Bank Details 에 영문 예금주명·계좌번호·은행 영문명·SWIFT 코드·은행 소재지·영문 청구지 주소가 필요. 정산은 매월 5일 전월분 시작, 실제 입금까지 영업일 40~60일. (2026-08-29 기준 미등록)
+  - 아고다: 심사 중(2026-08-28 신청, 영업일 7일). 승인 후 설정.
+- 트립닷컴 추적 확인: 대시보드에 클릭 2건 잡힘(Ad ID D19549133). 링크가 실제로 동작한다는 뜻.
 - Travelpayouts 대시보드 확인 결과 (2026-08-29, 계정 ID 771175)
   - **사용 가능 26개**: 항공은 Aviasales(수익배분 40%, 쿠키 30일)와 Kiwi.com(3%) 뿐. 그 외 eSIM(Yesim 18% / Saily 15% / Airalo 12% / GigSky 20%), 공항 픽업(Kiwitaxi 9~11%, Welcome Pickups 8~9%, GetTransfer 4~25%), 여행자보험(EKTA 25%), 액티비티(Klook 2~5%, Tiqets 3.5~8%, KKday 1~5%, WeGoTrip), 렌터카(Localrent 7.5~12%, QEEQ 5~10%), 항공지연 보상(AirHelp 15~16.6%, Compensair €5~12), 짐보관(Radical Storage 8%).
   - **잠긴 20개**: Booking.com, Agoda, Expedia, Hotels.com, Trip.com, Vio.com, Hostelworld, GetYourGuide, Viator, DiscoverCars 등 호텔·투어 주요 브랜드가 전부 여기 있다.
