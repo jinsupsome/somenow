@@ -10,3 +10,6 @@ desktop.ini
 
 # 스토어 업로드용 압축 파일
 *.zip
+
+# Claude 프로젝트 문서(로컬 전용)
+claude/

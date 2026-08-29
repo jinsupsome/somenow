@@ -154,12 +154,13 @@ Displays each shortcut's site icon next to its name on the new tab page. Without
 ## 8. 등록 시 체크리스트
 
 - [ ] 개인정보 처리방침 URL 입력: https://jinsupsome.github.io/somenow/privacy.html
-- [ ] 카테고리: 생산성 (Productivity)
-- [ ] 언어: 한국어, English
-- [ ] 스크린샷 3장 (1280×800 PNG)
-- [ ] 아이콘 128px (icons/icon128.png)
-- [ ] 등록비 $5 결제 (개발자 계정 1회)
-- [ ] 제출 전 크롬에서 실제 동작 확인
+- [x] 카테고리: 라이프스타일 > 여행 (Travel) — 등록 시 실제 선택값. 구 분류의 '생산성'에서 변경
+- [x] 언어: 한국어 (영문 설명은 추후 English 로케일 추가 시 사용)
+- [x] 스크린샷 4장 (1280×800 PNG) docs/store/
+- [x] 아이콘 128px (icons/icon128.png)
+- [x] 등록비 $5 결제 완료
+- [x] 제출 전 크롬에서 실제 동작 확인
+- [x] 2026-08-29 제출 완료 (항목 ID ljnbgefidlnkegfkgmhgbllopgeoeokl, '검토 통과 후 자동 게시' 켬)
 
 ## 9. 스크린샷 찍는 법 (1280×800 PNG, 3장)
 
@@ -178,3 +179,11 @@ Displays each shortcut's site icon next to its name on the new tab page. Without
 
 주의: Unsplash 무료 키는 시간당 50회 제한이라 사진이 안 뜰 수 있다. 그때는 30분 뒤에 찍는다.
 스토어 등록 전에 Unsplash 앱을 Production 승인(시간당 5000회)으로 올려 두는 것이 좋다.
+
+## 10. 등록 과정에서 실제로 걸린 것 (다음에 대비)
+
+- **게시자 계정 2단계 인증 필수.** 켜지 않으면 zip 업로드가 "파일을 업로드하는 중에 문제가 발생했습니다"로 실패한다. 원인 표시가 작아 파일 문제로 오인하기 쉽다.
+- **EEA 사업자 선언**: 제휴 수수료 수익이 있으므로 '판매자 계정'을 선택. 선택 후 Google 결제 프로필로 이름·주소·전화 인증이 필요하며, 이 정보는 스토어 페이지 하단에 공개 표시된다. 인증 대기 중에도 제출·심사는 진행된다.
+- **연락처 이메일 확인** 없이는 항목 게시가 불가하다. 설정 화면 상단에서 먼저 처리한다.
+- **홈페이지 URL** https://jinsupsome.github.io/somenow/ , **지원 URL** https://github.com/jinsupsome/somenow/issues 로 입력. '공식 URL'은 Search Console 소유 확인이 필요해 '없음'으로 둠.
+- 프로모션 타일(440×280, 1400×560)은 선택 사항이라 비워도 제출된다.
