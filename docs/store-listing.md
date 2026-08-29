@@ -50,8 +50,8 @@ Someday가 날짜를 갖는 순간입니다.
 시차는 실제 시간대로 계산하므로 서머타임에도 맞습니다.
 
 ■ 도시 60곳
-도쿄 · 오사카 · 후쿠오카 · 다낭 · 방콕 · 싱가포르 · 파리 · 로마 · 뉴욕 · 시드니 …
-인천에서 직항으로 갈 수 있는 도시만 담았습니다.
+인천에서 갈아타지 않고 갈 수 있는 도시만 담았습니다. 아시아 근거리부터 유럽과 미주 장거리까지,
+비행시간과 여행 적기를 함께 보여 주므로 지금 떠날 수 있는 곳인지 바로 판단할 수 있습니다.
 
 ■ 개인정보
 서버가 없습니다. 위시리스트도 바로가기도 설정도 전부 내 브라우저 안에만 저장되며,
@@ -99,7 +99,9 @@ The departure city is guessed from your browser's time zone and can be changed t
 Time differences are computed from real time zones, so daylight saving is handled.
 
 ■ 60 cities
-Tokyo · Osaka · Fukuoka · Da Nang · Bangkok · Singapore · Paris · Rome · New York · Sydney and more.
+Only destinations reachable from Seoul without a connection, from short hops in Asia to long hauls
+in Europe and the Americas. Flight time and best season are shown together, so you can tell at a
+glance whether a trip is realistic right now.
 
 ■ Privacy
 There is no server. Your wishlist, shortcuts and settings stay in your own browser and the
@@ -187,3 +189,13 @@ Displays each shortcut's site icon next to its name on the new tab page. Without
 - **연락처 이메일 확인** 없이는 항목 게시가 불가하다. 설정 화면 상단에서 먼저 처리한다.
 - **홈페이지 URL** https://jinsupsome.github.io/somenow/ , **지원 URL** https://github.com/jinsupsome/somenow/issues 로 입력. '공식 URL'은 Search Console 소유 확인이 필요해 '없음'으로 둠.
 - 프로모션 타일(440×280, 1400×560)은 선택 사항이라 비워도 제출된다.
+
+## 11. 2026-08-29 1차 심사 거부와 대응
+
+- 결과: 게시 거부. 사유 **키워드 스팸**(위반 참조 ID Yellow Argon, 라우팅 ID FZSL).
+- 지적된 내용: 자세한 설명의 "■ 도시 60곳" 항목에 나열한 도시 이름 목록
+  (도쿄 · 오사카 · 후쿠오카 · 다낭 · 방콕 · 싱가포르 · 파리 · 로마 · 뉴욕 · 시드니).
+  구글은 설명문 안의 검색어 나열을 "불필요하거나 관련 없는 키워드"로 본다.
+- 대응: 이의신청 대신 문안 수정. 도시 이름 나열을 삭제하고 같은 내용을 문장으로 다시 썼다(위 3·4번 반영).
+- 교훈: 설명문 어디에도 지명·검색어를 가운뎃점으로 나열하지 않는다. 기능 설명은 문장으로 쓴다.
+  패키지는 문제가 없었으므로 버전을 올릴 필요 없이 등록정보만 고쳐 재제출한다.
