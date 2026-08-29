@@ -40,37 +40,37 @@
    * 처음 한 번 브라우저 시간대로 추정하고, 그 뒤로는 설정에서 고른 값을 쓴다.
    */
   var ORIGINS = [
-    { code: "SEL", ko: "서울",         tzid: "Asia/Seoul" },
-    { code: "PUS", ko: "부산",         tzid: "Asia/Seoul" },
-    { code: "TYO", ko: "도쿄",         tzid: "Asia/Tokyo" },
-    { code: "OSA", ko: "오사카",       tzid: "Asia/Tokyo" },
-    { code: "TPE", ko: "타이베이",     tzid: "Asia/Taipei" },
-    { code: "HKG", ko: "홍콩",         tzid: "Asia/Hong_Kong" },
-    { code: "SIN", ko: "싱가포르",     tzid: "Asia/Singapore" },
-    { code: "BKK", ko: "방콕",         tzid: "Asia/Bangkok" },
-    { code: "SGN", ko: "호치민",       tzid: "Asia/Ho_Chi_Minh" },
-    { code: "BJS", ko: "베이징",       tzid: "Asia/Shanghai" },
-    { code: "SHA", ko: "상하이",       tzid: "Asia/Shanghai" },
-    { code: "MNL", ko: "마닐라",       tzid: "Asia/Manila" },
-    { code: "KUL", ko: "쿠알라룸푸르", tzid: "Asia/Kuala_Lumpur" },
-    { code: "DEL", ko: "델리",         tzid: "Asia/Kolkata" },
-    { code: "DXB", ko: "두바이",       tzid: "Asia/Dubai" },
-    { code: "IST", ko: "이스탄불",     tzid: "Europe/Istanbul" },
-    { code: "LON", ko: "런던",         tzid: "Europe/London" },
-    { code: "PAR", ko: "파리",         tzid: "Europe/Paris" },
-    { code: "FRA", ko: "프랑크푸르트", tzid: "Europe/Berlin" },
-    { code: "AMS", ko: "암스테르담",   tzid: "Europe/Amsterdam" },
-    { code: "MAD", ko: "마드리드",     tzid: "Europe/Madrid" },
-    { code: "ROM", ko: "로마",         tzid: "Europe/Rome" },
-    { code: "NYC", ko: "뉴욕",         tzid: "America/New_York" },
-    { code: "CHI", ko: "시카고",       tzid: "America/Chicago" },
-    { code: "LAX", ko: "로스앤젤레스", tzid: "America/Los_Angeles" },
-    { code: "SFO", ko: "샌프란시스코", tzid: "America/Los_Angeles" },
-    { code: "YTO", ko: "토론토",       tzid: "America/Toronto" },
-    { code: "YVR", ko: "밴쿠버",       tzid: "America/Vancouver" },
-    { code: "SYD", ko: "시드니",       tzid: "Australia/Sydney" },
-    { code: "MEL", ko: "멜버른",       tzid: "Australia/Melbourne" },
-    { code: "AKL", ko: "오클랜드",     tzid: "Pacific/Auckland" }
+    { code: "SEL", ko: "서울",         tzid: "Asia/Seoul", lat: 37.55, lon: 126.99 },
+    { code: "PUS", ko: "부산",         tzid: "Asia/Seoul", lat: 35.18, lon: 129.08 },
+    { code: "TYO", ko: "도쿄",         tzid: "Asia/Tokyo", lat: 35.68, lon: 139.76 },
+    { code: "OSA", ko: "오사카",       tzid: "Asia/Tokyo", lat: 34.69, lon: 135.5 },
+    { code: "TPE", ko: "타이베이",     tzid: "Asia/Taipei", lat: 25.03, lon: 121.57 },
+    { code: "HKG", ko: "홍콩",         tzid: "Asia/Hong_Kong", lat: 22.32, lon: 114.17 },
+    { code: "SIN", ko: "싱가포르",     tzid: "Asia/Singapore", lat: 1.35, lon: 103.82 },
+    { code: "BKK", ko: "방콕",         tzid: "Asia/Bangkok", lat: 13.76, lon: 100.5 },
+    { code: "SGN", ko: "호치민",       tzid: "Asia/Ho_Chi_Minh", lat: 10.82, lon: 106.63 },
+    { code: "BJS", ko: "베이징",       tzid: "Asia/Shanghai", lat: 39.9, lon: 116.4 },
+    { code: "SHA", ko: "상하이",       tzid: "Asia/Shanghai", lat: 31.23, lon: 121.47 },
+    { code: "MNL", ko: "마닐라",       tzid: "Asia/Manila", lat: 14.6, lon: 120.98 },
+    { code: "KUL", ko: "쿠알라룸푸르", tzid: "Asia/Kuala_Lumpur", lat: 3.14, lon: 101.69 },
+    { code: "DEL", ko: "델리",         tzid: "Asia/Kolkata", lat: 28.61, lon: 77.21 },
+    { code: "DXB", ko: "두바이",       tzid: "Asia/Dubai", lat: 25.2, lon: 55.27 },
+    { code: "IST", ko: "이스탄불",     tzid: "Europe/Istanbul", lat: 41.01, lon: 28.98 },
+    { code: "LON", ko: "런던",         tzid: "Europe/London", lat: 51.51, lon: -0.13 },
+    { code: "PAR", ko: "파리",         tzid: "Europe/Paris", lat: 48.86, lon: 2.35 },
+    { code: "FRA", ko: "프랑크푸르트", tzid: "Europe/Berlin", lat: 50.11, lon: 8.68 },
+    { code: "AMS", ko: "암스테르담",   tzid: "Europe/Amsterdam", lat: 52.37, lon: 4.9 },
+    { code: "MAD", ko: "마드리드",     tzid: "Europe/Madrid", lat: 40.42, lon: -3.7 },
+    { code: "ROM", ko: "로마",         tzid: "Europe/Rome", lat: 41.9, lon: 12.5 },
+    { code: "NYC", ko: "뉴욕",         tzid: "America/New_York", lat: 40.71, lon: -74.01 },
+    { code: "CHI", ko: "시카고",       tzid: "America/Chicago", lat: 41.88, lon: -87.63 },
+    { code: "LAX", ko: "로스앤젤레스", tzid: "America/Los_Angeles", lat: 34.05, lon: -118.24 },
+    { code: "SFO", ko: "샌프란시스코", tzid: "America/Los_Angeles", lat: 37.77, lon: -122.42 },
+    { code: "YTO", ko: "토론토",       tzid: "America/Toronto", lat: 43.65, lon: -79.38 },
+    { code: "YVR", ko: "밴쿠버",       tzid: "America/Vancouver", lat: 49.28, lon: -123.12 },
+    { code: "SYD", ko: "시드니",       tzid: "Australia/Sydney", lat: -33.87, lon: 151.21 },
+    { code: "MEL", ko: "멜버른",       tzid: "Australia/Melbourne", lat: -37.81, lon: 144.96 },
+    { code: "AKL", ko: "오클랜드",     tzid: "Pacific/Auckland", lat: -36.85, lon: 174.76 }
   ];
   var DEFAULT_ORIGIN = "SEL";
 
@@ -216,6 +216,27 @@
   /* ---------- 도시 정보 한 줄 ---------- */
 
   // 분 -> "2시간 20분". 딱 떨어지면 "6시간".
+  // 대권거리로 비행시간을 추정한다. 인천 외 출발지는 정확한 직항 데이터가 없어서
+  // "비행 약 X시간"으로 보여준다(경유·바람에 따라 실제와 다를 수 있다).
+  function haversineKm(lat1, lon1, lat2, lon2) {
+    var R = 6371, rad = Math.PI / 180;
+    var dLat = (lat2 - lat1) * rad, dLon = (lon2 - lon1) * rad;
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+          + Math.cos(lat1 * rad) * Math.cos(lat2 * rad)
+          * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    return 2 * R * Math.asin(Math.sqrt(a));
+  }
+
+  function estFlyText(o, city) {
+    if (!o || typeof o.lat !== "number" || typeof city.lat !== "number") return null;
+    var km = haversineKm(o.lat, o.lon, city.lat, city.lon);
+    if (km < 80) return null;                      // 같은 생활권이면 표시하지 않는다
+    var min = Math.round((km / 780) * 60 + 36);    // 순항 780km/h + 이착륙 여유
+    min = Math.round(min / 10) * 10;               // 추정값이므로 10분 단위로 뭉갠다
+    var h = Math.floor(min / 60), m = min % 60;
+    return "비행 약 " + (m ? h + "시간 " + m + "분" : h + "시간");
+  }
+
   function flyText(min) {
     if (typeof min !== "number" || min <= 0) return null;
     var h = Math.floor(min / 60);
@@ -244,10 +265,13 @@
 
   function renderMeta(city) {
     var parts = [];
-    // 직항 소요시간은 인천 출발 기준으로만 갖고 있다. 다른 출발지에서는 숨긴다.
+    // 서울 출발은 정확한 인천 직항 데이터, 그 외 출발지는 대권거리 추정값.
     if (origin === "SEL") {
       var f = flyText(city.fly_min_icn);
       if (f) parts.push(f);
+    } else {
+      var ef = estFlyText(originByCode(origin), city);
+      if (ef) parts.push(ef);
     }
     var t = tzText(city);
     if (t) parts.push(t);
