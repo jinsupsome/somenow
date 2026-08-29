@@ -36,8 +36,25 @@ body {
   background-repeat: no-repeat;
   opacity: 0;
   transition: opacity 520ms ease;
+  will-change: transform, opacity;
+  transform-origin: center;
 }
-.photo.is-ready { opacity: 1; }
+/* 켄 번즈: 사진이 뜬 뒤 32초에 걸쳐 5%만 천천히 다가간다.
+   transform 만 쓰므로 GPU 처리라 부담이 없다. 확대 여유(5%) 안에서만 팬 한다.
+   레이어 두 장이 사진마다 번갈아 쓰이므로 방향을 다르게 줘 단조로움을 피한다. */
+.photo.is-ready {
+  opacity: 1;
+  animation: kenburns-a 32s ease-out both;
+}
+#photoB.is-ready { animation-name: kenburns-b; }
+@keyframes kenburns-a {
+  from { transform: scale(1); }
+  to   { transform: scale(1.05) translate(-0.6%, -0.4%); }
+}
+@keyframes kenburns-b {
+  from { transform: scale(1); }
+  to   { transform: scale(1.05) translate(0.6%, 0.4%); }
+}
 
 /* 글씨가 사진 위에서 읽히도록: 위·아래 어둡게 */
 .scrim {
@@ -97,10 +114,12 @@ body {
   opacity: 0;
   transition: opacity 320ms ease;
 }
-.place.is-shown {
-  opacity: 1;
-  animation: rise 700ms ease both;
-}
+.place.is-shown { opacity: 1; }
+/* 도시명 → 문장 → 정보 줄이 반 박자씩 늦게 떠오른다. 사진 표시 직후 1회만. */
+.place.is-shown .city-en { animation: rise 600ms ease both; }
+.place.is-shown .city    { animation: rise 650ms ease 90ms both; }
+.place.is-shown .tagline { animation: rise 650ms ease 200ms both; }
+.place.is-shown .meta    { animation: rise 650ms ease 320ms both; }
 
 /* 영문 도시명: 작게, 넓은 자간으로 얹는 머리글 */
 .city-en {
@@ -209,7 +228,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .photo, .place, .action, .flight-btn { transition: none; animation: none; }
+  .photo, .place, .place > *, .action, .flight-btn { transition: none; animation: none; }
 }
 
 /* 세로가 짧은 화면 */
