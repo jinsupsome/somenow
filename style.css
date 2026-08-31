@@ -720,7 +720,16 @@ body.hide-sites .topsites, body.hide-sites .add-pop { display: none !important; 
   margin-bottom: 8px;
   text-transform: uppercase;
 }
-.card-text { font-size: 13.5px; line-height: 1.75; font-weight: 300; opacity: 0.9; }
+.card-text { font-size: 13.5px; line-height: 1.75; font-weight: 300; opacity: 0.72; }
+/* 링크가 들어가는 칸은 또렷하게 — 누를 수 있는 글과 아닌 글을 밝기로도 가른다 */
+#cardSights.card-text {
+  opacity: 0.95;
+  line-height: 1.9;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+}
 
 .card-facts {
   display: grid;
@@ -740,24 +749,50 @@ body.hide-sites .topsites, body.hide-sites .add-pop { display: none !important; 
 
 /* v0.5 — 카드 안 바깥 링크(구글 지도·유튜브)와 숙소 지역 */
 .card-link {
-  display: block;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
   color: inherit;
   text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
   width: fit-content;
   max-width: 100%;
-  transition: border-color 160ms ease, opacity 160ms ease;
+  padding-bottom: 1px;
+  transition: border-color 160ms ease, color 160ms ease, opacity 160ms ease;
   word-break: keep-all;
   overflow-wrap: break-word;
 }
-.card-link:hover { border-bottom-color: rgba(255, 255, 255, 0.7); }
+/*
+ * 누를 수 있다는 표시(2026-08-31, C안 확정).
+ * 글자 앞 작은 기호로 "누를 수 있다"와 "무엇이 열리는가"를 함께 알린다.
+ * 밑줄만으로는 약하다는 사용자 지적. 알약·버튼은 쓰지 않는다(상업적으로 보인다).
+ *   ◎ 지도 · ▶ 영상 · ▤ 숙소
+ */
+#cardSights .card-link::before {
+  content: "◎";
+  font-size: 0.85em;
+  opacity: 0.45;
+  transition: opacity 160ms ease;
+}
+#cardSights .card-link-sub::before { content: "▶"; font-size: 0.72em; }
+a.card-area-name::before {
+  content: "▤";
+  font-size: 0.8em;
+  opacity: 0.45;
+  transition: opacity 160ms ease;
+}
+.card-link:hover,
+a.card-area-name:hover { color: #fff; border-bottom-color: rgba(255, 255, 255, 0.85); }
+.card-link:hover::before,
+a.card-area-name:hover::before { opacity: 0.95; }
+.card-links-row { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
 .card-link-sub {
   margin-top: 7px;
   font-size: 12px;
   opacity: 0.55;
   letter-spacing: 0.03em;
 }
-.card-link-sub:hover { opacity: 0.9; }
+.card-link-sub:hover { opacity: 0.95; }
 
 .card-stay[hidden] { display: none; }
 .card-areas {
@@ -770,18 +805,23 @@ body.hide-sites .topsites, body.hide-sites .add-pop { display: none !important; 
 }
 .card-area { display: flex; flex-direction: column; gap: 3px; }
 .card-area-name {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
   font-size: 13.5px;
   font-weight: 400;
   color: inherit;
   text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
   width: fit-content;
   max-width: 100%;
-  transition: border-color 160ms ease;
   word-break: keep-all;
   overflow-wrap: break-word;
 }
-a.card-area-name:hover { border-bottom-color: rgba(255, 255, 255, 0.7); }
+a.card-area-name {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  padding-bottom: 1px;
+  transition: border-color 160ms ease, color 160ms ease;
+}
 .card-area-desc {
   opacity: 0.62;
   font-size: 12.5px;
