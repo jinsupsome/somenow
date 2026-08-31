@@ -26,21 +26,34 @@
     "visa": "무비자 90일",
     "plug": "A형 100V — 돼지코 필요",
     "transit": "나리타에서 도심 60~90분, 하네다 30분",
+    "trip_city_id": 228,
     "areas": [
       {
         "name_ko": "신주쿠",
         "name_en": "Shinjuku",
-        "desc": "교통 허브라 첫 방문 표준. 역 주변은 번화, 골목 안쪽은 무난"
+        "desc": "교통 허브라 첫 방문 표준. 역 주변은 번화, 골목 안쪽은 무난",
+        "trip": {
+          "t": "Z",
+          "id": 804
+        }
       },
       {
         "name_ko": "우에노·아사쿠사",
         "name_en": "Asakusa",
-        "desc": "가성비와 옛 정취, 나리타 접근 좋음. 밤엔 조용"
+        "desc": "가성비와 옛 정취, 나리타 접근 좋음. 밤엔 조용",
+        "trip": {
+          "t": "Z",
+          "id": 98464192
+        }
       },
       {
         "name_ko": "긴자·도쿄역",
         "name_en": "Ginza",
-        "desc": "정갈하고 어디든 이동 편리. 가격대 높음"
+        "desc": "정갈하고 어디든 이동 편리. 가격대 높음",
+        "trip": {
+          "t": "Z",
+          "id": 98464194
+        }
       }
     ],
     "direct_from": [
@@ -102,6 +115,7 @@
     "visa": "무비자 90일",
     "plug": "A형 100V — 돼지코 필요",
     "transit": "주부공항에서 도심 30분",
+    "trip_city_id": 360,
     "areas": [
       {
         "name_ko": "나고야역",
@@ -111,12 +125,20 @@
       {
         "name_ko": "사카에",
         "name_en": "Sakae",
-        "desc": "쇼핑·먹거리 중심 번화가, 밤 활기"
+        "desc": "쇼핑·먹거리 중심 번화가, 밤 활기",
+        "trip": {
+          "t": "Z",
+          "id": 41237799
+        }
       },
       {
         "name_ko": "가나야마",
         "name_en": "Kanayama",
-        "desc": "공항 급행 정차, 가성비. 중심가까지 전철 5분"
+        "desc": "공항 급행 정차, 가성비. 중심가까지 전철 5분",
+        "trip": {
+          "t": "Z",
+          "id": 41237801
+        }
       }
     ],
     "direct_from": [
@@ -157,21 +179,37 @@
     "visa": "무비자 90일",
     "plug": "A형 100V — 돼지코 필요",
     "transit": "간사이공항에서 난바 40분",
+    "trip_city_id": 219,
     "areas": [
       {
         "name_ko": "난바·신사이바시",
         "name_en": "Namba",
-        "desc": "도톤보리 도보권, 먹거리 중심. 첫 방문 표준이나 밤엔 시끄러움"
+        "desc": "도톤보리 도보권, 먹거리 중심. 첫 방문 표준이나 밤엔 시끄러움",
+        "trip": {
+          "t": "LM",
+          "id": 6740544,
+          "lat": "34.66575",
+          "lon": "135.50104",
+          "kw": "Namba"
+        }
       },
       {
         "name_ko": "우메다",
         "name_en": "Umeda",
-        "desc": "교통 허브, 교토 당일치기 편리. 비즈니스호텔 많아 가성비"
+        "desc": "교통 허브, 교토 당일치기 편리. 비즈니스호텔 많아 가성비",
+        "trip": {
+          "t": "Z",
+          "id": 107182928
+        }
       },
       {
         "name_ko": "텐노지",
         "name_en": "Tennoji",
-        "desc": "조용하고 저렴, 공항 급행 정차. 중심가까지 전철 10분"
+        "desc": "조용하고 저렴, 공항 급행 정차. 중심가까지 전철 10분",
+        "trip": {
+          "t": "Z",
+          "id": 2944
+        }
       }
     ],
     "direct_from": [
@@ -221,16 +259,31 @@
     "visa": "무비자 90일",
     "plug": "A형 100V — 돼지코 필요",
     "transit": "공항버스로 도심 40분",
+    "trip_city_id": 735,
     "areas": [
       {
         "name_ko": "텐몬칸",
         "name_en": "Tenmonkan",
-        "desc": "중심 번화가, 먹거리 도보권. 첫 방문 표준"
+        "desc": "중심 번화가, 먹거리 도보권. 첫 방문 표준",
+        "trip": {
+          "t": "LM",
+          "id": 14490764,
+          "lat": "31.58968",
+          "lon": "130.55571",
+          "kw": "Tenmonkan"
+        }
       },
       {
         "name_ko": "가고시마추오역",
         "name_en": "Kagoshima Chuo",
-        "desc": "신칸센 거점, 비즈니스호텔 가성비"
+        "desc": "신칸센 거점, 비즈니스호텔 가성비",
+        "trip": {
+          "t": "LM",
+          "id": 29086027,
+          "lat": "31.58369",
+          "lon": "130.54361",
+          "kw": "Kagoshima-chuo eki mae"
+        }
       },
       {
         "name_ko": "워터프런트",
@@ -270,21 +323,34 @@
     "visa": "무비자 90일",
     "plug": "A형 100V — 돼지코 필요",
     "transit": "지하철로 하카타역 5분",
+    "trip_city_id": 248,
     "areas": [
       {
         "name_ko": "하카타역",
         "name_en": "Hakata",
-        "desc": "공항 지하철 5분·신칸센 직결, 첫 방문 표준"
+        "desc": "공항 지하철 5분·신칸센 직결, 첫 방문 표준",
+        "trip": {
+          "t": "Z",
+          "id": 2739
+        }
       },
       {
         "name_ko": "텐진",
         "name_en": "Tenjin",
-        "desc": "쇼핑·먹거리 중심 번화가, 밤 활기"
+        "desc": "쇼핑·먹거리 중심 번화가, 밤 활기",
+        "trip": {
+          "t": "Z",
+          "id": 107182848
+        }
       },
       {
         "name_ko": "나카스 강변",
         "name_en": "Nakasu",
-        "desc": "야타이·야경 도보권. 밤엔 유흥가라 번잡"
+        "desc": "야타이·야경 도보권. 밤엔 유흥가라 번잡",
+        "trip": {
+          "t": "Z",
+          "id": 107182850
+        }
       }
     ],
     "direct_from": [
@@ -328,11 +394,19 @@
     "visa": "무비자 90일",
     "plug": "A형 100V — 돼지코 필요",
     "transit": "공항버스로 도심 50분",
+    "trip_city_id": 4009,
     "areas": [
       {
         "name_ko": "시모토리·가미토리",
         "name_en": "Shimotori",
-        "desc": "아케이드 상점가, 구마모토성 도보권. 첫 방문 표준"
+        "desc": "아케이드 상점가, 구마모토성 도보권. 첫 방문 표준",
+        "trip": {
+          "t": "LM",
+          "id": 14959434,
+          "lat": "32.80189",
+          "lon": "130.70896",
+          "kw": "Shimotori Shopping Arcade"
+        }
       },
       {
         "name_ko": "구마모토역",
@@ -372,6 +446,7 @@
     "visa": "무비자 90일",
     "plug": "A형 100V — 돼지코 필요",
     "transit": "신치토세에서 삿포로역 40분",
+    "trip_city_id": 641,
     "areas": [
       {
         "name_ko": "삿포로역",
@@ -381,12 +456,20 @@
       {
         "name_ko": "스스키노",
         "name_en": "Susukino",
-        "desc": "먹거리 중심 번화가, 밤 시끄러움"
+        "desc": "먹거리 중심 번화가, 밤 시끄러움",
+        "trip": {
+          "t": "Z",
+          "id": 14014
+        }
       },
       {
         "name_ko": "오도리",
         "name_en": "Odori",
-        "desc": "공원 옆 중간 지점, 조용하고 무난"
+        "desc": "공원 옆 중간 지점, 조용하고 무난",
+        "trip": {
+          "t": "Z",
+          "id": 14012
+        }
       }
     ],
     "direct_from": [
@@ -427,16 +510,31 @@
     "visa": "무비자 90일",
     "plug": "A형 100V — 돼지코 필요",
     "transit": "공항버스로 도심 50분",
+    "trip_city_id": 262,
     "areas": [
       {
         "name_ko": "핫초보리·가미야초",
         "name_en": "Hondori Hiroshima",
-        "desc": "평화공원·중심가 도보권, 첫 방문 표준"
+        "desc": "평화공원·중심가 도보권, 첫 방문 표준",
+        "trip": {
+          "t": "LM",
+          "id": 8161736,
+          "lat": "34.39286",
+          "lon": "132.46059",
+          "kw": "Hiroshima Hondori Shotengai"
+        }
       },
       {
         "name_ko": "히로시마역",
         "name_en": "Hiroshima Station",
-        "desc": "신칸센·미야지마 이동 편리, 비즈니스호텔 가성비"
+        "desc": "신칸센·미야지마 이동 편리, 비즈니스호텔 가성비",
+        "trip": {
+          "t": "LM",
+          "id": 10629946,
+          "lat": "34.39623",
+          "lon": "132.47468",
+          "kw": "Hiroshima Station south exit underground plaza"
+        }
       }
     ],
     "direct_from": [
@@ -471,16 +569,31 @@
     "visa": "무비자 90일",
     "plug": "A형 100V — 돼지코 필요",
     "transit": "모노레일로 국제거리 15분",
+    "trip_city_id": 92573,
     "areas": [
       {
         "name_ko": "국제거리",
         "name_en": "Kokusai Street Naha",
-        "desc": "먹거리·쇼핑 도보권, 첫 방문 표준"
+        "desc": "먹거리·쇼핑 도보권, 첫 방문 표준",
+        "trip": {
+          "t": "LM",
+          "id": 51362923,
+          "lat": "26.21669",
+          "lon": "127.68952",
+          "kw": "Naha Kokusai Street"
+        }
       },
       {
         "name_ko": "오모로마치",
         "name_en": "Omoromachi",
-        "desc": "모노레일·쇼핑몰, 조용하고 깔끔"
+        "desc": "모노레일·쇼핑몰, 조용하고 깔끔",
+        "trip": {
+          "t": "LM",
+          "id": 13542295,
+          "lat": "26.22272",
+          "lon": "127.69847",
+          "kw": "Omoromachi Station"
+        }
       },
       {
         "name_ko": "온나손 리조트",
@@ -523,16 +636,28 @@
     "visa": "무비자 90일",
     "plug": "A형 110V — 돼지코 필요",
     "transit": "지하철로 시내 20분",
+    "trip_city_id": 720,
     "areas": [
       {
         "name_ko": "중앙공원·신쥐에장",
         "name_en": "Central Park Kaohsiung",
-        "desc": "MRT 역세권 쇼핑 중심, 첫 방문 표준"
+        "desc": "MRT 역세권 쇼핑 중심, 첫 방문 표준",
+        "trip": {
+          "t": "LM",
+          "id": 21144107,
+          "lat": "22.62482",
+          "lon": "120.30114",
+          "kw": "Central Park"
+        }
       },
       {
         "name_ko": "아이허 강변",
         "name_en": "Love River Kaohsiung",
-        "desc": "강변 야경, 조용"
+        "desc": "강변 야경, 조용",
+        "trip": {
+          "t": "Z",
+          "id": 3887
+        }
       },
       {
         "name_ko": "류허 야시장 인근",
@@ -576,16 +701,28 @@
     "visa": "무비자 90일",
     "plug": "A형 110V — 돼지코 필요",
     "transit": "공항철도로 타이베이역 40분",
+    "trip_city_id": 617,
     "areas": [
       {
         "name_ko": "시먼딩",
         "name_en": "Ximending",
-        "desc": "먹거리·쇼핑 번화가, 첫 방문 표준. 밤엔 시끄러움"
+        "desc": "먹거리·쇼핑 번화가, 첫 방문 표준. 밤엔 시끄러움",
+        "trip": {
+          "t": "Z",
+          "id": 3861
+        }
       },
       {
         "name_ko": "타이베이역",
         "name_en": "Taipei Main Station",
-        "desc": "공항철도·교통 허브, 어디든 편리"
+        "desc": "공항철도·교통 허브, 어디든 편리",
+        "trip": {
+          "t": "LM",
+          "id": 61865913,
+          "lat": "25.04687",
+          "lon": "121.51685",
+          "kw": "Taipei Main Station Square"
+        }
       },
       {
         "name_ko": "중산",
@@ -649,6 +786,7 @@
     "visa": "무비자 90일",
     "plug": "G형 220V — 어댑터 필요",
     "transit": "버스로 시내 15분",
+    "trip_city_id": 59,
     "areas": [
       {
         "name_ko": "마카오반도",
@@ -658,7 +796,14 @@
       {
         "name_ko": "코타이",
         "name_en": "Cotai",
-        "desc": "대형 리조트·쇼핑 단지, 무료 셔틀 이동"
+        "desc": "대형 리조트·쇼핑 단지, 무료 셔틀 이동",
+        "trip": {
+          "t": "LM",
+          "id": 6689902,
+          "lat": "22.14439",
+          "lon": "113.57110",
+          "kw": "Cotai Strip Resorts"
+        }
       }
     ],
     "direct_from": [
@@ -699,21 +844,34 @@
     "visa": "무비자 90일",
     "plug": "A·B·C형 220V — 대부분 그대로 사용",
     "transit": "수완나품에서 시내 40~60분",
+    "trip_city_id": 359,
     "areas": [
       {
         "name_ko": "수쿰윗",
         "name_en": "Sukhumvit",
-        "desc": "BTS 역세권·쇼핑몰 밀집, 첫 방문 표준"
+        "desc": "BTS 역세권·쇼핑몰 밀집, 첫 방문 표준",
+        "trip": {
+          "t": "Z",
+          "id": 662
+        }
       },
       {
         "name_ko": "씨암",
         "name_en": "Siam",
-        "desc": "쇼핑 중심지, 어디든 이동 편리. 밤엔 의외로 조용"
+        "desc": "쇼핑 중심지, 어디든 이동 편리. 밤엔 의외로 조용",
+        "trip": {
+          "t": "Z",
+          "id": 382
+        }
       },
       {
         "name_ko": "리버사이드",
         "name_en": "Riverside Bangkok",
-        "desc": "강변 뷰 리조트 분위기, 5성급이 시내보다 저렴. 이동은 배·차"
+        "desc": "강변 뷰 리조트 분위기, 5성급이 시내보다 저렴. 이동은 배·차",
+        "trip": {
+          "t": "Z",
+          "id": 384
+        }
       }
     ],
     "direct_from": [
@@ -766,11 +924,19 @@
     "visa": "무비자 45일",
     "plug": "A·C형 220V — 대부분 그대로 사용",
     "transit": "택시로 시내 45분",
+    "trip_city_id": 286,
     "areas": [
       {
         "name_ko": "구시가·호안끼엠",
         "name_en": "Hoan Kiem",
-        "desc": "명소·먹거리 도보권, 첫 방문 표준. 오토바이 소음 있음"
+        "desc": "명소·먹거리 도보권, 첫 방문 표준. 오토바이 소음 있음",
+        "trip": {
+          "t": "LM",
+          "id": 6790577,
+          "lat": "21.02867",
+          "lon": "105.85215",
+          "kw": "Hoan Kiem Lake"
+        }
       },
       {
         "name_ko": "프렌치쿼터",
@@ -780,7 +946,14 @@
       {
         "name_ko": "서호",
         "name_en": "West Lake Hanoi",
-        "desc": "호수 카페 감성, 조용. 시내까지 차 15분"
+        "desc": "호수 카페 감성, 조용. 시내까지 차 15분",
+        "trip": {
+          "t": "LM",
+          "id": 6744792,
+          "lat": "21.05324",
+          "lon": "105.82609",
+          "kw": "West Lake"
+        }
       }
     ],
     "direct_from": [
@@ -833,21 +1006,37 @@
     "visa": "무비자 45일",
     "plug": "A·C형 220V — 대부분 그대로 사용",
     "transit": "택시로 시내 15분",
+    "trip_city_id": 1356,
     "areas": [
       {
         "name_ko": "미케 해변",
         "name_en": "My Khe Beach",
-        "desc": "해변 호텔·리조트 밀집, 가족 여행 표준"
+        "desc": "해변 호텔·리조트 밀집, 가족 여행 표준",
+        "trip": {
+          "t": "LM",
+          "id": 6789693,
+          "lat": "16.06169",
+          "lon": "108.24693",
+          "kw": "My Khe Beach"
+        }
       },
       {
         "name_ko": "한강변 시내",
         "name_en": "Han River Da Nang",
-        "desc": "야시장·먹거리 도보권, 저렴. 해변까지 차 10분"
+        "desc": "야시장·먹거리 도보권, 저렴. 해변까지 차 10분",
+        "trip": {
+          "t": "Z",
+          "id": 107182612
+        }
       },
       {
         "name_ko": "논느억",
         "name_en": "Non Nuoc Beach",
-        "desc": "남쪽 대형 리조트 지역, 조용한 휴양 전용. 시내는 멀다"
+        "desc": "남쪽 대형 리조트 지역, 조용한 휴양 전용. 시내는 멀다",
+        "trip": {
+          "t": "Z",
+          "id": 107182608
+        }
       }
     ],
     "direct_from": [
@@ -890,6 +1079,7 @@
     "visa": "무비자 45일",
     "plug": "A·C형 220V — 대부분 그대로 사용",
     "transit": "택시로 시내 30~45분",
+    "trip_city_id": 301,
     "areas": [
       {
         "name_ko": "1군 동커이·벤탄",
@@ -904,7 +1094,11 @@
       {
         "name_ko": "7군 푸미흥",
         "name_en": "Phu My Hung",
-        "desc": "한인타운, 조용하고 깔끔. 시내까지 차 20분"
+        "desc": "한인타운, 조용하고 깔끔. 시내까지 차 20분",
+        "trip": {
+          "t": "Z",
+          "id": 13954
+        }
       }
     ],
     "direct_from": [
@@ -957,6 +1151,7 @@
     "visa": "무비자 45일",
     "plug": "A·C형 220V — 대부분 그대로 사용",
     "transit": "택시로 시내 45분",
+    "trip_city_id": 1777,
     "areas": [
       {
         "name_ko": "쩐푸 해변 중심가",
@@ -966,7 +1161,14 @@
       {
         "name_ko": "빈펄 혼째섬",
         "name_en": "Hon Tre Nha Trang",
-        "desc": "섬 리조트, 조용한 휴양 전용"
+        "desc": "섬 리조트, 조용한 휴양 전용",
+        "trip": {
+          "t": "LM",
+          "id": 6725826,
+          "lat": "12.21722",
+          "lon": "109.24352",
+          "kw": "Hon Tre"
+        }
       },
       {
         "name_ko": "북부 해변",
@@ -1010,21 +1212,40 @@
     "visa": "무비자 45일",
     "plug": "A·C형 220V — 대부분 그대로 사용",
     "transit": "택시로 즈엉동 15분",
+    "trip_city_id": 5649,
     "areas": [
       {
         "name_ko": "즈엉동",
         "name_en": "Duong Dong",
-        "desc": "야시장·먹거리 중심, 첫 방문 표준"
+        "desc": "야시장·먹거리 중심, 첫 방문 표준",
+        "trip": {
+          "t": "LM",
+          "id": 8166095,
+          "lat": "10.20656",
+          "lon": "103.96589",
+          "kw": "Duong Dong"
+        }
       },
       {
         "name_ko": "롱비치 남부",
         "name_en": "Long Beach Phu Quoc",
-        "desc": "리조트 밀집, 조용한 선셋 해변"
+        "desc": "리조트 밀집, 조용한 선셋 해변",
+        "trip": {
+          "t": "Z",
+          "id": 118643749
+        }
       },
       {
         "name_ko": "북부 빈펄 지역",
         "name_en": "Vinpearl Phu Quoc",
-        "desc": "테마파크·사파리 인접 대형 리조트, 시내는 멀다"
+        "desc": "테마파크·사파리 인접 대형 리조트, 시내는 멀다",
+        "trip": {
+          "t": "LM",
+          "id": 6809260,
+          "lat": "10.33704",
+          "lon": "103.89145",
+          "kw": "Vinpearl Safari Phu Quoc"
+        }
       }
     ],
     "direct_from": [
@@ -1058,16 +1279,28 @@
     "visa": "무비자 30일",
     "plug": "A·B형 220V — 돼지코 필요",
     "transit": "택시로 시내 30분",
+    "trip_city_id": 35831,
     "areas": [
       {
         "name_ko": "막탄섬",
         "name_en": "Mactan",
-        "desc": "공항 인접 해변 리조트 밀집, 가족 표준"
+        "desc": "공항 인접 해변 리조트 밀집, 가족 표준",
+        "trip": {
+          "t": "Z",
+          "id": 14145
+        }
       },
       {
         "name_ko": "세부시티",
         "name_en": "Cebu City",
-        "desc": "아얄라·IT파크 쇼핑과 먹거리, 해변은 없음"
+        "desc": "아얄라·IT파크 쇼핑과 먹거리, 해변은 없음",
+        "trip": {
+          "t": "LM",
+          "id": 36574383,
+          "lat": "10.29496",
+          "lon": "123.90966",
+          "kw": "Cebu City"
+        }
       }
     ],
     "direct_from": [
@@ -1109,21 +1342,37 @@
     "visa": "무비자 90일",
     "plug": "A·B·C형 220V — 대부분 그대로 사용",
     "transit": "택시로 올드타운 15분",
+    "trip_city_id": 623,
     "areas": [
       {
         "name_ko": "올드시티",
         "name_en": "Chiang Mai Old City",
-        "desc": "사원·먹거리 도보권, 첫 방문 표준"
+        "desc": "사원·먹거리 도보권, 첫 방문 표준",
+        "trip": {
+          "t": "Z",
+          "id": 1028
+        }
       },
       {
         "name_ko": "님만해민",
         "name_en": "Nimman",
-        "desc": "카페·감성 거리, 대학가 활기"
+        "desc": "카페·감성 거리, 대학가 활기",
+        "trip": {
+          "t": "LM",
+          "id": 4237991,
+          "lat": "18.79582",
+          "lon": "98.96581",
+          "kw": "Nimmanahaeminda Road"
+        }
       },
       {
         "name_ko": "나이트바자르",
         "name_en": "Night Bazaar Chiang Mai",
-        "desc": "야시장 도보권, 강변. 저렴"
+        "desc": "야시장 도보권, 강변. 저렴",
+        "trip": {
+          "t": "Z",
+          "id": 1030
+        }
       }
     ],
     "direct_from": [
@@ -1160,21 +1409,34 @@
     "visa": "무비자 90일",
     "plug": "G형 220V — 어댑터 필요",
     "transit": "공항철도로 센트럴 25분",
+    "trip_city_id": 58,
     "areas": [
       {
         "name_ko": "침사추이",
         "name_en": "Tsim Sha Tsui",
-        "desc": "야경·쇼핑 중심, 첫 방문 표준"
+        "desc": "야경·쇼핑 중심, 첫 방문 표준",
+        "trip": {
+          "t": "Z",
+          "id": 142
+        }
       },
       {
         "name_ko": "센트럴·성완",
         "name_en": "Central Hong Kong",
-        "desc": "골목 감성·미드레벨, 가격대 높음"
+        "desc": "골목 감성·미드레벨, 가격대 높음",
+        "trip": {
+          "t": "Z",
+          "id": 143
+        }
       },
       {
         "name_ko": "몽콕",
         "name_en": "Mong Kok",
-        "desc": "야시장·로컬, 저렴하나 번잡"
+        "desc": "야시장·로컬, 저렴하나 번잡",
+        "trip": {
+          "t": "Z",
+          "id": 141
+        }
       }
     ],
     "direct_from": [
@@ -1234,21 +1496,34 @@
     "visa": "무비자 90일",
     "plug": "A·B·C형 220V — 대부분 그대로 사용",
     "transit": "택시로 빠통 45분",
+    "trip_city_id": 725,
     "areas": [
       {
         "name_ko": "까따·까론",
         "name_en": "Kata Phuket",
-        "desc": "가족 해변, 무난하고 조용한 편"
+        "desc": "가족 해변, 무난하고 조용한 편",
+        "trip": {
+          "t": "Z",
+          "id": 827
+        }
       },
       {
         "name_ko": "빠통",
         "name_en": "Patong",
-        "desc": "번화가·나이트라이프, 밤 시끄러움"
+        "desc": "번화가·나이트라이프, 밤 시끄러움",
+        "trip": {
+          "t": "Z",
+          "id": 825
+        }
       },
       {
         "name_ko": "방따오",
         "name_en": "Bang Tao",
-        "desc": "라구나 대형 리조트, 조용한 휴양"
+        "desc": "라구나 대형 리조트, 조용한 휴양",
+        "trip": {
+          "t": "Z",
+          "id": 822
+        }
       }
     ],
     "direct_from": [
@@ -1289,21 +1564,37 @@
     "visa": "무비자 90일",
     "plug": "G형 230V — 어댑터 필요",
     "transit": "지하철로 시내 35분",
+    "trip_city_id": 73,
     "areas": [
       {
         "name_ko": "마리나베이",
         "name_en": "Marina Bay",
-        "desc": "상징 뷰·명소 도보권, 가격대 최고"
+        "desc": "상징 뷰·명소 도보권, 가격대 최고",
+        "trip": {
+          "t": "Z",
+          "id": 376
+        }
       },
       {
         "name_ko": "클락키·리버사이드",
         "name_en": "Clarke Quay",
-        "desc": "강변 다이닝, 이동 편리"
+        "desc": "강변 다이닝, 이동 편리",
+        "trip": {
+          "t": "LM",
+          "id": 6789701,
+          "lat": "1.29060",
+          "lon": "103.84647",
+          "kw": "Clarke Quay"
+        }
       },
       {
         "name_ko": "부기스·라벤더",
         "name_en": "Bugis",
-        "desc": "MRT 좋고 가성비"
+        "desc": "MRT 좋고 가성비",
+        "trip": {
+          "t": "Z",
+          "id": 881
+        }
       }
     ],
     "direct_from": [
@@ -1361,6 +1652,7 @@
     "visa": "무비자 90일",
     "plug": "G형 240V — 어댑터 필요",
     "transit": "택시로 시내 15분",
+    "trip_city_id": 1393,
     "areas": [
       {
         "name_ko": "시내 워터프런트",
@@ -1370,7 +1662,14 @@
       {
         "name_ko": "딴중아루·수트라하버",
         "name_en": "Sutera Harbour",
-        "desc": "공항 가까운 리조트, 가족 표준"
+        "desc": "공항 가까운 리조트, 가족 표준",
+        "trip": {
+          "t": "LM",
+          "id": 58178143,
+          "lat": "5.96712",
+          "lon": "116.05737",
+          "kw": "Sutera Harbour"
+        }
       },
       {
         "name_ko": "북부 리조트",
@@ -1413,21 +1712,37 @@
     "visa": "도착비자 유료, 30일",
     "plug": "C·F형 230V — 그대로 사용",
     "transit": "택시로 꾸따 20분, 우붓 90분",
+    "trip_city_id": 723,
     "areas": [
       {
         "name_ko": "스미냑",
         "name_en": "Seminyak",
-        "desc": "해변·쇼핑·다이닝, 첫 방문 표준"
+        "desc": "해변·쇼핑·다이닝, 첫 방문 표준",
+        "trip": {
+          "t": "Z",
+          "id": 459
+        }
       },
       {
         "name_ko": "우붓",
         "name_en": "Ubud",
-        "desc": "숲·라이스테라스 감성, 조용. 해변은 멀다"
+        "desc": "숲·라이스테라스 감성, 조용. 해변은 멀다",
+        "trip": {
+          "t": "LM",
+          "id": 6787638,
+          "lat": "-8.50660",
+          "lon": "115.26259",
+          "kw": "Ubud Palace"
+        }
       },
       {
         "name_ko": "누사두아",
         "name_en": "Nusa Dua",
-        "desc": "대형 리조트 단지, 가족 휴양"
+        "desc": "대형 리조트 단지, 가족 휴양",
+        "trip": {
+          "t": "Z",
+          "id": 14455
+        }
       }
     ],
     "direct_from": [
@@ -1475,11 +1790,16 @@
     "visa": "무비자 90일",
     "plug": "G형 240V — 어댑터 필요",
     "transit": "공항철도로 KL센트럴 30분",
+    "trip_city_id": 315,
     "areas": [
       {
         "name_ko": "KLCC",
         "name_en": "KLCC",
-        "desc": "트윈타워 뷰, 첫 방문 표준"
+        "desc": "트윈타워 뷰, 첫 방문 표준",
+        "trip": {
+          "t": "Z",
+          "id": 12122
+        }
       },
       {
         "name_ko": "부킷빈땅",
@@ -1489,7 +1809,14 @@
       {
         "name_ko": "차이나타운",
         "name_en": "Chinatown Kuala Lumpur",
-        "desc": "구시가, 저렴"
+        "desc": "구시가, 저렴",
+        "trip": {
+          "t": "LM",
+          "id": 9013689,
+          "lat": "3.14284",
+          "lon": "101.69687",
+          "kw": "Chinatown Kuala Lumpur"
+        }
       }
     ],
     "direct_from": [
@@ -1541,11 +1868,16 @@
     "visa": "괌·사이판 비자면제 45일 또는 ESTA",
     "plug": "A·B형 120V — 돼지코 필요",
     "transit": "택시로 투몬 15분",
+    "trip_city_id": 753,
     "areas": [
       {
         "name_ko": "투몬",
         "name_en": "Tumon",
-        "desc": "호텔·쇼핑 밀집 중심, 가족 표준"
+        "desc": "호텔·쇼핑 밀집 중심, 가족 표준",
+        "trip": {
+          "t": "Z",
+          "id": 12003
+        }
       },
       {
         "name_ko": "하갓냐",
@@ -1587,16 +1919,28 @@
     "visa": "무비자 30일",
     "plug": "A·B형 220V — 돼지코 필요",
     "transit": "택시로 마카티 30~60분",
+    "trip_city_id": 364,
     "areas": [
       {
         "name_ko": "마카티",
         "name_en": "Makati",
-        "desc": "안전하고 쇼핑 편리, 첫 방문 표준"
+        "desc": "안전하고 쇼핑 편리, 첫 방문 표준",
+        "trip": {
+          "t": "LM",
+          "id": 13106665,
+          "lat": "14.55196",
+          "lon": "121.01386",
+          "kw": "The Beacon Makati"
+        }
       },
       {
         "name_ko": "BGC",
         "name_en": "Bonifacio Global City",
-        "desc": "신도시라 깔끔하고 조용"
+        "desc": "신도시라 깔끔하고 조용",
+        "trip": {
+          "t": "Z",
+          "id": 3914
+        }
       },
       {
         "name_ko": "마닐라베이·에르미타",
@@ -1656,11 +2000,19 @@
     "visa": "괌·사이판 비자면제 45일 또는 ESTA",
     "plug": "A·B형 120V — 돼지코 필요",
     "transit": "택시로 가라판 15분",
+    "trip_city_id": 4081,
     "areas": [
       {
         "name_ko": "가라판",
         "name_en": "Garapan",
-        "desc": "호텔·먹거리·면세점 중심, 표준"
+        "desc": "호텔·먹거리·면세점 중심, 표준",
+        "trip": {
+          "t": "LM",
+          "id": 38673853,
+          "lat": "15.20280",
+          "lon": "145.72049",
+          "kw": "Garapan Central Park"
+        }
       },
       {
         "name_ko": "수수페·찰란카노아",
@@ -1696,16 +2048,31 @@
     "visa": "무비자 30일 (2026년까지 연장)",
     "plug": "A·C·I형 220V",
     "transit": "공항철도로 도심 40분",
+    "trip_city_id": 1,
     "areas": [
       {
         "name_ko": "왕푸징",
         "name_en": "Wangfujing",
-        "desc": "천안문·자금성 도보권, 첫 방문 표준"
+        "desc": "천안문·자금성 도보권, 첫 방문 표준",
+        "trip": {
+          "t": "LM",
+          "id": 4189410,
+          "lat": "39.91482",
+          "lon": "116.41119",
+          "kw": "Wangfujing"
+        }
       },
       {
         "name_ko": "싼리툰",
         "name_en": "Sanlitun",
-        "desc": "쇼핑·다이닝, 밤 활기"
+        "desc": "쇼핑·다이닝, 밤 활기",
+        "trip": {
+          "t": "LM",
+          "id": 4189229,
+          "lat": "39.93493",
+          "lon": "116.45176",
+          "kw": "Sanlitun"
+        }
       },
       {
         "name_ko": "난뤄구샹 후통",
@@ -1769,6 +2136,7 @@
     "visa": "무비자 30일 (2026년까지 연장)",
     "plug": "A·C·I형 220V",
     "transit": "푸둥에서 자기부상열차 8분 + 지하철",
+    "trip_city_id": 2,
     "areas": [
       {
         "name_ko": "인민광장·난징둥루",
@@ -1778,12 +2146,23 @@
       {
         "name_ko": "프랑스조계·신톈디",
         "name_en": "Xintiandi",
-        "desc": "가로수 골목 감성·카페, 조용"
+        "desc": "가로수 골목 감성·카페, 조용",
+        "trip": {
+          "t": "LM",
+          "id": 4189901,
+          "lat": "31.22252",
+          "lon": "121.47409",
+          "kw": "Xintiandi"
+        }
       },
       {
         "name_ko": "루자쭈이",
         "name_en": "Lujiazui",
-        "desc": "스카이라인 뷰 고층 호텔, 가격대 높음"
+        "desc": "스카이라인 뷰 고층 호텔, 가격대 높음",
+        "trip": {
+          "t": "Z",
+          "id": 22
+        }
       }
     ],
     "direct_from": [
@@ -1842,21 +2221,40 @@
     "visa": "도착비자 유료 또는 전자비자, 30일",
     "plug": "A·C·G형 230V",
     "transit": "택시로 시내 40분",
+    "trip_city_id": 1369,
     "areas": [
       {
         "name_ko": "올드마켓·펍스트리트",
         "name_en": "Old Market Siem Reap",
-        "desc": "먹거리·야시장 도보권, 표준. 밤 시끄러움"
+        "desc": "먹거리·야시장 도보권, 표준. 밤 시끄러움",
+        "trip": {
+          "t": "LM",
+          "id": 4220653,
+          "lat": "13.36852",
+          "lon": "103.86364",
+          "kw": "Old Market"
+        }
       },
       {
         "name_ko": "와트보 지역",
         "name_en": "Wat Bo",
-        "desc": "강 건너 조용한 부티크 호텔"
+        "desc": "강 건너 조용한 부티크 호텔",
+        "trip": {
+          "t": "LM",
+          "id": 6738637,
+          "lat": "13.35631",
+          "lon": "103.86175",
+          "kw": "Wat Bo"
+        }
       },
       {
         "name_ko": "6번 국도 리조트",
         "name_en": "National Road 6 Siem Reap",
-        "desc": "수영장 대형 리조트, 이동은 툭툭"
+        "desc": "수영장 대형 리조트, 이동은 툭툭",
+        "trip": {
+          "t": "Z",
+          "id": 834
+        }
       }
     ],
     "direct_from": [
@@ -1893,16 +2291,28 @@
     "visa": "셰겐 무비자 90일 (180일 중). ETIAS 2026년 말 시행 예정",
     "plug": "C·F형 230V — 그대로 사용",
     "transit": "RER B로 시내 45분",
+    "trip_city_id": 192,
     "areas": [
       {
         "name_ko": "마레·루브르",
         "name_en": "Le Marais",
-        "desc": "명소 도보권, 첫 방문 표준. 가격대 높음"
+        "desc": "명소 도보권, 첫 방문 표준. 가격대 높음",
+        "trip": {
+          "t": "LM",
+          "id": 7756599,
+          "lat": "48.86123",
+          "lon": "2.35819",
+          "kw": "Le Marais"
+        }
       },
       {
         "name_ko": "생제르맹",
         "name_en": "Saint Germain",
-        "desc": "조용한 카페 감성, 좌안 산책"
+        "desc": "조용한 카페 감성, 좌안 산책",
+        "trip": {
+          "t": "Z",
+          "id": 112214166
+        }
       },
       {
         "name_ko": "오페라",
@@ -1963,21 +2373,34 @@
     "visa": "전자비자 필요 (유료)",
     "plug": "D·M형 230V — 어댑터 필요",
     "transit": "공항철도로 뉴델리역 20분",
+    "trip_city_id": 495,
     "areas": [
       {
         "name_ko": "코노트플레이스",
         "name_en": "Connaught Place",
-        "desc": "중심·지하철 허브, 첫 방문 표준"
+        "desc": "중심·지하철 허브, 첫 방문 표준",
+        "trip": {
+          "t": "Z",
+          "id": 118642811
+        }
       },
       {
         "name_ko": "사우스델리",
         "name_en": "South Delhi",
-        "desc": "조용하고 카페 많음, 상대적으로 쾌적"
+        "desc": "조용하고 카페 많음, 상대적으로 쾌적",
+        "trip": {
+          "t": "Z",
+          "id": 1433
+        }
       },
       {
         "name_ko": "파하르간지",
         "name_en": "Paharganj",
-        "desc": "역 앞 배낭여행자 거리, 저렴하나 번잡"
+        "desc": "역 앞 배낭여행자 거리, 저렴하나 번잡",
+        "trip": {
+          "t": "Z",
+          "id": 1436
+        }
       }
     ],
     "direct_from": [
@@ -2030,21 +2453,34 @@
     "visa": "ETA 사전 승인 필요 (2026.2.25.부터), 6개월",
     "plug": "G형 230V — 어댑터 필요",
     "transit": "히스로 지하철 50분, 익스프레스 15분",
+    "trip_city_id": 338,
     "areas": [
       {
         "name_ko": "코벤트가든·소호",
         "name_en": "Covent Garden",
-        "desc": "명소·뮤지컬 도보권, 첫 방문 표준"
+        "desc": "명소·뮤지컬 도보권, 첫 방문 표준",
+        "trip": {
+          "t": "Z",
+          "id": 112214706
+        }
       },
       {
         "name_ko": "사우스켄싱턴",
         "name_en": "South Kensington",
-        "desc": "박물관 인접, 조용해 가족에 적합"
+        "desc": "박물관 인접, 조용해 가족에 적합",
+        "trip": {
+          "t": "Z",
+          "id": 107182956
+        }
       },
       {
         "name_ko": "킹스크로스",
         "name_en": "Kings Cross",
-        "desc": "교통 허브, 상대적으로 합리적 가격"
+        "desc": "교통 허브, 상대적으로 합리적 가격",
+        "trip": {
+          "t": "Z",
+          "id": 1278
+        }
       }
     ],
     "direct_from": [
@@ -2101,6 +2537,7 @@
     "visa": "도착 시 30일 무료",
     "plug": "D·G형 230V — 어댑터 필요",
     "transit": "스피드보트나 수상비행기로 리조트 이동",
+    "trip_city_id": 1207,
     "areas": [
       {
         "name_ko": "말레 근교 리조트",
@@ -2110,12 +2547,26 @@
       {
         "name_ko": "원거리 환초 리조트",
         "name_en": "Maldives Resort",
-        "desc": "수상비행기 이동, 최고의 물색. 이동비 높음"
+        "desc": "수상비행기 이동, 최고의 물색. 이동비 높음",
+        "trip": {
+          "t": "LM",
+          "id": 6791758,
+          "lat": "3.97152",
+          "lon": "73.50235",
+          "kw": "Anantara Dhigu Maldives Resort"
+        }
       },
       {
         "name_ko": "로컬섬",
         "name_en": "Maafushi",
-        "desc": "게스트하우스 가성비, 리조트 대비 제약 있음"
+        "desc": "게스트하우스 가성비, 리조트 대비 제약 있음",
+        "trip": {
+          "t": "LM",
+          "id": 40224013,
+          "lat": "3.94893",
+          "lon": "73.49623",
+          "kw": "Maafushi Picnic Island"
+        }
       }
     ],
     "direct_from": [
@@ -2159,21 +2610,34 @@
     "visa": "셰겐 무비자 90일 (180일 중). ETIAS 2026년 말 시행 예정",
     "plug": "C·F형 230V — 그대로 사용",
     "transit": "레오나르도 익스프레스로 테르미니 32분",
+    "trip_city_id": 343,
     "areas": [
       {
         "name_ko": "판테온·나보나",
         "name_en": "Pantheon Rome",
-        "desc": "구시가 명소 도보권, 표준. 가격대 높음"
+        "desc": "구시가 명소 도보권, 표준. 가격대 높음",
+        "trip": {
+          "t": "Z",
+          "id": 2207
+        }
       },
       {
         "name_ko": "트라스테베레",
         "name_en": "Trastevere",
-        "desc": "골목 감성·먹거리, 밤 활기"
+        "desc": "골목 감성·먹거리, 밤 활기",
+        "trip": {
+          "t": "Z",
+          "id": 2219
+        }
       },
       {
         "name_ko": "테르미니역",
         "name_en": "Termini",
-        "desc": "교통 허브, 저렴. 밤엔 한산"
+        "desc": "교통 허브, 저렴. 밤엔 한산",
+        "trip": {
+          "t": "Z",
+          "id": 2215
+        }
       }
     ],
     "direct_from": [
@@ -2224,21 +2688,40 @@
     "visa": "무비자 90일",
     "plug": "G형 230V — 어댑터 필요",
     "transit": "택시로 시내 35분",
+    "trip_city_id": 766,
     "areas": [
       {
         "name_ko": "코르니시",
         "name_en": "Corniche Abu Dhabi",
-        "desc": "해변 산책로·시내 중심, 표준"
+        "desc": "해변 산책로·시내 중심, 표준",
+        "trip": {
+          "t": "Z",
+          "id": 13797
+        }
       },
       {
         "name_ko": "야스섬",
         "name_en": "Yas Island",
-        "desc": "테마파크·F1 서킷, 가족 여행"
+        "desc": "테마파크·F1 서킷, 가족 여행",
+        "trip": {
+          "t": "LM",
+          "id": 11071923,
+          "lat": "24.49093",
+          "lon": "54.59924",
+          "kw": "Warner Bros. World Yas Island Abu Dhabi"
+        }
       },
       {
         "name_ko": "사디야트",
         "name_en": "Saadiyat",
-        "desc": "루브르·해변 리조트, 조용"
+        "desc": "루브르·해변 리조트, 조용",
+        "trip": {
+          "t": "LM",
+          "id": 9561381,
+          "lat": "24.53421",
+          "lon": "54.41891",
+          "kw": "Manarat Al Saadiyat"
+        }
       }
     ],
     "direct_from": [
@@ -2286,16 +2769,28 @@
     "visa": "셰겐 무비자 90일 (180일 중). ETIAS 2026년 말 시행 예정",
     "plug": "C·F형 230V — 그대로 사용",
     "transit": "공항철도·지하철로 시내 30분",
+    "trip_city_id": 40795,
     "areas": [
       {
         "name_ko": "에이샴플레",
         "name_en": "Eixample",
-        "desc": "가우디 명소 도보권, 안전. 첫 방문 표준"
+        "desc": "가우디 명소 도보권, 안전. 첫 방문 표준",
+        "trip": {
+          "t": "LM",
+          "id": 24707584,
+          "lat": "41.39621",
+          "lon": "2.16134",
+          "kw": "L'Eixample District"
+        }
       },
       {
         "name_ko": "고딕지구",
         "name_en": "Gothic Quarter Barcelona",
-        "desc": "구시가 감성, 밤 시끄럽고 소지품 주의"
+        "desc": "구시가 감성, 밤 시끄럽고 소지품 주의",
+        "trip": {
+          "t": "Z",
+          "id": 8787
+        }
       },
       {
         "name_ko": "그라시아",
@@ -2344,6 +2839,7 @@
     "visa": "무비자 30일",
     "plug": "G형 240V — 어댑터 필요",
     "transit": "택시로 시내 20분",
+    "trip_city_id": 1401,
     "areas": [
       {
         "name_ko": "웨스트베이",
@@ -2353,12 +2849,26 @@
       {
         "name_ko": "수크와키프 인근",
         "name_en": "Souq Waqif",
-        "desc": "전통시장 도보권, 감성"
+        "desc": "전통시장 도보권, 감성",
+        "trip": {
+          "t": "LM",
+          "id": 9561441,
+          "lat": "25.28798",
+          "lon": "51.53288",
+          "kw": "Souq Waqif"
+        }
       },
       {
         "name_ko": "펄 카타르",
         "name_en": "The Pearl Doha",
-        "desc": "마리나 리조트, 조용"
+        "desc": "마리나 리조트, 조용",
+        "trip": {
+          "t": "LM",
+          "id": 40205679,
+          "lat": "25.37038",
+          "lon": "51.55257",
+          "kw": "The Pearl"
+        }
       }
     ],
     "direct_from": [
@@ -2418,11 +2928,19 @@
     "visa": "셰겐 무비자 90일. ETIAS 2026년 말 시행 예정",
     "plug": "C·E형 230V — 그대로 사용",
     "transit": "버스+지하철로 시내 45분",
+    "trip_city_id": 1288,
     "areas": [
       {
         "name_ko": "구시가 광장",
         "name_en": "Old Town Prague",
-        "desc": "명소 도보권, 표준. 관광객 밀집"
+        "desc": "명소 도보권, 표준. 관광객 밀집",
+        "trip": {
+          "t": "LM",
+          "id": 6744841,
+          "lat": "50.08770",
+          "lon": "14.42115",
+          "kw": "Old Town"
+        }
       },
       {
         "name_ko": "말라스트라나",
@@ -2432,7 +2950,11 @@
       {
         "name_ko": "신시가",
         "name_en": "New Town Prague",
-        "desc": "바츨라프광장, 교통 좋고 합리적 가격"
+        "desc": "바츨라프광장, 교통 좋고 합리적 가격",
+        "trip": {
+          "t": "Z",
+          "id": 2060
+        }
       }
     ],
     "direct_from": [
@@ -2474,21 +2996,37 @@
     "visa": "셰겐 무비자 90일 (180일 중). ETIAS 2026년 말 시행 예정",
     "plug": "C·F형 230V — 그대로 사용",
     "transit": "기차로 중앙역 17분",
+    "trip_city_id": 176,
     "areas": [
       {
         "name_ko": "요르단·운하지구",
         "name_en": "Jordaan",
-        "desc": "운하 감성, 첫 방문 표준"
+        "desc": "운하 감성, 첫 방문 표준",
+        "trip": {
+          "t": "Z",
+          "id": 107183078
+        }
       },
       {
         "name_ko": "박물관지구",
         "name_en": "Museum Quarter Amsterdam",
-        "desc": "조용하고 가족에 적합"
+        "desc": "조용하고 가족에 적합",
+        "trip": {
+          "t": "Z",
+          "id": 107183074
+        }
       },
       {
         "name_ko": "중앙역 인근",
         "name_en": "Amsterdam Centraal",
-        "desc": "교통 좋으나 번잡"
+        "desc": "교통 좋으나 번잡",
+        "trip": {
+          "t": "LM",
+          "id": 4327753,
+          "lat": "52.37869",
+          "lon": "4.90050",
+          "kw": "Amsterdam Centraal"
+        }
       }
     ],
     "direct_from": [
@@ -2542,6 +3080,7 @@
     "visa": "셰겐 무비자 90일 (180일 중). ETIAS 2026년 말 시행 예정",
     "plug": "C·F형 230V — 그대로 사용",
     "transit": "CAT로 시내 16분",
+    "trip_city_id": 651,
     "areas": [
       {
         "name_ko": "1구 링 안",
@@ -2556,7 +3095,11 @@
       {
         "name_ko": "마리아힐퍼 거리",
         "name_en": "Mariahilfer Strasse",
-        "desc": "쇼핑 거리, 합리적 가격"
+        "desc": "쇼핑 거리, 합리적 가격",
+        "trip": {
+          "t": "Z",
+          "id": 107183210
+        }
       }
     ],
     "direct_from": [
@@ -2603,6 +3146,7 @@
     "visa": "셰겐 무비자 90일 (180일 중). ETIAS 2026년 말 시행 예정",
     "plug": "C·F형 230V — 그대로 사용",
     "transit": "기차로 중앙역 12분",
+    "trip_city_id": 250,
     "areas": [
       {
         "name_ko": "뢰머·자일",
@@ -2612,12 +3156,20 @@
       {
         "name_ko": "작센하우젠",
         "name_en": "Sachsenhausen",
-        "desc": "강 건너 조용, 사과와인 골목"
+        "desc": "강 건너 조용, 사과와인 골목",
+        "trip": {
+          "t": "Z",
+          "id": 1641
+        }
       },
       {
         "name_ko": "중앙역",
         "name_en": "Frankfurt Hauptbahnhof",
-        "desc": "교통·가성비. 밤 역 주변 주의"
+        "desc": "교통·가성비. 밤 역 주변 주의",
+        "trip": {
+          "t": "Z",
+          "id": 13850
+        }
       }
     ],
     "direct_from": [
@@ -2672,11 +3224,16 @@
     "visa": "ESTA 사전 승인 필요, 90일",
     "plug": "A·B형 120V — 돼지코 필요",
     "transit": "JFK 에어트레인+지하철 60분",
+    "trip_city_id": 633,
     "areas": [
       {
         "name_ko": "미드타운",
         "name_en": "Midtown Manhattan",
-        "desc": "관광 동선 중심, 첫 방문 표준. 타임스퀘어 바로 옆은 시끄러움"
+        "desc": "관광 동선 중심, 첫 방문 표준. 타임스퀘어 바로 옆은 시끄러움",
+        "trip": {
+          "t": "Z",
+          "id": 112214220
+        }
       },
       {
         "name_ko": "첼시·그리니치빌리지",
@@ -2686,7 +3243,14 @@
       {
         "name_ko": "롱아일랜드시티",
         "name_en": "Long Island City",
-        "desc": "맨해튼 전철 10~15분, 가성비. 밤엔 한산"
+        "desc": "맨해튼 전철 10~15분, 가성비. 밤엔 한산",
+        "trip": {
+          "t": "LM",
+          "id": 13140092,
+          "lat": "40.74511",
+          "lon": "-73.93222",
+          "kw": "Long Island City YMCA"
+        }
       }
     ],
     "direct_from": [
@@ -2741,21 +3305,37 @@
     "visa": "셰겐 무비자 90일 (180일 중). ETIAS 2026년 말 시행 예정",
     "plug": "C·F형 230V — 그대로 사용",
     "transit": "S반으로 시내 40분",
+    "trip_city_id": 363,
     "areas": [
       {
         "name_ko": "마리엔광장 구시가",
         "name_en": "Marienplatz",
-        "desc": "명소 도보권, 첫 방문 표준"
+        "desc": "명소 도보권, 첫 방문 표준",
+        "trip": {
+          "t": "LM",
+          "id": 6788954,
+          "lat": "48.13739",
+          "lon": "11.57545",
+          "kw": "Marienplatz"
+        }
       },
       {
         "name_ko": "중앙역",
         "name_en": "Munich Hauptbahnhof",
-        "desc": "교통 허브, 합리적 가격"
+        "desc": "교통 허브, 합리적 가격",
+        "trip": {
+          "t": "Z",
+          "id": 6037
+        }
       },
       {
         "name_ko": "슈바빙",
         "name_en": "Schwabing",
-        "desc": "대학가·영국정원, 조용한 감성"
+        "desc": "대학가·영국정원, 조용한 감성",
+        "trip": {
+          "t": "Z",
+          "id": 118643761
+        }
       }
     ],
     "direct_from": [
@@ -2808,21 +3388,37 @@
     "visa": "ESTA 사전 승인 필요, 90일",
     "plug": "A·B형 120V — 돼지코 필요",
     "transit": "택시로 다운타운 40분",
+    "trip_city_id": 347,
     "areas": [
       {
         "name_ko": "산타모니카",
         "name_en": "Santa Monica",
-        "desc": "해변·안전, 가족 표준"
+        "desc": "해변·안전, 가족 표준",
+        "trip": {
+          "t": "Z",
+          "id": 84122571
+        }
       },
       {
         "name_ko": "할리우드",
         "name_en": "Hollywood",
-        "desc": "명소 밀집, 밤엔 번잡"
+        "desc": "명소 밀집, 밤엔 번잡",
+        "trip": {
+          "t": "Z",
+          "id": 2326
+        }
       },
       {
         "name_ko": "다운타운",
         "name_en": "Downtown LA",
-        "desc": "교통 중심, 밤거리 주의"
+        "desc": "교통 중심, 밤거리 주의",
+        "trip": {
+          "t": "LM",
+          "id": 51502917,
+          "lat": "34.03523",
+          "lon": "-118.25627",
+          "kw": "Track 16 Gallery Downtown LA"
+        }
       }
     ],
     "direct_from": [
@@ -2878,11 +3474,19 @@
     "visa": "셰겐 무비자 90일 (180일 중). ETIAS 2026년 말 시행 예정",
     "plug": "C·F형 230V — 그대로 사용",
     "transit": "지하철로 시내 30분",
+    "trip_city_id": 357,
     "areas": [
       {
         "name_ko": "솔·그란비아",
         "name_en": "Gran Via Madrid",
-        "desc": "중심 표준, 밤 시끄러움"
+        "desc": "중심 표준, 밤 시끄러움",
+        "trip": {
+          "t": "LM",
+          "id": 8851876,
+          "lat": "40.41893",
+          "lon": "-3.69689",
+          "kw": "Gran Via"
+        }
       },
       {
         "name_ko": "살라망카",
@@ -2892,7 +3496,11 @@
       {
         "name_ko": "우에르타스",
         "name_en": "Huertas Madrid",
-        "desc": "타파스 골목·문학지구, 활기"
+        "desc": "타파스 골목·문학지구, 활기",
+        "trip": {
+          "t": "Z",
+          "id": 107182822
+        }
       }
     ],
     "direct_from": [
@@ -2938,21 +3546,37 @@
     "visa": "ESTA 사전 승인 필요, 90일",
     "plug": "A·B형 120V — 돼지코 필요",
     "transit": "BART로 시내 30분",
+    "trip_city_id": 313,
     "areas": [
       {
         "name_ko": "유니언스퀘어",
         "name_en": "Union Square SF",
-        "desc": "중심·케이블카, 표준. 밤 주변 주의"
+        "desc": "중심·케이블카, 표준. 밤 주변 주의",
+        "trip": {
+          "t": "LM",
+          "id": 6789334,
+          "lat": "37.78794",
+          "lon": "-122.40751",
+          "kw": "Union Square"
+        }
       },
       {
         "name_ko": "피셔맨스워프",
         "name_en": "Fishermans Wharf",
-        "desc": "해안 명소, 가족 적합"
+        "desc": "해안 명소, 가족 적합",
+        "trip": {
+          "t": "Z",
+          "id": 2337
+        }
       },
       {
         "name_ko": "노브힐",
         "name_en": "Nob Hill",
-        "desc": "언덕 위 조용, 전망 좋음"
+        "desc": "언덕 위 조용, 전망 좋음",
+        "trip": {
+          "t": "Z",
+          "id": 118640944
+        }
       }
     ],
     "direct_from": [
@@ -3010,6 +3634,7 @@
     "visa": "셰겐 무비자 90일 (180일 중). ETIAS 2026년 말 시행 예정",
     "plug": "C·F형 230V — 그대로 사용",
     "transit": "말펜사 익스프레스로 중앙역 50분",
+    "trip_city_id": 361,
     "areas": [
       {
         "name_ko": "두오모 인근",
@@ -3019,12 +3644,23 @@
       {
         "name_ko": "나빌리에",
         "name_en": "Navigli",
-        "desc": "운하 감성·아페리티보, 밤 활기"
+        "desc": "운하 감성·아페리티보, 밤 활기",
+        "trip": {
+          "t": "Z",
+          "id": 11484
+        }
       },
       {
         "name_ko": "중앙역",
         "name_en": "Milano Centrale",
-        "desc": "교통 허브, 합리적 가격"
+        "desc": "교통 허브, 합리적 가격",
+        "trip": {
+          "t": "LM",
+          "id": 36693241,
+          "lat": "45.48735",
+          "lon": "9.20386",
+          "kw": "Milano Stazione Centrale"
+        }
       }
     ],
     "direct_from": [
@@ -3071,21 +3707,34 @@
     "visa": "ESTA 사전 승인 필요, 90일",
     "plug": "A·B형 120V — 돼지코 필요",
     "transit": "택시로 와이키키 25분",
+    "trip_city_id": 757,
     "areas": [
       {
         "name_ko": "와이키키",
         "name_en": "Waikiki",
-        "desc": "해변·호텔 밀집, 첫 방문 표준"
+        "desc": "해변·호텔 밀집, 첫 방문 표준",
+        "trip": {
+          "t": "Z",
+          "id": 2828
+        }
       },
       {
         "name_ko": "알라모아나",
         "name_en": "Ala Moana",
-        "desc": "쇼핑몰 인접, 와이키키보다 조용"
+        "desc": "쇼핑몰 인접, 와이키키보다 조용",
+        "trip": {
+          "t": "Z",
+          "id": 107183012
+        }
       },
       {
         "name_ko": "코올리나",
         "name_en": "Ko Olina",
-        "desc": "서부 리조트 단지, 가족 휴양. 렌터카 필요"
+        "desc": "서부 리조트 단지, 가족 휴양. 렌터카 필요",
+        "trip": {
+          "t": "Z",
+          "id": 107182858
+        }
       }
     ],
     "direct_from": [
@@ -3129,6 +3778,7 @@
     "visa": "셰겐 무비자 90일. ETIAS 2026년 말 시행 예정",
     "plug": "C·F형 230V — 그대로 사용",
     "transit": "버스+지하철로 시내 50분",
+    "trip_city_id": 637,
     "areas": [
       {
         "name_ko": "페스트 5구",
@@ -3138,12 +3788,26 @@
       {
         "name_ko": "유대인지구",
         "name_en": "Jewish Quarter Budapest",
-        "desc": "먹거리·펍, 밤 시끄러움"
+        "desc": "먹거리·펍, 밤 시끄러움",
+        "trip": {
+          "t": "LM",
+          "id": 8964490,
+          "lat": "47.50782",
+          "lon": "19.07384",
+          "kw": "Jewish Quarter"
+        }
       },
       {
         "name_ko": "부다 성지구",
         "name_en": "Buda Castle",
-        "desc": "야경·조용, 페스트까지 도보 다리"
+        "desc": "야경·조용, 페스트까지 도보 다리",
+        "trip": {
+          "t": "LM",
+          "id": 6787989,
+          "lat": "47.49620",
+          "lon": "19.03957",
+          "kw": "Buda Castle"
+        }
       }
     ],
     "direct_from": [
@@ -3186,21 +3850,40 @@
     "visa": "ETA 사전 승인 필요, 90일",
     "plug": "I형 230V — 어댑터 필요",
     "transit": "공항철도로 시내 15분",
+    "trip_city_id": 501,
     "areas": [
       {
         "name_ko": "서큘러키·록스",
         "name_en": "Circular Quay",
-        "desc": "오페라하우스 도보권, 가격대 높음"
+        "desc": "오페라하우스 도보권, 가격대 높음",
+        "trip": {
+          "t": "LM",
+          "id": 22643397,
+          "lat": "-33.86114",
+          "lon": "151.21265",
+          "kw": "Circular Quay"
+        }
       },
       {
         "name_ko": "달링하버",
         "name_en": "Darling Harbour",
-        "desc": "수족관·가족 명소"
+        "desc": "수족관·가족 명소",
+        "trip": {
+          "t": "LM",
+          "id": 24492008,
+          "lat": "-33.87488",
+          "lon": "151.20090",
+          "kw": "Darling Harbour"
+        }
       },
       {
         "name_ko": "타운홀 CBD",
         "name_en": "Sydney CBD",
-        "desc": "쇼핑·교통 중간 지점, 무난"
+        "desc": "쇼핑·교통 중간 지점, 무난",
+        "trip": {
+          "t": "Z",
+          "id": 10931
+        }
       }
     ],
     "direct_from": [
@@ -3250,6 +3933,7 @@
     "visa": "셰겐 무비자 90일 (180일 중). ETIAS 2026년 말 시행 예정",
     "plug": "C·F형 230V — 그대로 사용",
     "transit": "기차로 중앙역 30분",
+    "trip_city_id": 277,
     "areas": [
       {
         "name_ko": "중앙역 일대",
@@ -3259,12 +3943,23 @@
       {
         "name_ko": "캄피·디자인지구",
         "name_en": "Design District Helsinki",
-        "desc": "쇼핑·감성"
+        "desc": "쇼핑·감성",
+        "trip": {
+          "t": "LM",
+          "id": 18691524,
+          "lat": "60.16144",
+          "lon": "24.93795",
+          "kw": "Design District"
+        }
       },
       {
         "name_ko": "카타야노카",
         "name_en": "Katajanokka",
-        "desc": "항구 옆 조용한 지구"
+        "desc": "항구 옆 조용한 지구",
+        "trip": {
+          "t": "Z",
+          "id": 118640538
+        }
       }
     ],
     "direct_from": [
@@ -3311,21 +4006,34 @@
     "visa": "무비자 90일",
     "plug": "G형 230V — 어댑터 필요",
     "transit": "지하철로 시내 20분",
+    "trip_city_id": 220,
     "areas": [
       {
         "name_ko": "다운타운",
         "name_en": "Downtown Dubai",
-        "desc": "부르즈칼리파·분수, 첫 방문 표준"
+        "desc": "부르즈칼리파·분수, 첫 방문 표준",
+        "trip": {
+          "t": "Z",
+          "id": 13813
+        }
       },
       {
         "name_ko": "마리나·JBR",
         "name_en": "Dubai Marina",
-        "desc": "해변·야경, 휴양 분위기"
+        "desc": "해변·야경, 휴양 분위기",
+        "trip": {
+          "t": "Z",
+          "id": 1974
+        }
       },
       {
         "name_ko": "데이라 구시가",
         "name_en": "Deira",
-        "desc": "수크·전통, 저렴"
+        "desc": "수크·전통, 저렴",
+        "trip": {
+          "t": "Z",
+          "id": 1970
+        }
       }
     ],
     "direct_from": [
@@ -3385,6 +4093,7 @@
     "visa": "eTA 사전 승인 필요, 6개월",
     "plug": "A·B형 120V — 돼지코 필요",
     "transit": "스카이트레인으로 다운타운 25분",
+    "trip_city_id": 476,
     "areas": [
       {
         "name_ko": "다운타운 롭슨",
@@ -3394,12 +4103,23 @@
       {
         "name_ko": "코울하버",
         "name_en": "Coal Harbour",
-        "desc": "항구 뷰, 조용"
+        "desc": "항구 뷰, 조용",
+        "trip": {
+          "t": "LM",
+          "id": 6741169,
+          "lat": "49.28908",
+          "lon": "-123.12250",
+          "kw": "Coal Harbour Seawall"
+        }
       },
       {
         "name_ko": "예일타운",
         "name_en": "Yaletown",
-        "desc": "다이닝 감성 지구"
+        "desc": "다이닝 감성 지구",
+        "trip": {
+          "t": "Z",
+          "id": 118645912
+        }
       }
     ],
     "direct_from": [
@@ -3454,21 +4174,34 @@
     "visa": "무비자 90일",
     "plug": "C·F형 230V — 그대로 사용",
     "transit": "공항철도·버스로 시내 60분",
+    "trip_city_id": 532,
     "areas": [
       {
         "name_ko": "술탄아흐메트",
         "name_en": "Sultanahmet",
-        "desc": "구시가 명소 도보권, 첫 방문 표준"
+        "desc": "구시가 명소 도보권, 첫 방문 표준",
+        "trip": {
+          "t": "Z",
+          "id": 112214352
+        }
       },
       {
         "name_ko": "카라쾨이·갈라타",
         "name_en": "Galata",
-        "desc": "감성 카페·탑 야경"
+        "desc": "감성 카페·탑 야경",
+        "trip": {
+          "t": "Z",
+          "id": 107183116
+        }
       },
       {
         "name_ko": "탁심",
         "name_en": "Taksim",
-        "desc": "번화가, 밤 시끄러움"
+        "desc": "번화가, 밤 시끄러움",
+        "trip": {
+          "t": "Z",
+          "id": 107183122
+        }
       }
     ],
     "direct_from": [
@@ -3525,6 +4258,7 @@
     "visa": "ESTA 사전 승인 필요, 90일",
     "plug": "A·B형 120V — 돼지코 필요",
     "transit": "경전철로 다운타운 40분",
+    "trip_city_id": 511,
     "areas": [
       {
         "name_ko": "다운타운",
@@ -3534,7 +4268,11 @@
       {
         "name_ko": "벨타운",
         "name_en": "Belltown",
-        "desc": "다이닝·워터프런트 인접"
+        "desc": "다이닝·워터프런트 인접",
+        "trip": {
+          "t": "Z",
+          "id": 2418
+        }
       },
       {
         "name_ko": "캐피톨힐",
@@ -3588,11 +4326,16 @@
     "visa": "셰겐 무비자 90일. ETIAS 2026년 말 시행 예정",
     "plug": "J형 230V — 스위스 전용 어댑터 필요",
     "transit": "기차로 중앙역 10분",
+    "trip_city_id": 434,
     "areas": [
       {
         "name_ko": "구시가 니더도르프",
         "name_en": "Niederdorf Zurich",
-        "desc": "호수·명소 도보권, 표준"
+        "desc": "호수·명소 도보권, 표준",
+        "trip": {
+          "t": "Z",
+          "id": 118641925
+        }
       },
       {
         "name_ko": "중앙역",
@@ -3602,7 +4345,11 @@
       {
         "name_ko": "취리히 웨스트",
         "name_en": "Zurich West",
-        "desc": "재개발 감성 지구, 상대적으로 합리적"
+        "desc": "재개발 감성 지구, 상대적으로 합리적",
+        "trip": {
+          "t": "Z",
+          "id": 118641929
+        }
       }
     ],
     "direct_from": [
@@ -3655,6 +4402,7 @@
     "visa": "NZeTA 사전 승인 + 관광세 필요",
     "plug": "I형 230V — 어댑터 필요",
     "transit": "버스로 시내 45분",
+    "trip_city_id": 678,
     "areas": [
       {
         "name_ko": "퀸스트리트 CBD",
@@ -3664,12 +4412,26 @@
       {
         "name_ko": "폰손비",
         "name_en": "Ponsonby",
-        "desc": "카페·감성 거리, 조용"
+        "desc": "카페·감성 거리, 조용",
+        "trip": {
+          "t": "LM",
+          "id": 6741633,
+          "lat": "-36.84847",
+          "lon": "174.74383",
+          "kw": "Ponsonby"
+        }
       },
       {
         "name_ko": "비아덕트하버",
         "name_en": "Viaduct Harbour",
-        "desc": "마리나 다이닝, 뷰 좋음"
+        "desc": "마리나 다이닝, 뷰 좋음",
+        "trip": {
+          "t": "LM",
+          "id": 6792877,
+          "lat": "-36.84300",
+          "lon": "174.76159",
+          "kw": "Viaduct Harbour"
+        }
       }
     ],
     "direct_from": [

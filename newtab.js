@@ -213,6 +213,35 @@
       + "&Allianceid=10331252&SID=329754573&trip_sub1=&trip_sub3=D19549133";
   }
 
+  /*
+   * 호텔 검색 링크 (v0.5, 2026-08-31).
+   * buildFlightUrl 과 같은 원칙 — 호텔 링크는 이 함수 한 곳에서만 만든다.
+   * 파트너를 바꿀 때 여기 템플릿만 고치면 카드 안 모든 링크가 따라간다.
+   *
+   * 트립닷컴 숙소 검색은 도시 코드(IATA)가 아니라 자체 cityId 를 쓴다.
+   * cities.json 의 trip_city_id 가 그것이고, 지역 이름은 searchWord 로 좁힌다
+   * (searchWord 만 있고 cityId 가 없으면 직전 검색이 그대로 떠서 엉뚱한 도시가 나온다 — 실제 확인).
+   *
+   * 예) 아고다로 바꿀 때:
+   *   return "https://www.agoda.com/ko-kr/search?city=" + city.agoda_city_id + "&cid=<제휴ID>";
+   */
+  function buildHotelUrl(city, area) {
+    if (!city || !city.trip_city_id) return null;
+    var u = "https://kr.trip.com/hotels/list?cityId=" + city.trip_city_id;
+    var t = area && area.trip;
+    if (t && t.id) {
+      // 지역까지 걸린 검색. searchValue 가 없으면 필터가 체크되지 않는다(실제 확인).
+      var sv = t.t === "Z"
+        ? "8|" + t.id + "*8*" + t.id
+        : "13|" + t.id + "*13*" + t.lat + "|" + t.lon + "|" + t.kw + "|" + t.id + "|1";
+      u += "&searchType=" + t.t + "&optionId=" + t.id
+         + "&searchValue=" + encodeURIComponent(sv);
+    }
+    // trip 정보가 없는 지역은 도시 전체 검색으로 떨어진다(엉뚱한 결과보다 낫다).
+    return u + "&curr=KRW&locale=ko-KR"
+             + "&allianceid=10331252&sid=329754573&trip_sub3=D19549133";
+  }
+
   /* ---------- 도시 정보 한 줄 ---------- */
 
   // 분 -> "2시간 20분". 딱 떨어지면 "6시간".
@@ -944,6 +973,7 @@
    */
   window.SomenowCity = {
     current: function () { return currentCity; },
+    hotelUrl: buildHotelUrl,
     goTo: function (iata) {
       var c = cityByIata(allCities || [], iata);
       if (c) goTo(c);
@@ -1535,6 +1565,50 @@
 
   /* ----- 카드 내용 ----- */
 
+  // 새 탭에서 여는 바깥 링크. 광고성 링크에는 sponsored 를 붙인다.
+  function extLink(text, href, cls, sponsored) {
+    var a = document.createElement("a");
+    a.className = cls;
+    a.href = href;
+    a.target = "_blank";
+    a.rel = sponsored ? "noopener nofollow sponsored" : "noopener noreferrer";
+    a.textContent = text;
+    return a;
+  }
+
+  /*
+   * 어디에 묵을까 — 지역 2~3곳과 트레이드오프 한 줄, 지역명은 호텔 검색으로.
+   * 링크는 window.SomenowCity.hotelUrl(=buildHotelUrl) 한 곳에서만 만든다.
+   */
+  function renderAreas(city) {
+    var block = $("cardStayBlock");
+    var wrap = $("cardAreas");
+    if (!block || !wrap) return;
+    wrap.textContent = "";
+    var areas = (city && city.areas) || [];
+    if (!areas.length) { block.hidden = true; return; }
+    block.hidden = false;
+    areas.forEach(function (area) {
+      var row = document.createElement("div");
+      row.className = "card-area";
+      var url = typeof api.hotelUrl === "function" ? api.hotelUrl(city, area) : null;
+      var head;
+      if (url) {
+        head = extLink(area.name_ko, url, "card-area-name", true);
+      } else {
+        head = document.createElement("span");
+        head.className = "card-area-name";
+        head.textContent = area.name_ko;
+      }
+      var desc = document.createElement("span");
+      desc.className = "card-area-desc";
+      desc.textContent = area.desc || "";
+      row.appendChild(head);
+      row.appendChild(desc);
+      wrap.appendChild(row);
+    });
+  }
+
   function factRow(label, value) {
     if (!value) return null;
     var d = document.createElement("div");
@@ -1560,10 +1634,29 @@
     $("cardCity").textContent = city.name_ko + " · " + city.name_en;
     $("cardBest").textContent = (city.best || "") + (city.climate ? "\n" + city.climate : "");
     $("cardBest").style.whiteSpace = "pre-line";
-    $("cardSights").textContent = (city.sights || []).join("\n");
-    $("cardSights").style.whiteSpace = "pre-line";
+    // 가볼 곳 — 이름을 누르면 구글 지도, 아래 줄은 유튜브 영상 검색.
+    // 3단계(심화 조사)로 넘어가는 문. 링크는 검색 URL 이라 API 도 키도 필요 없다.
+    var sw = $("cardSights");
+    sw.textContent = "";
+    (city.sights || []).forEach(function (name) {
+      sw.appendChild(extLink(
+        name,
+        "https://www.google.com/maps/search/" + encodeURIComponent(name + " " + city.name_en),
+        "card-link"
+      ));
+    });
+    if ((city.sights || []).length) {
+      sw.appendChild(extLink(
+        "영상으로 보기",
+        "https://www.youtube.com/results?search_query=" + encodeURIComponent(city.name_ko + " 여행"),
+        "card-link card-link-sub"
+      ));
+    }
+
     $("cardFoods").textContent = (city.foods || []).join("\n");
     $("cardFoods").style.whiteSpace = "pre-line";
+
+    renderAreas(city);
 
     var facts = $("cardFacts");
     facts.textContent = "";
