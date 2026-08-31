@@ -766,7 +766,7 @@ body.hide-sites .topsites, body.hide-sites .add-pop { display: none !important; 
  * 누를 수 있다는 표시(2026-08-31, C안 확정).
  * 글자 앞 작은 기호로 "누를 수 있다"와 "무엇이 열리는가"를 함께 알린다.
  * 밑줄만으로는 약하다는 사용자 지적. 알약·버튼은 쓰지 않는다(상업적으로 보인다).
- *   ◎ 지도 · ▶ 영상 · ▤ 숙소
+ *   ◎ 지도 · ▶ 영상 · ⌂ 숙소 (▤ 는 "문서 같다"는 사용자 지적으로 교체)
  */
 #cardSights .card-link::before {
   content: "◎";
@@ -776,8 +776,8 @@ body.hide-sites .topsites, body.hide-sites .add-pop { display: none !important; 
 }
 #cardSights .card-link-sub::before { content: "▶"; font-size: 0.72em; }
 a.card-area-name::before {
-  content: "▤";
-  font-size: 0.8em;
+  content: "⌂";
+  font-size: 0.95em;
   opacity: 0.45;
   transition: opacity 160ms ease;
 }
