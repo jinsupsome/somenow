@@ -231,9 +231,10 @@
     var t = area && area.trip;
     if (t && t.id) {
       // 지역까지 걸린 검색. searchValue 가 없으면 필터가 체크되지 않는다(실제 확인).
-      var sv = t.t === "Z"
-        ? "8|" + t.id + "*8*" + t.id
-        : "13|" + t.id + "*13*" + t.lat + "|" + t.lon + "|" + t.kw + "|" + t.id + "|1";
+      // 타입마다 searchValue 형식이 다르다(실측). Z=구역, LM=랜드마크, MT=지하철역.
+      var sv = t.t === "Z"  ? "8|" + t.id + "*8*" + t.id
+             : t.t === "MT" ? "11|" + t.id + "*11*" + t.lat + "|" + t.lon + "|" + t.kw + "|" + t.id + "|0|1"
+             :                "13|" + t.id + "*13*" + t.lat + "|" + t.lon + "|" + t.kw + "|" + t.id + "|1";
       u += "&searchType=" + t.t + "&optionId=" + t.id
          + "&searchValue=" + encodeURIComponent(sv);
     }

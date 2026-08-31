@@ -120,7 +120,14 @@
       {
         "name_ko": "나고야역",
         "name_en": "Nagoya Station",
-        "desc": "신칸센·공항철도 직결, 첫 방문 표준"
+        "desc": "신칸센·공항철도 직결, 첫 방문 표준",
+        "trip": {
+          "t": "MT",
+          "id": 12585,
+          "lat": "35.17077",
+          "lon": "136.88160",
+          "kw": "Nagoya Metro Station"
+        }
       },
       {
         "name_ko": "사카에",
@@ -288,7 +295,14 @@
       {
         "name_ko": "워터프런트",
         "name_en": "Kagoshima Waterfront",
-        "desc": "사쿠라지마 페리·야경, 조용"
+        "desc": "사쿠라지마 페리·야경, 조용",
+        "trip": {
+          "t": "LM",
+          "id": 19788478,
+          "lat": "31.59352",
+          "lon": "130.56310",
+          "kw": "Waterfront Park"
+        }
       }
     ],
     "direct_from": [
@@ -451,7 +465,14 @@
       {
         "name_ko": "삿포로역",
         "name_en": "Sapporo Station",
-        "desc": "JR·공항쾌속 직결, 첫 방문 표준"
+        "desc": "JR·공항쾌속 직결, 첫 방문 표준",
+        "trip": {
+          "t": "MT",
+          "id": 9734,
+          "lat": "43.06579",
+          "lon": "141.35237",
+          "kw": "Sapporo Metro Station"
+        }
       },
       {
         "name_ko": "스스키노",
@@ -662,7 +683,14 @@
       {
         "name_ko": "류허 야시장 인근",
         "name_en": "Liuhe Night Market",
-        "desc": "먹거리 도보권, 저렴"
+        "desc": "먹거리 도보권, 저렴",
+        "trip": {
+          "t": "LM",
+          "id": 13931201,
+          "lat": "22.63208",
+          "lon": "120.29915",
+          "kw": "Liouhe Night Market"
+        }
       }
     ],
     "direct_from": [
@@ -727,7 +755,14 @@
       {
         "name_ko": "중산",
         "name_en": "Zhongshan",
-        "desc": "조용한 골목 카페 감성, 접근성 좋음"
+        "desc": "조용한 골목 카페 감성, 접근성 좋음",
+        "trip": {
+          "t": "MT",
+          "id": 6225,
+          "lat": "25.05264",
+          "lon": "121.52036",
+          "kw": "Zhongshan Metro Station"
+        }
       }
     ],
     "direct_from": [
@@ -941,7 +976,14 @@
       {
         "name_ko": "프렌치쿼터",
         "name_en": "French Quarter Hanoi",
-        "desc": "오페라하우스 인근, 정갈하고 고급"
+        "desc": "오페라하우스 인근, 정갈하고 고급",
+        "trip": {
+          "t": "LM",
+          "id": 59814805,
+          "lat": "21.01989",
+          "lon": "105.84661",
+          "kw": "French Quarter Heritage House NGT 13"
+        }
       },
       {
         "name_ko": "서호",
@@ -1156,7 +1198,14 @@
       {
         "name_ko": "쩐푸 해변 중심가",
         "name_en": "Tran Phu Nha Trang",
-        "desc": "해변·먹거리 도보권, 첫 방문 표준"
+        "desc": "해변·먹거리 도보권, 첫 방문 표준",
+        "trip": {
+          "t": "LM",
+          "id": 52733981,
+          "lat": "12.23368",
+          "lon": "109.19771",
+          "kw": "Tran Phu"
+        }
       },
       {
         "name_ko": "빈펄 혼째섬",
@@ -1657,7 +1706,14 @@
       {
         "name_ko": "시내 워터프런트",
         "name_en": "Kota Kinabalu Waterfront",
-        "desc": "선셋·먹거리 도보권, 가성비"
+        "desc": "선셋·먹거리 도보권, 가성비",
+        "trip": {
+          "t": "LM",
+          "id": 40403963,
+          "lat": "5.97886",
+          "lon": "116.06985",
+          "kw": "KK Waterfront"
+        }
       },
       {
         "name_ko": "딴중아루·수트라하버",
@@ -1674,7 +1730,14 @@
       {
         "name_ko": "북부 리조트",
         "name_en": "Rasa Ria Tuaran",
-        "desc": "조용한 휴양 전용, 시내까지 차 30분"
+        "desc": "조용한 휴양 전용, 시내까지 차 30분",
+        "trip": {
+          "t": "LM",
+          "id": 13286530,
+          "lat": "6.15577",
+          "lon": "116.14663",
+          "kw": "Rasa Ria Reserve by Shangri-La"
+        }
       }
     ],
     "direct_from": [
@@ -1804,7 +1867,14 @@
       {
         "name_ko": "부킷빈땅",
         "name_en": "Bukit Bintang",
-        "desc": "쇼핑·먹거리 번화가, 밤 활기"
+        "desc": "쇼핑·먹거리 번화가, 밤 활기",
+        "trip": {
+          "t": "MT",
+          "id": 14218,
+          "lat": "3.14583",
+          "lon": "101.71111",
+          "kw": "Bukit Bintang Metro Station"
+        }
       },
       {
         "name_ko": "차이나타운",
@@ -1882,7 +1952,14 @@
       {
         "name_ko": "하갓냐",
         "name_en": "Hagatna",
-        "desc": "로컬 분위기, 조용. 렌터카 필요"
+        "desc": "로컬 분위기, 조용. 렌터카 필요",
+        "trip": {
+          "t": "LM",
+          "id": 8820656,
+          "lat": "13.47389",
+          "lon": "144.75167",
+          "kw": "Plaza de Espana"
+        }
       }
     ],
     "direct_from": [
@@ -2077,7 +2154,14 @@
       {
         "name_ko": "난뤄구샹 후통",
         "name_en": "Nanluoguxiang",
-        "desc": "옛 골목 감성, 조용"
+        "desc": "옛 골목 감성, 조용",
+        "trip": {
+          "t": "MT",
+          "id": 6096,
+          "lat": "39.93348",
+          "lon": "116.40361",
+          "kw": "Nanluoguxiang Metro Station"
+        }
       }
     ],
     "direct_from": [
@@ -2141,7 +2225,14 @@
       {
         "name_ko": "인민광장·난징둥루",
         "name_en": "People Square Shanghai",
-        "desc": "와이탄 도보권, 첫 방문 표준"
+        "desc": "와이탄 도보권, 첫 방문 표준",
+        "trip": {
+          "t": "MT",
+          "id": 4128,
+          "lat": "31.23278",
+          "lon": "121.47430",
+          "kw": "People's Square Metro Station"
+        }
       },
       {
         "name_ko": "프랑스조계·신톈디",
@@ -2317,7 +2408,14 @@
       {
         "name_ko": "오페라",
         "name_en": "Opera Paris",
-        "desc": "쇼핑·교통 좋고 상대적으로 합리적 가격"
+        "desc": "쇼핑·교통 좋고 상대적으로 합리적 가격",
+        "trip": {
+          "t": "MT",
+          "id": 7502,
+          "lat": "48.87113",
+          "lon": "2.33213",
+          "kw": "Opera Metro Station"
+        }
       }
     ],
     "direct_from": [
@@ -2795,7 +2893,14 @@
       {
         "name_ko": "그라시아",
         "name_en": "Gracia",
-        "desc": "로컬 분위기, 조용"
+        "desc": "로컬 분위기, 조용",
+        "trip": {
+          "t": "MT",
+          "id": 10146,
+          "lat": "41.39956",
+          "lon": "2.15217",
+          "kw": "Gracia Metro Station"
+        }
       }
     ],
     "direct_from": [
@@ -2844,7 +2949,14 @@
       {
         "name_ko": "웨스트베이",
         "name_en": "West Bay Doha",
-        "desc": "스카이라인 고층 호텔, 표준"
+        "desc": "스카이라인 고층 호텔, 표준",
+        "trip": {
+          "t": "MT",
+          "id": 24800,
+          "lat": "25.31512",
+          "lon": "51.51978",
+          "kw": "West Bay Metro Station"
+        }
       },
       {
         "name_ko": "수크와키프 인근",
@@ -2945,7 +3057,14 @@
       {
         "name_ko": "말라스트라나",
         "name_en": "Mala Strana",
-        "desc": "성 아래 조용한 골목"
+        "desc": "성 아래 조용한 골목",
+        "trip": {
+          "t": "LM",
+          "id": 6729991,
+          "lat": "50.08771",
+          "lon": "14.40389",
+          "kw": "Mala Strana"
+        }
       },
       {
         "name_ko": "신시가",
@@ -3090,7 +3209,14 @@
       {
         "name_ko": "7구 노이바우",
         "name_en": "Neubau",
-        "desc": "카페·감성, 조용"
+        "desc": "카페·감성, 조용",
+        "trip": {
+          "t": "MT",
+          "id": 11479,
+          "lat": "48.19912",
+          "lon": "16.35209",
+          "kw": "Neubaugasse Metro Station"
+        }
       },
       {
         "name_ko": "마리아힐퍼 거리",
@@ -3151,7 +3277,14 @@
       {
         "name_ko": "뢰머·자일",
         "name_en": "Romer Frankfurt",
-        "desc": "구시가·쇼핑 도보권, 표준"
+        "desc": "구시가·쇼핑 도보권, 표준",
+        "trip": {
+          "t": "MT",
+          "id": 9815,
+          "lat": "50.11073",
+          "lon": "8.68383",
+          "kw": "Dom/Romer Metro Station"
+        }
       },
       {
         "name_ko": "작센하우젠",
@@ -3238,7 +3371,14 @@
       {
         "name_ko": "첼시·그리니치빌리지",
         "name_en": "Chelsea Manhattan",
-        "desc": "조용한 동네 감성과 맛집. 가격대 높음"
+        "desc": "조용한 동네 감성과 맛집. 가격대 높음",
+        "trip": {
+          "t": "LM",
+          "id": 15026146,
+          "lat": "40.73357",
+          "lon": "-74.00274",
+          "kw": "Greenwich Village"
+        }
       },
       {
         "name_ko": "롱아일랜드시티",
@@ -3491,7 +3631,14 @@
       {
         "name_ko": "살라망카",
         "name_en": "Salamanca Madrid",
-        "desc": "고급 주택가, 조용"
+        "desc": "고급 주택가, 조용",
+        "trip": {
+          "t": "LM",
+          "id": 23426584,
+          "lat": "40.42795",
+          "lon": "-3.68675",
+          "kw": "Barrio de Salamanca"
+        }
       },
       {
         "name_ko": "우에르타스",
@@ -3639,7 +3786,14 @@
       {
         "name_ko": "두오모 인근",
         "name_en": "Duomo Milan",
-        "desc": "명소·쇼핑 도보권, 가격대 높음"
+        "desc": "명소·쇼핑 도보권, 가격대 높음",
+        "trip": {
+          "t": "MT",
+          "id": 9301,
+          "lat": "45.46443",
+          "lon": "9.18927",
+          "kw": "Duomo Metro Station"
+        }
       },
       {
         "name_ko": "나빌리에",
@@ -4098,7 +4252,14 @@
       {
         "name_ko": "다운타운 롭슨",
         "name_en": "Robson Vancouver",
-        "desc": "쇼핑·교통, 첫 방문 표준"
+        "desc": "쇼핑·교통, 첫 방문 표준",
+        "trip": {
+          "t": "LM",
+          "id": 6771225,
+          "lat": "49.28193",
+          "lon": "-123.12192",
+          "kw": "Robson Square"
+        }
       },
       {
         "name_ko": "코울하버",
@@ -4277,7 +4438,11 @@
       {
         "name_ko": "캐피톨힐",
         "name_en": "Capitol Hill",
-        "desc": "카페·로컬, 밤 활기"
+        "desc": "카페·로컬, 밤 활기",
+        "trip": {
+          "t": "Z",
+          "id": 14253
+        }
       }
     ],
     "direct_from": [
