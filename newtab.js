@@ -1045,14 +1045,12 @@
   $("searchForm").addEventListener("submit", function (e) {
     e.preventDefault();
     var q = input.value.trim();
-    if (q) location.href = "https://www.google.com/search?q=" + encodeURIComponent(q);
-  });
-  // AI 모드: 입력한 검색어가 있으면 그대로 AI 모드로 검색
-  $("aiBtn").addEventListener("click", function (e) {
-    var q = input.value.trim();
-    if (q) {
-      e.preventDefault();
-      location.href = "https://www.google.com/search?udm=50&q=" + encodeURIComponent(q);
+    if (!q) return;
+    // 검색은 반드시 chrome.search 로 보낸다. 사용자가 설정한 기본 검색엔진을 그대로 따르기
+    // 위해서다. 구글 URL 을 직접 열면 "검색 환경 변경"으로 스토어 심사에서 거부된다
+    // (2026-09-05 Red Argon 거부 사유). 특정 엔진 전용 기능(AI 모드·렌즈)도 같은 이유로 두지 않는다.
+    if (chrome.search && chrome.search.query) {
+      chrome.search.query({ text: q, disposition: "CURRENT_TAB" });
     }
   });
 

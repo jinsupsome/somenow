@@ -134,6 +134,13 @@
   - 사진작가와 Unsplash 를 표기하고 링크할 것 → 지킴 (우측 하단, utm 포함)
 - **주의(실제로 겪은 버그)**: 스크림에 z-index 5 를 준 뒤 사진작가 표기(.credit)가 그 아래로 깔려 화면에서 사라졌다. 스크린샷을 찍고 나서야 발견했다. `.credit { z-index: 20 }` 이 반드시 있어야 한다. 표기가 사라지면 Unsplash 가이드라인 위반이고 Production 심사도 통과하지 못한다. 새 요소를 얹을 때마다 표기가 보이는지 확인할 것.
 
+### 2026-09-05 — 스토어 2차 거부(단일 목적) 대응, v0.5.0 제출 준비
+
+- 거부 사유: 새 탭 검색창이 구글 검색으로 고정돼 "새 탭 + 검색환경을 모두 변경"으로 판정(Red Argon).
+- 검색 제출을 `chrome.search.query()` 로 교체(사용자 기본 검색엔진을 따름), manifest 에 `search` 권한 추가.
+- 구글 전용이라 대체 불가한 AI 모드 버튼·렌즈 버튼 삭제, 검색창 문구·여백 정리.
+- 헤드리스 확인 완료(엔터 시 chrome.search 로 전달, 정렬 이상 없음). 실제 크롬 확인 후 재제출.
+
 ## 10. 계정
 - 부업 전용 구글 계정: jinsupsome@gmail.com — GitHub·Unsplash·웹스토어·제휴 가입을 전부 이 계정으로 통일 (2026-08-28 생성)
 - GitHub: jinsupsome / https://github.com/jinsupsome/somenow · 소개 페이지 https://jinsupsome.github.io/somenow/ (index.html, Travelpayouts 인증 코드 포함)

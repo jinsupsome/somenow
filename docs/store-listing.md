@@ -207,3 +207,20 @@ Displays each shortcut's site icon next to its name on the new tab page. Without
 - 글 원문은 `content/articles/*.html`, 목록·메타는 `content/articles.json`.
 - 제휴 링크는 스크립트 상단 `PARTNERS` 한 곳에서만 관리한다(eSIM·픽업·입장권·보험, Sub ID = site-guide).
 - 확장 프로그램 zip 에는 이 파일들이 들어가지 않는다. 사이트 전용이다.
+
+## 13. 2026-09-05 2차 심사 거부와 대응 (단일 목적)
+
+- 결과: 게시 거부. 사유 **품질 가이드라인 - 단일 목적**(위반 참조 ID Red Argon).
+- 지적된 내용: "브라우저의 새 탭 페이지와 사용자의 검색 환경을 모두 변경했습니다."
+  새 탭 검색창이 `location.href = "https://www.google.com/search?q=..."` 로 구글에 고정돼 있었고,
+  AI 모드 버튼(`udm=50`)·구글 렌즈 버튼도 구글 전용이었다. manifest 에
+  `chrome_settings_overrides` 가 없어도 **실제 동작**으로 판정한다.
+- 구글이 제시한 정정 방법: 새 탭에 검색이 있으면 **Chrome Search API** 를 써서
+  사용자가 선택한 기본 검색엔진을 따를 것. 새 탭과 검색엔진을 모두 바꾸려면 확장을 분리할 것.
+- 대응 (v0.5.0 — 심사가 끝났으므로 로컬 v0.5 코드를 함께 올린다):
+  1. `newtab.js` 검색 제출 → `chrome.search.query({text, disposition:"CURRENT_TAB"})`.
+  2. `manifest.json` 에 `"search"` 권한 추가, 버전 0.4.0 → 0.5.0.
+  3. AI 모드 버튼·구글 렌즈 버튼 삭제(특정 엔진 전용이라 대체 불가). 관련 CSS(.ai-chip/.lens-btn) 정리.
+  4. 검색창 placeholder "Google 검색" → "검색", 검색창 좌우 여백 대칭(0 18px).
+- 교훈: 새 탭 확장에 검색창을 두려면 처음부터 `chrome.search` 로만 보낸다.
+  특정 검색엔진 전용 버튼(AI 모드·렌즈)은 단일 목적 위반으로 읽힌다.
